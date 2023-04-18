@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 import validator from "validator";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+//to generate token in getResetToken
+import crypto from "crypto";
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -46,8 +48,8 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  ResetPasswordToken: String,
-  ResetPasswordExpire: String,
+  resetPasswordToken: String,
+  resetPasswordExpire: String,
 });
 
 //before saving everything we need to hash passwords
@@ -61,7 +63,7 @@ UserSchema.pre("save", async function (next) {
   next();
 });
 
-//we can write methds nice
+//we can write methods nice
 
 UserSchema.methods.getJWTToken = function () {
   return jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {
@@ -71,6 +73,23 @@ UserSchema.methods.getJWTToken = function () {
 
 UserSchema.methods.comparePassword = async function (password) {
   return await bcrypt.compare(password, this.password);
+};
+
+UserSchema.methods.getResetToken = async function () {
+  const resetToken = crypto.randomBytes(20).toString("hex");
+
+  //to hash to resetToken and save it in the database
+  //sha256 is the algorithm
+  const hashedToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
+
+  this.resetPasswordExpire = Date.now() + 15 * 60 * 1000;
+
+  this.resetPasswordToken = hashedToken;
+
+  return resetToken;
 };
 
 export const Users = mongoose.model("Users", UserSchema);

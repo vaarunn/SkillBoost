@@ -1,9 +1,9 @@
 import { tryCatchError } from "../middlewares/tryCatch.js";
-import { CourseModel } from "../models/courseModel.js";
+import { Courses } from "../models/courseModel.js";
 import ErrorHandler from "../utils/customErrorHandler.js";
 
 export const getAllCourses = tryCatchError(async (req, res, next) => {
-  const courses = await CourseModel.find({}).select("-lectures");
+  const courses = await Courses.find({}).select("-lectures");
   res.status(200).json({
     success: true,
     courses,
@@ -19,7 +19,7 @@ export const createCourse = tryCatchError(async (req, res, next) => {
 
   // const file = req.file;
 
-  const course = CourseModel.create({
+  const course = Courses.create({
     title,
     description,
     category,
