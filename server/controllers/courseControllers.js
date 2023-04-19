@@ -130,31 +130,5 @@ export const deleteCourse = tryCatchError(async (req, res, next) => {
   });
 });
 
-export const deleteLecture = tryCatchError(async (req, res, next) => {
-  // const { courseId } = req.query;
-
-  // console.log(courseId);
-  // const course = await Courses.findById(courseId);
-
-  // if (!course) {
-  //   return next(new ErrorHandler("Course Not Found", 404));
-  // }
-
-  // const lecture = course.find((item) => {
-  //   if (item._id.toString() === lectureId.toString()) return item;
-  // });
-
-  // await cloudinary.v2.uploader.destroy(lecture.video.public_id, {
-  //   resource_type: "video",
-  // });
-
-  // course.lectures = course.lectures.filter((item) => {
-  //   if (item._id.toString() !== lectureId.toString()) return item;
-  // });
-
-  await course.save();
-  res.status(200).json({
-    success: true,
-    message: "Lecture Deleted Successfully",
-  });
-});
+//fuck this is not working will look into this later
+export const deleteCourseLectures = tryCatchError(async (req, res, next) => {});
