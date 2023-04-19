@@ -233,7 +233,8 @@ export const addToPlaylist = tryCatchError(async (req, res, next) => {
 export const removeFromPlaylist = tryCatchError(async (req, res, next) => {
   const userId = req.user._id;
   const user = await Users.findById(userId);
-  const course = await Courses.findById(req.body.id);
+  const course = await Courses.findById(req.query.id);
+
   if (!course) {
     return next(new ErrorHandler("Invalid Course Id", 404));
   }
