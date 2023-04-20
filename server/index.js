@@ -6,6 +6,9 @@ import { connectDB } from "./config/connectDb.js";
 import { errorHandlerMiddleware } from "./middlewares/customErrorHandler.js";
 import cookieParser from "cookie-parser";
 import cloudinary from "cloudinary";
+import Razorpay from "razorpay";
+import paymentRoutes from "./routes/paymentRoutes.js";
+
 dotenv.config({
   path: "./config/config.env",
 });
@@ -31,9 +34,16 @@ app.use(
   })
 );
 
+export const instance = new Razorpay({
+  key_id: process.env.RAZORPAY_API_KEY,
+  key_secret: process.env.RAZORPAY_API_SECRET,
+});
+
 app.use("/api/courses", courseRoutes);
 
 app.use("/api/users", userRoutes);
+
+app.use("/api/payment", paymentRoutes);
 
 //this gets called when we call next in some contorller and there is no other function this gets executed
 app.use(errorHandlerMiddleware);

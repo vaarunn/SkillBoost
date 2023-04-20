@@ -8,7 +8,11 @@ import {
   getCourseLectures,
 } from "../controllers/courseControllers.js";
 import singleUpload from "../middlewares/multer.js";
-import { isAuthenticateUser, isAuthorizedUser } from "../middlewares/auth.js";
+import {
+  authorizeSubscriber,
+  isAuthenticateUser,
+  isAuthorizedUser,
+} from "../middlewares/auth.js";
 
 const routes = Router();
 
@@ -22,7 +26,7 @@ routes.post(
   createCourse
 );
 
-routes.get("/:id", isAuthenticateUser, getCourseLectures);
+routes.get("/:id", isAuthenticateUser, authorizeSubscriber, getCourseLectures);
 
 // routes.get("/:id", getCourseLectures);
 
