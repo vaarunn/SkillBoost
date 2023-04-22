@@ -8,6 +8,9 @@ import cookieParser from "cookie-parser";
 import cloudinary from "cloudinary";
 import Razorpay from "razorpay";
 import paymentRoutes from "./routes/paymentRoutes.js";
+import otherRoutes from "./routes/otherRoutes.js";
+import nodeCron from "node-cron";
+import { Stats } from "./models/Stats.js";
 
 dotenv.config({
   path: "./config/config.env",
@@ -17,6 +20,14 @@ cloudinary.v2.config({
   cloud_name: process.env.CLOUDINARY_CLIENT_NAME,
   api_key: process.env.CLOUDINARY_CLIENT_API,
   api_secret: process.env.CLOUDINARY_CLIENT_SECRET,
+});
+
+nodeCron.schedule("0 0 0 1 * *", async () => {
+  try {
+    await Stats.create({});
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 console.log(
@@ -44,6 +55,8 @@ app.use("/api/courses", courseRoutes);
 app.use("/api/users", userRoutes);
 
 app.use("/api/payment", paymentRoutes);
+
+app.use("/api/other", otherRoutes);
 
 //this gets called when we call next in some contorller and there is no other function this gets executed
 app.use(errorHandlerMiddleware);

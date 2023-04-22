@@ -1,11 +1,25 @@
 import { tryCatchError } from "../middlewares/tryCatch.js";
+import { Stats } from "../models/Stats.js";
 import { Courses } from "../models/courseModel.js";
 import ErrorHandler from "../utils/customErrorHandler.js";
 import getDataUri from "../utils/dataUri.js";
 import cloudinary from "cloudinary";
 
 export const getAllCourses = tryCatchError(async (req, res, next) => {
-  const courses = await Courses.find({}).select("-lectures");
+  const keyword = req.query.keyword || "";
+  const category = req.query.category || "";
+
+  const courses = await Courses.find({
+    title: {
+      $regex: keyword,
+      //this is for case insensitive
+      $options: "i",
+    },
+    category: {
+      $regex: category,
+      $options: "i",
+    },
+  }).select("-lectures");
   res.status(200).json({
     success: true,
     courses,
@@ -132,3 +146,20 @@ export const deleteCourse = tryCatchError(async (req, res, next) => {
 
 //fuck this is not working will look into this later
 export const deleteCourseLectures = tryCatchError(async (req, res, next) => {});
+
+Courses.watch().on("change", async () => {
+  const stats = await Stats.find({}).sort({ createdAt: "desc" }).limit(1);
+
+  const course = await Courses.find({});
+
+  let totalViews = 0;
+
+  for (let i = 0; i < course.length; i++) {
+    totalViews += course[i].views;
+  }
+
+  stats[0].views = totalViews;
+  stats[0].createdAt = new Date(Date.now());
+
+  await stats[0].save();
+});

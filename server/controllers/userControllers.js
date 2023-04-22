@@ -8,6 +8,7 @@ import { sendEmail } from "../utils/sendEmail.js";
 import { sendToken } from "../utils/sendToken.js";
 import crypto from "crypto";
 import cloudinary from "cloudinary";
+import { Stats } from "../models/Stats.js";
 
 export const register = tryCatchError(async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -348,4 +349,14 @@ export const deleteMyProfile = tryCatchError(async (req, res, next) => {
     success: true,
     message: "Your Account Was Deleted Successfully",
   });
+});
+
+Users.watch().on("change", async () => {
+  const stats = await Stats.find({ "subscription.status": "active" });
+
+  stats[0].users = await Users.countDocuments();
+  stats[0].subscription = subscription.length;
+  stats[0].createdAt = new Date(Date.now());
+
+  await stats.save();
 });
