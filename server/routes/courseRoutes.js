@@ -3,7 +3,7 @@ import {
   addCourseLectures,
   createCourse,
   deleteCourse,
-  deleteCourseLectures,
+  deleteLecture,
   getAllCourses,
   getCourseLectures,
 } from "../controllers/courseControllers.js";
@@ -40,11 +40,6 @@ routes.post(
 
 routes.delete("/:id", isAuthenticateUser, isAuthorizedUser, deleteCourse);
 
-routes.delete(
-  "/deleteLectures",
-  isAuthenticateUser,
-  isAuthorizedUser,
-  deleteCourseLectures
-);
+routes.delete("/punk", isAuthenticateUser, isAuthorizedUser, deleteLecture);
 
 export default routes;

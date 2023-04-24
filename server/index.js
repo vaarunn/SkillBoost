@@ -11,6 +11,7 @@ import paymentRoutes from "./routes/paymentRoutes.js";
 import otherRoutes from "./routes/otherRoutes.js";
 import nodeCron from "node-cron";
 import { Stats } from "./models/Stats.js";
+import cors from "cors";
 
 dotenv.config({
   path: "./config/config.env",
@@ -30,13 +31,16 @@ nodeCron.schedule("0 0 0 1 * *", async () => {
   }
 });
 
-console.log(
-  process.env.CLOUDINARY_CLIENT_NAME,
-  process.env.CLOUDINARY_CLIENT_API,
-  process.env.CLOUDINARY_CLIENT_SECRET
+const app = express();
+
+app.use(
+  cors({
+    origin: [process.env.FRONTEND_URL],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
 );
 
-const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(

@@ -12,6 +12,7 @@ import { Stats } from "../models/Stats.js";
 
 export const register = tryCatchError(async (req, res, next) => {
   const { name, email, password } = req.body;
+  console.log(name, email, password);
   const file = req.file;
 
   if (!name || !email || !password || !file) {
@@ -351,12 +352,23 @@ export const deleteMyProfile = tryCatchError(async (req, res, next) => {
   });
 });
 
-Users.watch().on("change", async () => {
-  const stats = await Stats.find({ "subscription.status": "active" });
+// Users.watch().on("change", async () => {
+//   const stats = await Stats.find({ "subscription.status": "active" });
 
+//   stats[0].users = await Users.countDocuments();
+//   stats[0].subscription = subscription.length;
+//   stats[0].createdAt = new Date(Date.now());
+
+//   await stats.save();
+// });
+
+Users.watch().on("change", async () => {
+  const stats = await Stats.find({}).sort({ createdAt: "desc" }).limit(1);
+
+  const subscription = await Users.find({ "subscription.status": "active" });
   stats[0].users = await Users.countDocuments();
   stats[0].subscription = subscription.length;
   stats[0].createdAt = new Date(Date.now());
 
-  await stats.save();
+  await stats[0].save();
 });
