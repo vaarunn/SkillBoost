@@ -63,12 +63,6 @@ export const login = tryCatchError(async (req, res, next) => {
   }
 
   sendToken(res, user, `Welcome Back ${user.name}`, 200);
-
-  res.status(200).json({
-    success: true,
-    message: "Logged in successfully",
-    user,
-  });
 });
 
 export const logout = tryCatchError(async (req, res, next) => {
