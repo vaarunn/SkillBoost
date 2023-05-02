@@ -16,7 +16,6 @@ const Login = () => {
       name,
       password,
     });
-    console.log(response.data.user);
     dispatch(login(response.data.user));
   };
 
