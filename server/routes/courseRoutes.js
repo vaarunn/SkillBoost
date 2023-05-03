@@ -28,8 +28,6 @@ routes.post(
 
 routes.get("/:id", isAuthenticateUser, authorizeSubscriber, getCourseLectures);
 
-// routes.get("/:id", getCourseLectures);
-
 routes.post(
   "/:id",
   isAuthenticateUser,
