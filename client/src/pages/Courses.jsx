@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCourse } from "../redux/slices/courseSlice";
+import CourseCard from "../components/CourseCard";
 
-const courses = [
+const buttons = [
   {
     id: 1,
     category: "Web Development",
   },
   {
     id: 2,
-    category: "App Development",
+    category: "Application Development",
   },
   {
     id: 3,
@@ -21,7 +24,19 @@ const courses = [
 
 const Courses = () => {
   const [search, setSearch] = useState("");
-  const [keyword, setKeyword] = useState("");
+  const [type, setType] = useState("");
+  const [courses, setCourses] = useState([]);
+  const dispatch = useDispatch();
+
+  const getCourses = async () => {
+    const response = await dispatch(getAllCourse({ search, type }));
+    setCourses(response.payload.courses);
+    console.log(response.payload.courses);
+  };
+
+  useEffect(() => {
+    getCourses();
+  }, [search, type]);
 
   return (
     <div>
@@ -34,19 +49,22 @@ const Courses = () => {
         }}
       />
       <div className="flex gap-8">
-        {courses.map((course) => {
+        {buttons.map((course) => {
           const { id, category } = course;
           return (
             <div key={id} className="flex">
-              <button
-                onClick={() => setKeyword(category)}
-                className="bg-red-200"
-              >
+              <button onClick={() => setType(category)} className="bg-red-200">
                 {category}
               </button>
             </div>
           );
         })}
+      </div>
+      <div>
+        {courses &&
+          courses.map((course, index) => {
+            return <CourseCard key={index} course={course} />;
+          })}
       </div>
     </div>
   );
