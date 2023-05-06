@@ -17,8 +17,7 @@ export const register = createAsyncThunk(
       return await authServices.registerService(user);
     } catch (error) {
       console.log(error);
-      const message = error.message;
-      return thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -29,8 +28,7 @@ export const checkUser = createAsyncThunk(
     try {
       return await authServices.checkUserService();
     } catch (error) {
-      const message = error.message;
-      return thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -41,9 +39,7 @@ export const login = createAsyncThunk(
     try {
       return await authServices.loginService(user);
     } catch (error) {
-      const message = error.message;
-      console.log(message);
-      return thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -51,7 +47,14 @@ export const login = createAsyncThunk(
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    resetSuccessMessge: (state) => {
+      state.successMessage = "";
+    },
+    resetErrorMessge: (state) => {
+      state.errorMessage = "";
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(register.fulfilled, (state, action) => {
@@ -59,26 +62,28 @@ const userSlice = createSlice({
         state.user = action.payload;
         state.isError = false;
         state.isSuccess = true;
+        state.successMessage = action.payload.message;
       })
       .addCase(register.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
-        state.isError = action.payload;
+        state.errorMessage = action.payload.response.data.message;
       })
       .addCase(checkUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload;
         state.isError = false;
         state.isSuccess = true;
+        state.successMessage = action.payload.message;
       })
       .addCase(checkUser.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(checkUser.rejected, (state, action) => {
         state.isLoading = false;
-        state.isError = action.payload;
+        state.errorMessage = action.payload.response.data.message;
       })
       .addCase(login.pending, (state) => {
         state.isLoading = true;
@@ -92,9 +97,10 @@ const userSlice = createSlice({
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
-        state.isError = action.error.message;
+        state.errorMessage = action.payload.response.data.message;
       });
   },
 });
 
+export const { resetSuccessMessge, resetErrorMessge } = userSlice.actions;
 export default userSlice.reducer;

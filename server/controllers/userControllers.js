@@ -80,9 +80,9 @@ export const logout = tryCatchError(async (req, res, next) => {
 
 export const getMyProfile = tryCatchError(async (req, res, next) => {
   const user = await Users.findById(req.user._id);
-
   res.status(200).json({
     success: true,
+    message: `Welcome back ${user.name}`,
     user,
   });
 });

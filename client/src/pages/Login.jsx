@@ -2,29 +2,39 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/slices/userSlice";
 import toast from "react-hot-toast";
+import {
+  resetSuccessMessge,
+  resetErrorMessge,
+} from "../redux/slices/userSlice.js";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { message } = useSelector((state) => state.user);
+  const { successMessage, errorMessage } = useSelector((state) => state.user);
 
   const loginHandler = async (e) => {
     e.preventDefault();
-    try {
-      dispatch(login({ email, password }));
-    } catch (error) {
-      console.log(error.message);
-    }
+    dispatch(login({ email, password }));
   };
 
   useEffect(() => {
-    if (message) {
-      toast.success(message);
+    if (successMessage) {
+      toast.success(successMessage);
+      dispatch(resetSuccessMessge());
+      navigate("/courses");
     }
-  }, [message]);
+  }, [successMessage]);
+
+  useEffect(() => {
+    if (errorMessage) {
+      toast.error(errorMessage);
+      dispatch(resetErrorMessge());
+    }
+  }, [errorMessage]);
 
   return (
     <div>

@@ -4,6 +4,8 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import { Toaster } from "react-hot-toast";
+import Profile from "./pages/Profile";
+import Courses from "./pages/Courses";
 function App() {
   return (
     <BrowserRouter>
@@ -12,6 +14,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/courses" element={<Courses />} />
       </Routes>
       <Toaster />
     </BrowserRouter>

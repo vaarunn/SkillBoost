@@ -1,7 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
-import { register } from "../redux/slices/userSlice";
+import {
+  checkUser,
+  register,
+  resetErrorMessge,
+  resetSuccessMessge,
+} from "../redux/slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import ClipLoader from "react-spinners/ClipLoader";
+import { toast } from "react-hot-toast";
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -9,9 +17,18 @@ const Register = () => {
   const [file, setFile] = useState("");
   const [filePreview, setFilePreview] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const { isLoading, user } = useSelector((state) => state.user);
-  console.log(isLoading, user);
+  const { successMessage, errorMessage, isLoading, user } = useSelector(
+    (state) => state.user
+  );
+
+  useEffect(() => {
+    if (dispatch(checkUser())) {
+      navigate("/courses");
+    }
+  }, []);
+
   const registerHandler = (e) => {
     e.preventDefault();
     const myForm = new FormData();
@@ -23,6 +40,21 @@ const Register = () => {
 
     dispatch(register(myForm));
   };
+
+  useEffect(() => {
+    if (successMessage) {
+      toast.success(successMessage);
+      dispatch(resetSuccessMessge());
+      navigate("/courses");
+    }
+  }, [successMessage]);
+
+  useEffect(() => {
+    if (errorMessage) {
+      toast.error(errorMessage);
+      dispatch(resetErrorMessge());
+    }
+  }, [errorMessage]);
 
   const changeImageHandler = (e) => {
     const file = e.target.files[0];
@@ -36,6 +68,10 @@ const Register = () => {
       console.log(filePreview);
     };
   };
+
+  if (isLoading) {
+    return <ClipLoader />;
+  }
 
   return (
     <div>
