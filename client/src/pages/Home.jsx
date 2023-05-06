@@ -1,30 +1,36 @@
-import React, { useEffect, useState } from "react";
-
-import { instance } from "../../util/axios";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { checkUser } from "../redux/slices/userSlice";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Home = () => {
-  const [user, setUser] = useState("");
-  const [role, setRole] = useState("");
-  const getCurrentUsers = async () => {
-    const response = await instance("/users/me");
-    setUser(response.data.user.name);
-    setRole(response.data.user.role);
-    console.log(response.data.user);
+  const dispatch = useDispatch();
+
+  const { user, isLoading } = useSelector((state) => state.user);
+
+  const getUser = async () => {
+    try {
+      dispatch(checkUser());
+    } catch (error) {
+      console.log(error.message);
+    }
   };
+
   useEffect(() => {
-    getCurrentUsers();
+    getUser();
   }, []);
-  console.log(role);
-  return (
-    <div>
-      {user ? <h1>Damm User found {user}</h1> : <h1>Better Luck Next time</h1>}
-      {role === "admin" ? (
-        <button>Dashboard</button>
-      ) : (
-        <button>Fuck You</button>
-      )}
-    </div>
-  );
+
+  useEffect(() => {
+    if (message) {
+      toast.success(message);
+    }
+  }, [message]);
+
+  if (isLoading) {
+    return <ClipLoader />;
+  }
+
+  return user ? <h1>{user.user.name}</h1> : "";
 };
 
 export default Home;

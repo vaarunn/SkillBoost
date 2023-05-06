@@ -1,50 +1,52 @@
-import React, { useState } from "react";
-import { login } from "../redux/userSlice";
-import { useDispatch } from "react-redux";
-import { instance } from "../../util/axios";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../redux/slices/userSlice";
+import toast from "react-hot-toast";
 
 const Login = () => {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const dispatch = useDispatch();
 
-  const handleLogin = async (e) => {
+  const { message } = useSelector((state) => state.user);
+
+  const loginHandler = async (e) => {
     e.preventDefault();
-    const response = await instance.post("/users/login", {
-      email,
-      name,
-      password,
-    });
-    dispatch(login(response.data.user));
+    try {
+      dispatch(login({ email, password }));
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
-  return (
-    <form onSubmit={handleLogin}>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-      />
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-      />
+  useEffect(() => {
+    if (message) {
+      toast.success(message);
+    }
+  }, [message]);
 
-      <button>Login</button>
-    </form>
+  return (
+    <div>
+      <form onSubmit={loginHandler}>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+        />
+
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
+        <button>Login</button>
+      </form>
+    </div>
   );
 };
 
