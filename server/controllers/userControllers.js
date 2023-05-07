@@ -87,9 +87,15 @@ export const getMyProfile = tryCatchError(async (req, res, next) => {
   });
 });
 
-export const getAllUsers = (req, res) => {
-  res.send("Got all Users");
-};
+//get all
+export const getAllUsers = tryCatchError(async (req, res, next) => {
+  const users = await Users.find({});
+
+  res.status(200).json({
+    success: true,
+    users,
+  });
+});
 
 export const updatePassword = tryCatchError(async (req, res, next) => {
   const { oldPassword, newPassword } = req.body;

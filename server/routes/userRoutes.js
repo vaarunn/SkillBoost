@@ -22,7 +22,7 @@ import singleUpload from "../middlewares/multer.js";
 
 const routes = Router();
 
-routes.get("/getAllUsers", getAllUsers);
+// routes.get("/getAllUsers", getAllUsers);
 routes.post("/register", singleUpload, register);
 routes.post("/login", login);
 routes.get("/logout", logout);
@@ -44,6 +44,12 @@ routes.post("/addToPlaylist", isAuthenticateUser, addToPlaylist);
 routes.post("/removeFromPlaylist", isAuthenticateUser, removeFromPlaylist);
 
 //admin routes
+routes.get(
+  "/admin/getAllUsers",
+  isAuthenticateUser,
+  isAuthorizedUser,
+  getAllUsers
+);
 
 routes.get(
   "/admin/getAdmin",

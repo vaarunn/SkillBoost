@@ -10,6 +10,7 @@ import ChangePassword from "./pages/UpdatePassword";
 import UpdateProfile from "./pages/UpdateProfile";
 import RequestCourse from "./pages/RequestCourse";
 import ContactUs from "./pages/ContactUs";
+import Users from "./pages/Dashboard/Users";
 function App() {
   return (
     <BrowserRouter>
@@ -24,6 +25,7 @@ function App() {
         <Route path="/updateProfile" element={<UpdateProfile />} />
         <Route path="/requestCourse" element={<RequestCourse />} />
         <Route path="/contactUs" element={<ContactUs />} />
+        <Route path="/admin/users" element={<Users />} />
       </Routes>
       <Toaster />
     </BrowserRouter>

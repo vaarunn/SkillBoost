@@ -24,9 +24,7 @@ const Register = () => {
   );
 
   useEffect(() => {
-    if (dispatch(checkUser())) {
-      navigate("/courses");
-    }
+    dispatch(checkUser());
   }, []);
 
   const registerHandler = (e) => {

@@ -3,8 +3,8 @@ export const sendToken = (res, user, message, statusCode = 200) => {
 
   const options = {
     expires: new Date(Date.now() + 1000 * 24 * 60 * 60 * 15),
-    // httpOnly: true,
-    // secure: true,
+    httpOnly: true,
+    secure: true,
     sameSite: "none",
   };
 
