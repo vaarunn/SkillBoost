@@ -4,8 +4,8 @@ import logo from "../assets/logo.png";
 import {
   checkUser,
   register,
-  resetErrorMessge,
-  resetSuccessMessge,
+  resetErrorMessage,
+  resetSuccessMessage,
 } from "../redux/slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -19,7 +19,7 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { successMessage, errorMessage, isLoading, user } = useSelector(
+  const { successMessage, errorMessage, isLoading } = useSelector(
     (state) => state.user
   );
 
@@ -44,7 +44,7 @@ const Register = () => {
   useEffect(() => {
     if (successMessage) {
       toast.success(successMessage);
-      dispatch(resetSuccessMessge());
+      dispatch(resetSuccessMessage());
       navigate("/courses");
     }
   }, [successMessage]);
@@ -52,7 +52,7 @@ const Register = () => {
   useEffect(() => {
     if (errorMessage) {
       toast.error(errorMessage);
-      dispatch(resetErrorMessge());
+      dispatch(resetErrorMessage());
     }
   }, [errorMessage]);
 
@@ -65,7 +65,6 @@ const Register = () => {
     reader.onloadend = () => {
       setFile(file);
       setFilePreview(reader.result);
-      console.log(filePreview);
     };
   };
 

@@ -31,10 +31,45 @@ export const checkUserService = async () => {
   return response.data;
 };
 
+export const updatePasswordService = async ({ oldPassword, newPassword }) => {
+  const response = await axios.put(
+    "http://localhost:5000/api/users/updatePassword",
+    { oldPassword, newPassword },
+    {
+      withCredentials: true,
+    }
+  );
+  console.log(response.data);
+  return response.data;
+};
+
+export const updateProfileService = async (myFile) => {
+  console.log(myFile);
+  // const name = myFile.name || "";
+  // const email = myFile.email || "";
+  // const file = myFile.file || "";
+
+  const response = await axios.put(
+    "http://localhost:5000/api/users/updateProfile",
+    myFile,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      withCredentials: true,
+    }
+  );
+
+  console.log(response.data);
+  return response.data;
+};
+
 const authServices = {
   registerService,
   checkUserService,
   loginService,
+  updatePasswordService,
+  updateProfileService,
 };
 
 export default authServices;

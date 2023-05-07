@@ -44,14 +44,36 @@ export const login = createAsyncThunk(
   }
 );
 
+export const updatePassword = createAsyncThunk(
+  "/users/updatePassword",
+  async (passwordData, thunkAPI) => {
+    try {
+      return await authServices.updatePasswordService(passwordData);
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const updateProfile = createAsyncThunk(
+  "/users/updateProfile",
+  async (userData, thunkAPI) => {
+    try {
+      return await authServices.updateProfileService(userData);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    resetSuccessMessge: (state) => {
+    resetSuccessMessage: (state) => {
       state.successMessage = "";
     },
-    resetErrorMessge: (state) => {
+    resetErrorMessage: (state) => {
       state.errorMessage = "";
     },
   },
@@ -98,9 +120,37 @@ const userSlice = createSlice({
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
         state.errorMessage = action.payload.response.data.message;
+      })
+      .addCase(updatePassword.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updatePassword.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload;
+        state.isError = false;
+        state.isSuccess = true;
+        state.successMessage = action.payload.message;
+      })
+      .addCase(updatePassword.rejected, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = action.payload.response.data.message;
+      })
+      .addCase(updateProfile.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateProfile.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload;
+        state.isError = false;
+        state.isSuccess = true;
+        state.successMessage = action.payload.message;
+      })
+      .addCase(updateProfile.rejected, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = action.payload.response.data.message;
       });
   },
 });
 
-export const { resetSuccessMessge, resetErrorMessge } = userSlice.actions;
+export const { resetSuccessMessage, resetErrorMessage } = userSlice.actions;
 export default userSlice.reducer;

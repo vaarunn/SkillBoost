@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/slices/userSlice";
 import toast from "react-hot-toast";
 import {
-  resetSuccessMessge,
-  resetErrorMessge,
+  resetSuccessMessage,
+  resetErrorMessage,
 } from "../redux/slices/userSlice.js";
 import { useNavigate } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,7 +15,9 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { successMessage, errorMessage } = useSelector((state) => state.user);
+  const { successMessage, errorMessage, user, isLoading } = useSelector(
+    (state) => state.user
+  );
 
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -24,7 +27,7 @@ const Login = () => {
   useEffect(() => {
     if (successMessage) {
       toast.success(successMessage);
-      dispatch(resetSuccessMessge());
+      dispatch(resetSuccessMessage());
       navigate("/courses");
     }
   }, [successMessage]);
@@ -32,9 +35,13 @@ const Login = () => {
   useEffect(() => {
     if (errorMessage) {
       toast.error(errorMessage);
-      dispatch(resetErrorMessge());
+      dispatch(resetErrorMessage());
     }
   }, [errorMessage]);
+
+  if (isLoading) {
+    return <ClipLoader />;
+  }
 
   return (
     <div>

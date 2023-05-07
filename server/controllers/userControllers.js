@@ -120,25 +120,27 @@ export const updatePassword = tryCatchError(async (req, res, next) => {
 export const updateProfile = tryCatchError(async (req, res, next) => {
   const { name, email } = req.body;
   const file = req.file;
-
   const user = await Users.findById(req.user._id);
 
-  const fileUri = getDataUri(file);
-  const myCloud = await cloudinary.v2.uploader.upload(fileUri.content);
+  if (file) {
+    const fileUri = getDataUri(file);
+    const myCloud = await cloudinary.v2.uploader.upload(fileUri.content);
 
-  await cloudinary.v2.uploader.destroy(user.avatar.public_id);
+    await cloudinary.v2.uploader.destroy(user.avatar.public_id);
 
-  user.avatar = {
-    public_id: myCloud.public_id,
-    url: myCloud.secure_url,
-  };
-  await user.save();
+    user.avatar = {
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
+    };
+  }
+
   if (name) {
     user.name = name;
   }
   if (email) {
     user.email = email;
   }
+  await user.save();
 
   res.status(201).json({
     success: true,

@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { checkUser } from "../redux/slices/userSlice";
+import {
+  checkUser,
+  resetErrorMessage,
+  resetSuccessMessage,
+} from "../redux/slices/userSlice";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
@@ -24,6 +28,7 @@ const Home = () => {
     if (successMessage) {
       toast.success(successMessage);
       navigate("/courses");
+      dispatch(resetSuccessMessage());
     }
   }, [successMessage]);
 
