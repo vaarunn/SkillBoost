@@ -12,8 +12,31 @@ const getAllCourseService = async ({ search = "", type = "" }) => {
   return response.data;
 };
 
+const requestCourseService = async (userData) => {
+  const response = await axios.post(
+    "http://localhost:5000/api/other/courserequest",
+    userData,
+    {
+      withCredentials: true,
+    }
+  );
+
+  return response.data;
+};
+
+const sendMessageService = async (userData) => {
+  const response = await axios.post(
+    "http://localhost:5000/api/other/contact",
+    userData,
+    { withCredentials: true }
+  );
+  return response.data;
+};
+
 const courseService = {
   getAllCourseService,
+  requestCourseService,
+  sendMessageService,
 };
 
 export default courseService;

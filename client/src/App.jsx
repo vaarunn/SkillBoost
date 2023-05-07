@@ -8,6 +8,8 @@ import Profile from "./pages/Profile";
 import Courses from "./pages/Courses";
 import ChangePassword from "./pages/UpdatePassword";
 import UpdateProfile from "./pages/UpdateProfile";
+import RequestCourse from "./pages/RequestCourse";
+import ContactUs from "./pages/ContactUs";
 function App() {
   return (
     <BrowserRouter>
@@ -20,6 +22,8 @@ function App() {
         <Route path="/courses" element={<Courses />} />
         <Route path="/updatePassword" element={<ChangePassword />} />
         <Route path="/updateProfile" element={<UpdateProfile />} />
+        <Route path="/requestCourse" element={<RequestCourse />} />
+        <Route path="/contactUs" element={<ContactUs />} />
       </Routes>
       <Toaster />
     </BrowserRouter>

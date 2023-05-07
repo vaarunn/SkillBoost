@@ -11,9 +11,30 @@ const initialState = {
 export const getAllCourse = createAsyncThunk(
   "/courses/getAllCourses",
   async (course, thunkAPI) => {
-    console.log(course);
     try {
       return await courseService.getAllCourseService(course);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const requestCourse = createAsyncThunk(
+  "/courses/courserequest",
+  async (userData, thunkAPI) => {
+    try {
+      return await courseService.requestCourseService(userData);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const sendMessage = createAsyncThunk(
+  "/other/contact",
+  async (userData, thunkAPI) => {
+    try {
+      return await courseService.sendMessageService(userData);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -23,7 +44,14 @@ export const getAllCourse = createAsyncThunk(
 const courseSlice = createSlice({
   name: "course",
   initialState,
-  reducers: {},
+  reducers: {
+    resetSuccessMessage: (state) => {
+      state.successMessage = "";
+    },
+    resetErrorMessage: (state) => {
+      state.errorMessage = "";
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getAllCourse.pending, (state) => {
@@ -36,7 +64,29 @@ const courseSlice = createSlice({
       })
       .addCase(getAllCourse.rejected, (state, action) => {
         state.isLoading = false;
-        state.errorMessage = action.payload;
+        state.errorMessage = action.payload.response.data.message;
+      })
+      .addCase(requestCourse.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(requestCourse.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.successMessage = action.payload.message;
+      })
+      .addCase(requestCourse.rejected, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = action.payload.response.data.message;
+      })
+      .addCase(sendMessage.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(sendMessage.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.successMessage = action.payload.message;
+      })
+      .addCase(sendMessage.rejected, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = action.payload.response.data.message;
       });
   },
 });

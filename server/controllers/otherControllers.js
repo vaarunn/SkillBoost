@@ -26,6 +26,10 @@ export const contact = tryCatchError(async (req, res, next) => {
 export const courseRequest = tryCatchError(async (req, res, next) => {
   const { name, email, course } = req.body;
 
+  if (!name || !email || !course) {
+    return next(new ErrorHandler("Enter All The Fields", 400));
+  }
+
   const to = process.env.MY_MAIL;
 
   const subject = "Request Course From Mr Varun";
