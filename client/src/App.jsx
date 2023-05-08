@@ -11,6 +11,7 @@ import UpdateProfile from "./pages/UpdateProfile";
 import RequestCourse from "./pages/RequestCourse";
 import ContactUs from "./pages/ContactUs";
 import Users from "./pages/Dashboard/Users";
+import CreateCourse from "./pages/Dashboard/CreateCourse";
 function App() {
   return (
     <BrowserRouter>
@@ -26,6 +27,7 @@ function App() {
         <Route path="/requestCourse" element={<RequestCourse />} />
         <Route path="/contactUs" element={<ContactUs />} />
         <Route path="/admin/users" element={<Users />} />
+        <Route path="/admin/createCourse" element={<CreateCourse />} />
       </Routes>
       <Toaster />
     </BrowserRouter>
