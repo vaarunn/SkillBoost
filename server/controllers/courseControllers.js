@@ -29,6 +29,7 @@ export const getAllCourses = tryCatchError(async (req, res, next) => {
 export const createCourse = tryCatchError(async (req, res, next) => {
   const { title, description, category, createdBy } = req.body;
   console.log(title, description, category, createdBy);
+
   if (!title || !description || !category || !createdBy) {
     return next(new ErrorHandler("Please add all fields", 400));
   }
@@ -54,6 +55,7 @@ export const createCourse = tryCatchError(async (req, res, next) => {
   res.status(201).json({
     success: true,
     message: "Course created successfully",
+    course,
   });
 });
 

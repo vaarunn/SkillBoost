@@ -11,6 +11,7 @@ const CreateCourse = () => {
   const [file, setFile] = useState("");
   const [filePreview, setFilePreview] = useState("");
   const dispatch = useDispatch();
+
   const createCourseHandler = (e) => {
     e.preventDefault();
     const myForm = new FormData();
@@ -20,7 +21,7 @@ const CreateCourse = () => {
     myForm.append("createdBy", createdBy);
     myForm.append("description", description);
     myForm.append("file", file);
-
+    console.log(myForm);
     dispatch(createNewCourse(myForm));
   };
 

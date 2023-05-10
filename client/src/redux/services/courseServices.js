@@ -37,8 +37,13 @@ const createCourseService = async (courseData) => {
   console.log(courseData);
   const response = await axios.post(
     "http://localhost:5000/api/courses/createCourse",
-    { courseData },
-    { withCredentials: true }
+    courseData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      withCredentials: true,
+    }
   );
   console.log(response.data);
   return response.data;
