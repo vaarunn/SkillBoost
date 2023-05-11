@@ -49,11 +49,22 @@ const createCourseService = async (courseData) => {
   return response.data;
 };
 
+const deleteCourseService = async (courseId) => {
+  const response = await axios.delete(
+    `http://localhost:5000/api/courses/${courseId}`,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};
+
 const courseService = {
   getAllCourseService,
   requestCourseService,
   sendMessageService,
   createCourseService,
+  deleteCourseService,
 };
 
 export default courseService;

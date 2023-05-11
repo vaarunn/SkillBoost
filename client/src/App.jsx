@@ -12,6 +12,9 @@ import RequestCourse from "./pages/RequestCourse";
 import ContactUs from "./pages/ContactUs";
 import Users from "./pages/Dashboard/Users";
 import CreateCourse from "./pages/Dashboard/CreateCourse";
+import AllCourses from "./pages/Dashboard/AllCourses";
+import CourseInfo from "./pages/Dashboard/CourseInfo";
+import AddLectures from "./pages/Dashboard/AddLectures";
 function App() {
   return (
     <BrowserRouter>
@@ -28,6 +31,12 @@ function App() {
         <Route path="/contactUs" element={<ContactUs />} />
         <Route path="/admin/users" element={<Users />} />
         <Route path="/admin/createCourse" element={<CreateCourse />} />
+        <Route path="/admin/allCourses" element={<AllCourses />} />
+        <Route path="/admin/allCourses/:courseId" element={<CourseInfo />} />
+        <Route
+          path="/admin/course/lectures/:courseId"
+          element={<AddLectures />}
+        />
       </Routes>
       <Toaster />
     </BrowserRouter>

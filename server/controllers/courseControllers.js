@@ -84,7 +84,6 @@ export const addCourseLectures = tryCatchError(async (req, res, next) => {
   const { title, description } = req.body;
 
   const courseId = req.params.id;
-
   const course = await Courses.findById(courseId);
 
   if (!course) {
@@ -93,7 +92,7 @@ export const addCourseLectures = tryCatchError(async (req, res, next) => {
 
   const file = req.file;
   const fileUri = getDataUri(file);
-  console.log(fileUri);
+  console.log(title, description, fileUri);
 
   const mycloud = await cloudinary.v2.uploader.upload(fileUri.content, {
     resource_type: "video",
