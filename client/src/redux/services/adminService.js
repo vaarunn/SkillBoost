@@ -27,11 +27,20 @@ const deleteUserService = async (userId) => {
   return response.data;
 };
 
+const getAdminStatsService = async () => {
+  const response = await axios("http://localhost:5000/api/other/admin/stats", {
+    withCredentials: true,
+  });
+  console.log(response.data);
+  return response.data;
+};
+
 const adminServices = {
   getAllUsersService,
   updateUserRoleService,
   updateUserRoleService,
   deleteUserService,
+  getAdminStatsService,
 };
 
 export default adminServices;

@@ -19,13 +19,23 @@ const addCourseLectureService = async (lectureData) => {
       withCredentials: true,
     }
   );
-  console.log(response.data);
   return response.data;
 };
 
+const deleteCourseLectureService = async (dataId) => {
+  const lectureId = dataId.lectureId;
+  const courseId = dataId.courseId;
+  const response = await axios.delete(
+    `http://localhost:5000/api/courses/${courseId}/lecture/${lectureId}`,
+    { withCredentials: true }
+  );
+  console.log(response.data);
+  return response.data;
+};
 const lectureServices = {
   getCourseLectureService,
   addCourseLectureService,
+  deleteCourseLectureService,
 };
 
 export default lectureServices;

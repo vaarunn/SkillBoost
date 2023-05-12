@@ -38,6 +38,11 @@ routes.post(
 
 routes.delete("/:id", isAuthenticateUser, isAuthorizedUser, deleteCourse);
 
-routes.delete("/punk", isAuthenticateUser, isAuthorizedUser, deleteLecture);
+routes.delete(
+  "/:courseId/lecture/:lectureId",
+  isAuthenticateUser,
+  isAuthorizedUser,
+  deleteLecture
+);
 
 export default routes;

@@ -41,6 +41,17 @@ export const deleteUser = createAsyncThunk(
   }
 );
 
+export const getAdminStats = createAsyncThunk(
+  "/admin/stats",
+  async (data, thunkAPI) => {
+    try {
+      return await adminServices.getAdminStatsService();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 const adminSlice = createSlice({
   name: "admin",
   initialState,
@@ -75,6 +86,18 @@ const adminSlice = createSlice({
         state.admin = action.payload;
       })
       .addCase(updateUserRole.rejected, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = action.payload.response.data.message;
+      })
+      .addCase(getAdminStats.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAdminStats.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.successMessage = action.payload.message;
+        state.admin = action.payload;
+      })
+      .addCase(getAdminStats.rejected, (state, action) => {
         state.isLoading = false;
         state.errorMessage = action.payload.response.data.message;
       });

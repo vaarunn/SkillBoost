@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
-import Dashboard from "./pages/Dashboard";
+
 import { Toaster } from "react-hot-toast";
 import Profile from "./pages/Profile";
 import Courses from "./pages/Courses";
@@ -15,6 +15,8 @@ import CreateCourse from "./pages/Dashboard/CreateCourse";
 import AllCourses from "./pages/Dashboard/AllCourses";
 import CourseInfo from "./pages/Dashboard/CourseInfo";
 import AddLectures from "./pages/Dashboard/AddLectures";
+import WatchLectures from "./pages/WatchLectures";
+import Dashboard from "./pages/Dashboard/Dashboard";
 function App() {
   return (
     <BrowserRouter>
@@ -22,7 +24,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/admin/dashboard" element={<Dashboard />} />
+
         <Route path="/profile" element={<Profile />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/updatePassword" element={<ChangePassword />} />
@@ -36,6 +39,10 @@ function App() {
         <Route
           path="/admin/course/lectures/:courseId"
           element={<AddLectures />}
+        />
+        <Route
+          path="/admin/course/lecture/:courseId"
+          element={<WatchLectures />}
         />
       </Routes>
       <Toaster />
