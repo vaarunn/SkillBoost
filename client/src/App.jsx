@@ -17,6 +17,9 @@ import CourseInfo from "./pages/Dashboard/CourseInfo";
 import AddLectures from "./pages/Dashboard/AddLectures";
 import WatchLectures from "./pages/WatchLectures";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import Subscribe from "./pages/payment/Subscribe";
+import PaymentSuccess from "./pages/payment/PaymentSuccess";
+import PaymentFail from "./pages/payment/PaymentFail";
 function App() {
   return (
     <BrowserRouter>
@@ -44,6 +47,9 @@ function App() {
           path="/admin/course/lecture/:courseId"
           element={<WatchLectures />}
         />
+        <Route path="/payment" element={<Subscribe />}></Route>
+        <Route path="/payment/success" element={<PaymentSuccess />}></Route>
+        <Route path="/payment/fail" element={<PaymentFail />}></Route>
       </Routes>
       <Toaster />
     </BrowserRouter>

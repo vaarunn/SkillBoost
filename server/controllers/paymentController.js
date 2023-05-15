@@ -34,8 +34,13 @@ export const createSubscription = tryCatchError(async (req, res, next) => {
 
 export const paymentVerification = tryCatchError(async (req, res, next) => {
   const { razorpay_signature, razorpay_payment_id, razorpay_subscription_id } =
-    res.body;
-  const user = await findById(req.user._id);
+    req.body;
+  console.log(
+    razorpay_signature,
+    razorpay_payment_id,
+    razorpay_subscription_id
+  );
+  const user = await Users.findById(req.user._id);
 
   const subscription_id = user.subscription.id;
 
@@ -47,7 +52,7 @@ export const paymentVerification = tryCatchError(async (req, res, next) => {
   const isAuthentic = generated_signature === razorpay_signature;
 
   if (!isAuthentic)
-    return res.redirect(`${process.env.FRONTEND_URL}/paymentfail`);
+    return res.redirect(`${process.env.FRONTEND_URL}/payment/fail`);
 
   await Payments.create({
     razorpay_signature,
@@ -60,7 +65,7 @@ export const paymentVerification = tryCatchError(async (req, res, next) => {
   await user.save();
 
   res.redirect(
-    `${process.env.FRONTEND_URL}/paymentsuccess?reference=${razorpay_payment_id}`
+    `${process.env.FRONTEND_URL}/payment/success?reference=${razorpay_payment_id}`
   );
 });
 
