@@ -35,11 +35,7 @@ export const createSubscription = tryCatchError(async (req, res, next) => {
 export const paymentVerification = tryCatchError(async (req, res, next) => {
   const { razorpay_signature, razorpay_payment_id, razorpay_subscription_id } =
     req.body;
-  console.log(
-    razorpay_signature,
-    razorpay_payment_id,
-    razorpay_subscription_id
-  );
+
   const user = await Users.findById(req.user._id);
 
   const subscription_id = user.subscription.id;
@@ -79,26 +75,22 @@ export const getRazorPayKey = tryCatchError(async (req, res, next) => {
 export const cancelSubscription = tryCatchError(async (req, res, next) => {
   const user = await Users.findById(req.user._id);
   const subscriptionId = user.subscription.id;
-  console.log(user.subscription.id, "this is subscription id");
-
   let refund = false;
 
-  instance.subscriptions.cancel(subscriptionId);
-
+  await instance.subscriptions.cancel(subscriptionId);
   const payment = await Payments.findOne({
     razorpay_subscription_id: subscriptionId,
   });
+  const gap = Date.now() - payment.createdAt;
 
-  // const gap = Date.now() - payment.createdAt;
+  const refundTime = process.env.REFUND_DAYS * 24 * 60 * 60 * 1000;
 
-  // const refundTime = process.env.REFUND_DAYS * 24 * 60 * 60 * 1000;
+  if (refundTime > gap) {
+    await instance.payments.refund(payment.razorpay_payment_id);
+    refund = true;
+  }
 
-  // if (refundTime > gap) {
-  //   instance.payments.refund(payment.razorpay_payment_id);
-  //   refund = true;
-  // }
-
-  // await payment.remove();
+  await payment.remove();
   user.subscription.id = undefined;
   user.subscription.status = undefined;
   await user.save();
@@ -106,7 +98,7 @@ export const cancelSubscription = tryCatchError(async (req, res, next) => {
   res.status(200).json({
     success: true,
     message: refund
-      ? "Subscription cancelled, You will receive full refund within 7 days"
-      : "No refund initiated as subscription was cancelled after 7 days",
+      ? "Subscription cancelled, You will receive full refund within 7 days."
+      : "Subscription cancelled, Now refund initiated as subscription was cancelled after 7 days.",
   });
 });

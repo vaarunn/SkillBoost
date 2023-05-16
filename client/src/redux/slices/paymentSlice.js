@@ -19,6 +19,17 @@ export const createSubscription = createAsyncThunk(
   }
 );
 
+export const cancelSubscription = createAsyncThunk(
+  "/payment/cancelSubscription",
+  async (data, thunkAPI) => {
+    try {
+      return await paymentServices.cancelSubscriptionService();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 const paymentSlice = createSlice({
   name: "payment",
   initialState,
@@ -34,6 +45,18 @@ const paymentSlice = createSlice({
         state.payment = action.payload;
       })
       .addCase(createSubscription.rejected, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = action.payload.response.data.message;
+      })
+      .addCase(cancelSubscription.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(cancelSubscription.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.successMessage = action.payload.message;
+        state.payment = action.payload;
+      })
+      .addCase(cancelSubscription.rejected, (state, action) => {
         state.isLoading = false;
         state.errorMessage = action.payload.response.data.message;
       });

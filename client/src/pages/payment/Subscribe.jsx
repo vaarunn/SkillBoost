@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createSubscription } from "../../redux/slices/paymentSlice";
+import {
+  cancelSubscription,
+  createSubscription,
+} from "../../redux/slices/paymentSlice";
 import course from "../../assets/course.jpg";
 import axios from "axios";
 
@@ -19,6 +22,10 @@ const Subscribe = () => {
   };
 
   const { user } = useSelector((state) => state.user.user);
+
+  const cancelSubscriptionHandler = () => {
+    dispatch(cancelSubscription());
+  };
 
   useEffect(() => {
     if (payment) {
@@ -53,6 +60,9 @@ const Subscribe = () => {
     <div>
       <button className="bg-green-500" onClick={subscribeHandler}>
         Subscribe
+      </button>
+      <button className="bg-red-500" onClick={cancelSubscriptionHandler}>
+        Cancel Subscription
       </button>
       {key ? <h1>{key}</h1> : <h1>No key to display</h1>}
     </div>
