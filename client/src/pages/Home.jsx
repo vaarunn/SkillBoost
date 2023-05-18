@@ -24,19 +24,20 @@ const Home = () => {
     getUser();
   }, []);
 
-  useEffect(() => {
-    if (successMessage) {
-      toast.success(successMessage);
-      navigate("/courses");
-      dispatch(resetSuccessMessage());
-    }
-  }, [successMessage]);
+  // useEffect(() => {
+  //   if (successMessage) {
+  //     toast.success(successMessage);
+  //     navigate("/courses");
+  //     dispatch(resetSuccessMessage());
+  //   }
+  // }, [successMessage]);
 
   if (isLoading) {
     return <ClipLoader />;
   }
 
-  return user ? <h1>{user.user.name}</h1> : "";
+  // return user ? <h1>{user.user.name}</h1> : "";
+  return <h1>Home page</h1>;
 };
 
 export default Home;

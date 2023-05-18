@@ -20,9 +20,11 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Subscribe from "./pages/payment/Subscribe";
 import PaymentSuccess from "./pages/payment/PaymentSuccess";
 import PaymentFail from "./pages/payment/PaymentFail";
+import Navbar from "./components/Navbar";
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
