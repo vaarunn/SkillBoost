@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 
 const getInitialTheme = () => {
   if (typeof window !== "undefined" && window.localStorage) {
@@ -44,3 +44,7 @@ export const ThemeProvider = ({ initialTheme, children }) => {
     </ThemeContext.Provider>
   );
 };
+
+export function UserAuth() {
+  return useContext(ThemeContext);
+}

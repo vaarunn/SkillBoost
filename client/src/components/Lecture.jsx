@@ -1,7 +1,6 @@
 import React from "react";
 
 const Lecture = ({ lecture }) => {
-  console.log(lecture);
   const {
     title,
     video: { url },

@@ -14,12 +14,13 @@ const Navbar = () => {
   };
 
   return (
-    <div className=" bg-primary flex p-4 justify-between ">
+    <div className=" flex p-4 items-center justify-between ">
       <div>
-        {/* <img className="w-16" src={logo} alt="skill-boost" /> */}
+        <img className="w-16" src={logo} alt="skill-boost" />
+      </div>
+      <div>
         <ThemeToggle />
       </div>
-
       <div onClick={toogleSidebar}>
         {nav ? <MdClose /> : <GiHamburgerMenu />}
       </div>
@@ -44,10 +45,10 @@ const Navbar = () => {
           </div>
 
           <div>
-            <p className="border-b border-gray-300 my-4 uppercase p-2 font-bold text-white">
-              Let's build something
-              <span className="text-[#FFEA00] ml-1">Legendary</span> together
+            <p className="uppercase my-2 font-bold text-white text-xl">
+              Skill Boost
             </p>
+            <p className="text-accent">Skills Matter Bro</p>
           </div>
           <div>
             <ul className="uppercase ">
@@ -73,7 +74,7 @@ const Navbar = () => {
                   return (
                     <div
                       key={id}
-                      className="rounded-full bg-[#273f6a] shadow-lg shadow-gray-200 p-3 cursor-pointer hover:scale-125 ease-in duration-300"
+                      className="rounded-full text-black bg-button shadow-lg shadow-gray-200 p-3 cursor-pointer hover:scale-125 ease-in duration-300"
                     >
                       <a href={url}>{icon}</a>
                     </div>

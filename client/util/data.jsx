@@ -9,22 +9,22 @@ const links = [
   },
   {
     id: "2",
-    title: "About",
+    title: "Browse All Courses",
     url: "/about",
   },
   {
     id: "3",
-    title: "Skills",
+    title: "Request A Course",
     url: "/skills",
   },
   {
     id: "4",
-    title: "Project",
+    title: "Contact Us",
     url: "/project",
   },
   {
     id: "5",
-    title: "Contact Me",
+    title: "About",
     url: "/contact",
   },
 ];
