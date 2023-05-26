@@ -1,14 +1,91 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { MdClose } from "react-icons/md";
+import logo from "../assets/skillboost.png";
+import { Link } from "react-router-dom";
+import { links, socialIcons } from "../../util/Data";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
-  const { user } = useSelector((state) => state.user);
+  const [nav, setNav] = useState(false);
 
-  if (user) {
-    console.log(user);
-  }
+  const toogleSidebar = () => {
+    setNav(!nav);
+  };
 
-  return user && <h1>{user.name}</h1>;
+  return (
+    <div className=" bg-primary flex p-4 justify-between ">
+      <div>
+        {/* <img className="w-16" src={logo} alt="skill-boost" /> */}
+        <ThemeToggle />
+      </div>
+
+      <div onClick={toogleSidebar}>
+        {nav ? <MdClose /> : <GiHamburgerMenu />}
+      </div>
+
+      {/* sidebar */}
+      <div
+        className={
+          nav
+            ? " fixed right-0 top-0 w-[100%] sm:w-[60%] md:w-[45%] h-full bg-primary  p-10  ease-in duration-500  "
+            : " bg-primary fixed right-[-250%]  p-10 ease-in duration-500  "
+        }
+      >
+        <div>
+          <div className="flex justify-between items-center">
+            <Link to="/">
+              <img src={logo} alt="/" width="87" height="87"></img>
+            </Link>
+
+            <div className="cursor-pointer text-white" onClick={toogleSidebar}>
+              <MdClose size={30} />
+            </div>
+          </div>
+
+          <div>
+            <p className="border-b border-gray-300 my-4 uppercase p-2 font-bold text-white">
+              Let's build something
+              <span className="text-[#FFEA00] ml-1">Legendary</span> together
+            </p>
+          </div>
+          <div>
+            <ul className="uppercase ">
+              {links.map((link) => {
+                const { id, title, url } = link;
+                return (
+                  <Link key={id} to={url} onClick={toogleSidebar}>
+                    <li className=" py-4 border-b text-white border-gray-300  hover:text-[#0ea5e9]">
+                      {title}
+                    </li>
+                  </Link>
+                );
+              })}
+            </ul>
+            <div className="pt-10">
+              <p className="uppercase tracking-widest text-[#FFEA00]">
+                Let's connect
+              </p>
+              <div className="flex items-center justify-between my-4 w-full sm-:w-[88%]">
+                {socialIcons.map((icons) => {
+                  const { id, icon, url } = icons;
+
+                  return (
+                    <div
+                      key={id}
+                      className="rounded-full bg-[#273f6a] shadow-lg shadow-gray-200 p-3 cursor-pointer hover:scale-125 ease-in duration-300"
+                    >
+                      <a href={url}>{icon}</a>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Navbar;
