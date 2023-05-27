@@ -13,6 +13,8 @@ import { motion } from "framer-motion";
 import ReactPlayer from "react-player/youtube";
 import Hero from "../components/Home/Hero";
 import Info from "../components/Home/Info";
+import Students from "../components/Home/Students";
+import FAQ from "../components/Home/FAQ";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -40,6 +42,9 @@ const Home = () => {
 
       <Info />
 
+      <Students />
+
+      <FAQ />
       <div>
         <Carasoul />
       </div>

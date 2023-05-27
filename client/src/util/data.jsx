@@ -112,15 +112,15 @@ const projects = [
 const students = [
   {
     id: 1,
-    img: "",
-    name: "Michael Kiger",
+    img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cmFuZG9tJTIwcGVvcGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+    name: "Jenny B",
     position: "Web Developer",
     review:
       "Batman is the best instructor I have listened to. Watched several hundred tutorials past two years. Many instructors waste lots of time with personal comments during tutorials. Batman gets right to the point, moving quickly through code examples. I needed to master Javascript and will use SkillBoost exclusively during my career.",
   },
   {
     id: 2,
-    img: "",
+    img: "https://images.unsplash.com/photo-1485206412256-701ccc5b93ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHJhbmRvbSUyMHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
     name: "Christopher Ang",
     position: "Web Developer",
     review:
@@ -128,7 +128,7 @@ const students = [
   },
   {
     id: 3,
-    img: "",
+    img: "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHJhbmRvbSUyMHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
     name: "Akshay Mishra",
     position: "Associate Software Developer | India",
     review:
@@ -136,7 +136,7 @@ const students = [
   },
   {
     id: 4,
-    img: "",
+    img: "https://images.unsplash.com/photo-1496360166961-10a51d5f367a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fHJhbmRvbSUyMHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
     name: "Kristian Fulkerson",
     position: "Full Stack Developer",
     review:
@@ -144,7 +144,7 @@ const students = [
   },
   {
     id: 5,
-    img: "",
+    img: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHJhbmRvbSUyMHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
     name: "Oscar Hampton",
     position: "Freelance Software Developer | USA",
     review:
@@ -152,4 +152,31 @@ const students = [
   },
 ];
 
-export { links, socialIcons, carasoulImages, students };
+const faq = [
+  {
+    id: 1,
+    question: "Will I receive a certificate for each course?",
+    answer:
+      "Yes — each student who completes either Filmpire or NFT Marketplace will receive a certificate of completion to acknowledge their proficiency in either React.js or Solidity/Web 3.0 app development. We encourage students to include these on their LinkedIn profiles and in their job applications!",
+  },
+  {
+    id: 2,
+    question: "Can I join the masterclass if I purchase a course?",
+    answer:
+      "Absolutely! The JSM Masterclass Experience was built for developers who want to gain practical experience through monthly group projects so they can beef up their resumes and CVs. You can purchase access to the masterclass options at any time.",
+  },
+  {
+    id: 3,
+    question: "How long does each course last?",
+    answer:
+      "The duration of each course depends on how fast you wish to work through them — some students might take a few days, while others may wish to repeat specific exercises to gain a stronghold on the various concepts. Filmpire contains approximately seven hours of course material, while NFT Marketplace contains approximately 10 hours of course material.",
+  },
+  {
+    id: 4,
+    question: "How does the masterclass work?",
+    answer:
+      "Students are divided into cohorts where they are given monthly projects to collaborate on and complete with coaching guidance and code review. We offer both a 3-month option (The Confident Coder) and a 6-month option (The Enlightened Engineer) depending on how many projects you wish to showcase to employers. The Enlightened Engineer includes a three-month-long capstone project that will serve as the pinnacle achievement to aid in your job search. Each month, students will participate in mock interviews and receive feedback on their progress as well as their resume/CV, LinkedIn, GitHub, etc..",
+  },
+];
+
+export { links, socialIcons, carasoulImages, students, faq };

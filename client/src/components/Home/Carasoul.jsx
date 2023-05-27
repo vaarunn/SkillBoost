@@ -16,7 +16,7 @@ const Carasoul = () => {
           return (
             <div key={id} className="mx-10 ">
               <img
-                className="bg-secondary px-6 py-2 rounded-xl "
+                className="bg-secondary px-6 py-2 rounded-xl w-[250px] h-[100px]"
                 src={source}
                 alt={id}
               />

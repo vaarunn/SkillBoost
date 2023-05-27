@@ -14,6 +14,9 @@
   .button{
     @apply rounded-3xl px-8 py-4 bg-button text-white font-bold;
   }
+  .card{
+    @apply bg-secondary my-8 rounded-xl p-4;
+  }
   .dark {
     --color-bg-primary: #0d1117;
     --color-bg-secondary: #283141;
