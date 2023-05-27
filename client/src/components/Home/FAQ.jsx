@@ -1,41 +1,36 @@
 import React, { useState } from "react";
+
 import { faq } from "../../util/data";
-import { FiPlus } from "react-icons/fi";
-import { AiOutlineMinus } from "react-icons/ai";
-import { calcLength } from "framer-motion";
 
 const FAQ = () => {
-  const [isClicked, setIsClicked] = useState(null);
+  const [clicked, setIsCliced] = useState(null);
 
-  const handleClick = (id) => {
-    if (id === isClicked) {
-      return setIsClicked(null);
+  const handleClicked = (id) => {
+    if (id === clicked) {
+      return setIsCliced(null);
     }
-    setIsClicked(id);
-    console.log(isClicked);
-    console.log(id === isClicked);
+    setIsCliced(id);
   };
-
-  const open = "block ";
-  const close = "hidden";
 
   return (
     <div className="rounded-div">
       {faq.map((item) => {
         const { id, question, answer } = item;
         return (
-          <div className="border my-6">
+          <div
+            key={id}
+            className="border cursor-pointer"
+            onClick={() => {
+              handleClicked(id);
+            }}
+          >
             <div className="flex justify-between">
               <h1>{question}</h1>
-              <button
-                onClick={() => {
-                  handleClick(id);
-                }}
-              >
-                <FiPlus key={id} />
-              </button>
+              <p>+</p>
             </div>
-            <p className={isClicked === id ? open : close}>{answer}</p>
+            <div className={clicked === id ? "block " : "hidden "}>
+              <p>{answer}</p>
+            </div>
           </div>
         );
       })}
