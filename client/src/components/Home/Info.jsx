@@ -6,8 +6,8 @@ const Info = () => {
   return (
     <>
       <motion.div
-        initial={{ x: -100 }}
-        whileInView={{ x: 0 }}
+        initial={{ y: 100, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", duration: 1, bounce: 0.3 }}
         className="rounded-div my-8"
       >
@@ -34,8 +34,8 @@ const Info = () => {
       </motion.div>
 
       <motion.div
-        initial={{ x: 100 }}
-        whileInView={{ x: 0, scale: 1 }}
+        initial={{ x: -100 }}
+        whileInView={{ x: 0 }}
         transition={{ type: "spring", duration: 1, bounce: 0.3 }}
         className="rounded-div"
       >
