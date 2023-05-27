@@ -6,7 +6,7 @@ const Carasoul = () => {
   return (
     <div>
       <div>
-        <h1 className="text-center font-poppy my-4 text-xl font-bold text-secondary">
+        <h1 className="text-center font-poppy my-8 text-xl font-bold text-secondary ">
           SkillBoost Is Trusted By
         </h1>
       </div>

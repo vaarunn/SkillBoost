@@ -27,7 +27,7 @@ const Features = () => {
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ type: "spring", duration: 1, bounce: 0.3 }}
               key={id}
-              className="my-16"
+              className="my-16 rounded-xl px-4 py-8 hover:bg-secondary duration-150"
             >
               <p>{icon}</p>
               <h1 className="text-secondary my-4 font-bold text-xl">{title}</h1>

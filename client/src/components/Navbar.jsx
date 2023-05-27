@@ -15,9 +15,9 @@ const Navbar = () => {
 
   return (
     <div className=" flex p-4 items-center justify-between ">
-      <div>
+      <Link to="/">
         <img className="w-16" src={logo} alt="skill-boost" />
-      </div>
+      </Link>
       <div>
         <ThemeToggle />
       </div>
@@ -30,7 +30,7 @@ const Navbar = () => {
         className={
           nav
             ? " fixed right-0 top-0 w-[100%] sm:w-[60%] md:w-[45%] h-full bg-primary  p-10  ease-in duration-700 z-10 "
-            : " bg-primary fixed right-[-250%]  p-10 ease-in duration-700  z-10"
+            : " bg-primary top-0 fixed right-[-250%]  p-10 ease-in duration-700  z-10"
         }
       >
         <div>
@@ -38,6 +38,9 @@ const Navbar = () => {
             <Link to="/">
               <img src={logo} alt="/" width="87" height="87"></img>
             </Link>
+            <div>
+              <ThemeToggle />
+            </div>
 
             <div
               className="cursor-pointer text-primary"
@@ -64,10 +67,8 @@ const Navbar = () => {
                 );
               })}
             </ul>
-            <div className="pt-10">
-              <p className="uppercase tracking-widest text-[#FFEA00]">
-                Let's connect
-              </p>
+            <div className="pt-10 ">
+              <p>Let's connect</p>
               <div className="flex items-center justify-between my-4 w-full sm-:w-[88%]">
                 {socialIcons.map((icons) => {
                   const { id, icon, url } = icons;
