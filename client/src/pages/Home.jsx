@@ -11,6 +11,9 @@ import { toast } from "react-hot-toast";
 import { Player } from "@lottiefiles/react-lottie-player";
 import lottieHero from "../assets/lottieCourse.json";
 import Carasoul from "../components/Carasoul";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useAnimation } from "framer-motion";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -18,6 +21,10 @@ const Home = () => {
   const { user, isLoading, successMessage } = useSelector(
     (state) => state.user
   );
+
+  const { ref, inView } = useInView({ threshold: 0.2 });
+  const animation = useAnimation();
+  const secondAnimation = useAnimation();
 
   const getUser = async () => {
     dispatch(checkUser());
@@ -35,6 +42,24 @@ const Home = () => {
   //   }
   // }, [successMessage]);
 
+  useEffect(() => {
+    console.log(inView);
+    if (inView) {
+      animation.start({
+        x: 0,
+        transition: { type: "spring", duration: 1, bounce: 0.3 },
+      });
+      secondAnimation.start({
+        x: 0,
+        transition: { type: "spring", duration: 1, bounce: 0.3 },
+      });
+    }
+    if (!inView) {
+      animation.start({ x: -100 });
+      secondAnimation.start({ x: -100 });
+    }
+  }, [inView]);
+
   if (isLoading) {
     return <ClipLoader />;
   }
@@ -43,7 +68,7 @@ const Home = () => {
   return (
     <div>
       <div className="z-0 rounded-div my-2 md:flex justify-between items-center">
-        <div>
+        <motion.div ref={ref} animate={animation}>
           <h1 className="font-poppy text-secondary font-[700] text-4xl my-4">
             Launch Your Dev Career With{" "}
             <span className="text-accent">Project-Based</span> Coaching
@@ -53,16 +78,16 @@ const Home = () => {
             the coding career of your dreams
           </h3>
           <button className="button">Explore Courses</button>
-        </div>
+        </motion.div>
 
-        <div className="my-2 " data-aos="fade-left">
+        <motion.div ref={ref} animate={secondAnimation} className="my-2 ">
           <Player
             className="bg-red-500 rounded-xl"
             src={lottieHero}
             loop
             autoplay
           />
-        </div>
+        </motion.div>
       </div>
       <div>
         <Carasoul />

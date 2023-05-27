@@ -10,13 +10,13 @@ const Carasoul = () => {
           SkillBoost Is Trusted By
         </h1>
       </div>
-      <Marquee speed={100}>
+      <Marquee speed={100} pauseOnHover={true}>
         {carasoulImages.map((item) => {
           const { id, source } = item;
           return (
             <div key={id} className="mx-10 ">
               <img
-                className="bg-secondary px-6 py-2 rounded-xl hover:bg-button cursor-pointer duration-200 "
+                className="bg-secondary px-6 py-2 rounded-xl "
                 src={source}
                 alt={id}
               />
