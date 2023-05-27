@@ -179,4 +179,70 @@ const faq = [
   },
 ];
 
-export { links, socialIcons, carasoulImages, students, faq };
+const footerCourses = [
+  {
+    id: 1,
+    name: "Netflix CLone",
+  },
+  {
+    id: 2,
+    name: "CryptoBase",
+  },
+  {
+    id: 3,
+    name: "Javascipt",
+  },
+  {
+    id: 4,
+    name: "Web Development",
+  },
+];
+
+const footerSkillShare = [
+  {
+    id: 1,
+    name: "Our Story",
+  },
+  {
+    id: 2,
+    name: "Contact Us",
+  },
+  {
+    id: 3,
+    name: "Terms Of Use",
+  },
+  {
+    id: 4,
+    name: "Privacy Policy",
+  },
+];
+
+const footerResources = [
+  {
+    id: 1,
+    name: "Knowledge Base",
+  },
+  {
+    id: 2,
+    name: "Youtube Base",
+  },
+  {
+    id: 3,
+    name: "Free Guides",
+  },
+  {
+    id: 4,
+    name: "Useful Links",
+  },
+];
+
+export {
+  links,
+  socialIcons,
+  carasoulImages,
+  students,
+  faq,
+  footerResources,
+  footerSkillShare,
+  footerCourses,
+};

@@ -15,6 +15,7 @@ import Hero from "../components/Home/Hero";
 import Info from "../components/Home/Info";
 import Students from "../components/Home/Students";
 import FAQ from "../components/Home/FAQ";
+import Footer from "../components/Home/Footer";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -45,9 +46,10 @@ const Home = () => {
       <Students />
 
       <FAQ />
-      <div>
-        <Carasoul />
-      </div>
+
+      <Carasoul />
+
+      <Footer />
     </div>
   );
 };
