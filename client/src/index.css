@@ -5,11 +5,11 @@
 
 
 :root {
-    @apply bg-primary text-primary;
+    @apply bg-primary text-primary font-poppy;
   }
   
   .rounded-div {
-    @apply rounded-2xl  bg-primary px-4 w-full mx-auto;
+    @apply rounded-2xl  bg-primary px-6 w-full mx-auto;
   }
   .button{
     @apply rounded-3xl px-8 py-4 bg-button text-white font-bold;
