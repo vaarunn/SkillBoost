@@ -236,6 +236,57 @@ const footerResources = [
   },
 ];
 
+import { SlBadge } from "react-icons/sl";
+import { AiOutlineMessage } from "react-icons/ai";
+import { MdMonitor } from "react-icons/md";
+
+const features = [
+  {
+    id: 1,
+    icon: <AiOutlineMessage size={50} style={{ color: "blue" }} />,
+    title: "Expert Coaching Support",
+    subTitle:
+      "Gain 24/7 access to a private community of coders looking to advance their knowledge and experience, as well as their careers.",
+  },
+  {
+    id: 2,
+    icon: <SlBadge size={50} style={{ color: "red" }} />,
+    title: "Real-world experience",
+    subTitle:
+      "Theory will only get you so far, but building projects from the ground up will bolster your career in the software development space.",
+  },
+  {
+    id: 3,
+    icon: <MdMonitor size={50} style={{ color: "blue" }} />,
+    title: "JSM Pro Certificates",
+    subTitle:
+      "Earn JSM Pro certification for each course you complete and show hiring managers and clients that you're a programming pro.",
+  },
+];
+
+const launcCourse = [
+  {
+    id: 1,
+    name: "WebDevelopment Course",
+    url: "",
+  },
+  {
+    id: 2,
+    name: "App Development Course",
+    url: "",
+  },
+  {
+    id: 3,
+    name: "Machine Learning Course",
+    url: "",
+  },
+  {
+    id: 4,
+    name: "Block Chain Course",
+    url: "",
+  },
+];
+
 export {
   links,
   socialIcons,
@@ -245,4 +296,6 @@ export {
   footerResources,
   footerSkillShare,
   footerCourses,
+  features,
+  launcCourse,
 };

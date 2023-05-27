@@ -13,23 +13,26 @@ const FAQ = () => {
   };
 
   return (
-    <div className="rounded-div">
+    <div className="rounded-div my-8">
+      <h1 className="text-secondary font-[700] text-3xl text-center my-8">
+        Frequently Asked Questions
+      </h1>
       {faq.map((item) => {
         const { id, question, answer } = item;
         return (
           <div
             key={id}
-            className="border cursor-pointer"
+            className="my-16  cursor-pointer text-xl font-bold"
             onClick={() => {
               handleClicked(id);
             }}
           >
             <div className="flex justify-between">
               <h1>{question}</h1>
-              <p>+</p>
+              {clicked ? <p>-</p> : <p>+</p>}
             </div>
             <div className={clicked === id ? "block " : "hidden "}>
-              <p>{answer}</p>
+              <p className="text-sm my-2">{answer}</p>
             </div>
           </div>
         );

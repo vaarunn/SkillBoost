@@ -16,6 +16,9 @@ import Info from "../components/Home/Info";
 import Students from "../components/Home/Students";
 import FAQ from "../components/Home/FAQ";
 import Footer from "../components/Home/Footer";
+import Roadmap from "../components/Home/Roadmap";
+import Features from "../components/Home/Features";
+import StartCourse from "../components/Home/StartCourse";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -42,13 +45,13 @@ const Home = () => {
       <Hero />
 
       <Info />
-
+      <Features />
       <Students />
-
+      <StartCourse />
       <FAQ />
 
       <Carasoul />
-
+      <Roadmap />
       <Footer />
     </div>
   );
