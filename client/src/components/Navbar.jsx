@@ -3,7 +3,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import logo from "../assets/skillboost.png";
 import { Link } from "react-router-dom";
-import { links, socialIcons } from "../../util/Data";
+import { links, socialIcons } from "../util/Data";
 import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
@@ -22,15 +22,15 @@ const Navbar = () => {
         <ThemeToggle />
       </div>
       <div onClick={toogleSidebar}>
-        {nav ? <MdClose /> : <GiHamburgerMenu />}
+        <GiHamburgerMenu size={30} className="cursor-pointer" />
       </div>
 
       {/* sidebar */}
       <div
         className={
           nav
-            ? " fixed right-0 top-0 w-[100%] sm:w-[60%] md:w-[45%] h-full bg-primary  p-10  ease-in duration-500  "
-            : " bg-primary fixed right-[-250%]  p-10 ease-in duration-500  "
+            ? " fixed right-0 top-0 w-[100%] sm:w-[60%] md:w-[45%] h-full bg-primary  p-10  ease-in duration-700 z-10 "
+            : " bg-primary fixed right-[-250%]  p-10 ease-in duration-700  z-10"
         }
       >
         <div>
@@ -39,15 +39,16 @@ const Navbar = () => {
               <img src={logo} alt="/" width="87" height="87"></img>
             </Link>
 
-            <div className="cursor-pointer text-white" onClick={toogleSidebar}>
+            <div
+              className="cursor-pointer text-primary"
+              onClick={toogleSidebar}
+            >
               <MdClose size={30} />
             </div>
           </div>
 
           <div>
-            <p className="uppercase my-2 font-bold text-white text-xl">
-              Skill Boost
-            </p>
+            <p className="uppercase my-2 font-bold  text-xl">Skill Boost</p>
             <p className="text-accent">Skills Matter Bro</p>
           </div>
           <div>
@@ -56,7 +57,7 @@ const Navbar = () => {
                 const { id, title, url } = link;
                 return (
                   <Link key={id} to={url} onClick={toogleSidebar}>
-                    <li className=" py-4 border-b text-white border-gray-300  hover:text-[#0ea5e9]">
+                    <li className=" py-4 border-b  border-gray-300 text-primary  hover:text-[#0ea5e9] font-poppy">
                       {title}
                     </li>
                   </Link>

@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: "class",
@@ -20,6 +21,9 @@ export default {
         secondary: "var(--color-bg-secondary)",
         input: "var(--color-bg-input)",
         accent: "var(--color-text-accent)",
+      },
+      fontFamily: {
+        poppy: ["Poppins", "sans-serif"],
       },
     },
   },
