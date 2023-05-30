@@ -29,12 +29,12 @@ const FAQ = () => {
         return (
           <div
             key={id}
-            className="my-16  cursor-pointer text-xl font-bold md:rounded-div-md border-b border-spacing-y-6"
+            className="my-16 pb-4 border-b cursor-pointer text-xl font-bold md:rounded-div-md "
             onClick={() => {
               handleClicked(id);
             }}
           >
-            <div className="flex justify-between ">
+            <div className="flex justify-between items-center">
               <h1>{question}</h1>
               {clicked === id ? <p>-</p> : <p>+</p>}
             </div>
