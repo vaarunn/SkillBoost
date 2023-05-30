@@ -5,6 +5,7 @@ import logo from "../assets/skillboost.png";
 import { Link } from "react-router-dom";
 import { links, socialIcons } from "../util/Data";
 import ThemeToggle from "./ThemeToggle";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -12,6 +13,9 @@ const Navbar = () => {
   const toogleSidebar = () => {
     setNav(!nav);
   };
+
+  const { user, isLoading } = useSelector((state) => state.user);
+  console.log(user);
 
   return (
     <div className=" flex px-4 items-center justify-between md:px-20">
@@ -38,14 +42,21 @@ const Navbar = () => {
         <div>
           <ThemeToggle />
         </div>
-        <div className="hidden md:block">
-          <Link to="/register">
-            <button className="button-nav">Register</button>
+
+        {user.name ? (
+          <div className="hidden md:block">
+            <Link to="/register">
+              <button className="button-nav">Register</button>
+            </Link>
+            <Link to="/login">
+              <button className="button-nav">Login</button>
+            </Link>
+          </div>
+        ) : (
+          <Link to="/profile">
+            <button className="button-input">Profile</button>
           </Link>
-          <Link to="/login">
-            <button className="button-nav">Login</button>
-          </Link>
-        </div>
+        )}
       </div>
 
       {/* sidebar */}

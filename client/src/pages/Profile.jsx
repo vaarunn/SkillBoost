@@ -7,6 +7,7 @@ import {
 } from "../redux/slices/userSlice";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Link, useNavigate } from "react-router-dom";
+import Loader from "../components/Loader";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const Profile = () => {
   }, []);
 
   if (isLoading) {
-    return <ClipLoader />;
+    return <Loader />;
   }
 
   let formattedDate;

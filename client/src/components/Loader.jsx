@@ -4,8 +4,8 @@ import RingLoader from "react-spinners/RingLoader";
 const Loader = () => {
   const color = "#4690eb";
   return (
-    <div className="h-screen w-full grid place-items-center">
-      <RingLoader color={color} size={200} />
+    <div className="h-[500px] flex items-center justify-center ">
+      <RingLoader color={color} size={100} />
     </div>
   );
 };
