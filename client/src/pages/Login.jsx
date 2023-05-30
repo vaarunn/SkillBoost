@@ -6,8 +6,10 @@ import {
   resetSuccessMessage,
   resetErrorMessage,
 } from "../redux/slices/userSlice.js";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
+import { Player } from "@lottiefiles/react-lottie-player";
+import rocketMan from "../assets/rocketMan.json";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -44,25 +46,49 @@ const Login = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={loginHandler}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
+    <div className="px-20 py-16 md:grid grid-cols-2">
+      <div className="shadow-gray-900 shadow-2xl">
+        <form onSubmit={loginHandler} className="p-8">
+          <h1 className="font-[700] text-3xl text-center">
+            Skills Matter Bro...
+          </h1>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            placeholder="jhonny@gmail.com"
+            className="input my-4"
+          />
 
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            placeholder="password"
+            className="input my-4"
+          />
+          <button className="button-input">Login</button>
+          <p className="text-sm my-2">
+            Don't Have an Account?{" "}
+            <Link className="bg-accent" to="/register">
+              Register
+            </Link>
+          </p>
+        </form>
+      </div>
+      <div>
+        <Player
+          style={{ height: 400 }}
+          src={rocketMan}
+          loop
+          autoplay
+          resizeMode="cover"
         />
-        <button>Login</button>
-      </form>
+      </div>
     </div>
   );
 };

@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/* @layer components{
+ 
+} */
 
 :root {
     @apply bg-primary text-primary font-poppy;
@@ -17,11 +19,15 @@
   .button{
     @apply rounded-3xl px-8 py-4 bg-button text-white font-bold;
   }
-  .button-md{
-    @apply rounded-3xl px-4 py-2 bg-button text-white font-bold;
+  .button-input{
+    @apply rounded-xl my-2 py-2 px-4 bg-button text-white font-bold w-full hover:bg-[#2180df] transform  duration-150;
   }
+ 
   .card{
     @apply bg-secondary my-8 rounded-xl p-4;
+  }
+  .input{
+    @apply rounded-xl mt-2 py-2 px-4 outline-none border-2 bg-secondary w-full;
   }
   .dark {
     --color-bg-primary: #0d1117;
@@ -41,6 +47,7 @@
     --color-text-accent: #4690eb;
     --color-bg-input: #edf2f7;
     --color-bg-button: #2190ff;
+
   }
 
 
