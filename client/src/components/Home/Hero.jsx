@@ -5,7 +5,7 @@ import { Player } from "@lottiefiles/react-lottie-player";
 
 const Hero = () => {
   return (
-    <div className="z-0   my-2 md:px-20 lg:flex items-center justify-center  mt-0">
+    <div className="z-0  my-2 md:px-20 lg:flex items-center justify-center lg:my-24">
       <motion.div
         initial={{ x: -100 }}
         whileInView={{ x: 0 }}

@@ -14,13 +14,13 @@ const FAQ = () => {
   };
 
   return (
-    <div className="rounded-div my-8 md:px-20">
+    <div className="rounded-div my-8 md:px-20 lg:px-40">
       <motion.div
         initial={{ y: 100, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", duration: 1, bounce: 0.3 }}
       >
-        <h1 className="text-secondary font-[700] text-3xl text-center my-8 md:text-4xl">
+        <h1 className="text-secondary font-[700] text-3xl text-center my-8 md:text-4xl lg:text-5xl">
           Frequently Asked Questions
         </h1>
       </motion.div>
