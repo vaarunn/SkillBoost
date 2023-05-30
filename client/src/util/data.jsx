@@ -69,7 +69,7 @@ const links = [
   {
     id: "3",
     title: "Request A Course",
-    url: "/skills",
+    url: "/requestCourse",
   },
   {
     id: "4",

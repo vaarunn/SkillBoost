@@ -21,14 +21,14 @@ const ContactUs = () => {
       toast.success(successMessage);
       dispatch(resetSuccessMessage());
     }
-  }, [successMessage]);
+  }, []);
 
   useEffect(() => {
     if (errorMessage) {
       toast.error(errorMessage);
       dispatch(resetErrorMessage());
     }
-  }, [errorMessage]);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,7 +38,7 @@ const ContactUs = () => {
   return (
     <div className="px-20 py-4 md:grid grid-cols-2">
       <div className="shadow-gray-900 shadow-2xl">
-        <form onSubmit={handleSubmit} className="p-8 ">
+        <form onSubmit={handleSubmit} className="p-8">
           <h1 className="text-center font-[700] text-4xl">Hit Us Up!!!</h1>
           <input
             type="text"
