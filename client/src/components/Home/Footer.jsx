@@ -6,8 +6,8 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className="rounded-div">
-      <div className="text-center md:flex justify-evenly my-8">
+    <div className="rounded-div md:px-20">
+      <div className="text-center md:flex justify-between items-center my-8">
         <div>
           <h1 className="text-secondary font-bold my-8 text-md">Courses</h1>
           {footerCourses.map((item) => {

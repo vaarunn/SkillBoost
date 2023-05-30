@@ -14,7 +14,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className=" flex p-4 items-center justify-between md:px-20">
+    <div className=" flex px-4 items-center justify-between md:px-20">
       <Link to="/">
         <img className="w-16" src={logo} alt="skill-boost" />
       </Link>

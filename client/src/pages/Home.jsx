@@ -41,7 +41,7 @@ const Home = () => {
 
   // return user ? <h1>{user.user.name}</h1> : "";
   return (
-    <div className="mt-8">
+    <div className="mt-8 lg:mt-0">
       <Hero />
 
       <Info />
