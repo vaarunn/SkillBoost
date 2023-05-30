@@ -39,7 +39,7 @@ const Courses = () => {
   }, [search, type]);
 
   return (
-    <div>
+    <div className="px-20">
       <input
         type="text"
         placeholder="search"
@@ -47,20 +47,24 @@ const Courses = () => {
         onChange={(e) => {
           setSearch(e.target.value);
         }}
+        className="input"
       />
-      <div className="flex gap-8">
+      <div className="md:flex items-center justify-around my-8">
         {buttons.map((course) => {
           const { id, category } = course;
           return (
-            <div key={id} className="flex">
-              <button onClick={() => setType(category)} className="bg-red-200">
+            <div key={id} className="md:flex ">
+              <button
+                onClick={() => setType(category)}
+                className="button-input"
+              >
                 {category}
               </button>
             </div>
           );
         })}
       </div>
-      <div>
+      <div className="md:grid grid-cols-3 gap-8">
         {courses &&
           courses.map((course, index) => {
             return <CourseCard key={index} course={course} />;

@@ -64,7 +64,7 @@ const links = [
   {
     id: "2",
     title: "Browse All Courses",
-    url: "/about",
+    url: "/courses",
   },
   {
     id: "3",
