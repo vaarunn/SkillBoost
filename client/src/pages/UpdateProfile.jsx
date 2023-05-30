@@ -8,6 +8,10 @@ import {
 } from "../redux/slices/userSlice";
 import ClipLoader from "react-spinners/ClipLoader";
 import { toast } from "react-hot-toast";
+import Loader from "../components/Loader";
+
+import { Player } from "@lottiefiles/react-lottie-player";
+import rocketMan from "../assets/rocketMan.json";
 
 const UpdateProfile = () => {
   const [name, setName] = useState("");
@@ -63,37 +67,56 @@ const UpdateProfile = () => {
   };
 
   if (isLoading) {
-    return <ClipLoader />;
+    return <Loader />;
   }
 
   return (
     user && (
-      <div>
-        <form onSubmit={updateProfileHandler}>
-          <img
-            className="w-[250px] h-[250px]"
-            src={filePreview || user.user.avatar.url}
-            alt=""
+      <div className="px-20 py-4 md:grid grid-cols-2">
+        <div className="shadow-gray-900 shadow-2xl">
+          <form onSubmit={updateProfileHandler} className="p-8  shadow-2xl">
+            <div className=" grid place-items-center">
+              <img
+                className="w-32 rounded-full h-32"
+                src={filePreview || user.user.avatar.url}
+                alt=""
+              />
+            </div>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+              placeholder="name"
+              className="input"
+            />
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              placeholder="email"
+              className="input mt-4"
+            />
+            <input
+              type="file"
+              onChange={changeImageHandler}
+              accept="images/*"
+            />
+            <button className="button-input mt-4">Update</button>
+          </form>
+        </div>
+        <div className=" h-[80%]">
+          <Player
+            style={{ height: 400 }}
+            src={rocketMan}
+            loop
+            autoplay
+            resizeMode="cover"
           />
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-            placeholder="name"
-          />
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            placeholder="email"
-          />
-          <input type="file" onChange={changeImageHandler} accept="images/*" />
-          <button>Update</button>
-        </form>
+        </div>
       </div>
     )
   );

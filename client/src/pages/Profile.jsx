@@ -36,22 +36,39 @@ const Profile = () => {
 
   return (
     user && (
-      <div>
-        <img
-          className="w-[250px] h-[250px]"
-          src={user.user.avatar.url}
-          alt=""
-        />
-        <h1>{user.user.name}</h1>
-        <h1>{user.user.email}</h1>
-        <h1>{formattedDate}</h1>
-        <br />
-        <Link to="/updatePassword">
-          <button>change password</button>
-        </Link>
-        <Link to="/updateProfile">
-          <button>update profile</button>
-        </Link>
+      <div className="grid place-items-center">
+        <h1 className="font-bold text-2xl my-4">User Profile</h1>
+        <div className="md:flex items-center">
+          <div className=" grid place-items-center">
+            <img
+              className="w-32 h-32 rounded-full md:w-40 md:h-40 "
+              src={user.user.avatar.url}
+              alt="profile pic"
+            />
+          </div>
+          <div className="px-20 mt-8 text-xl">
+            <h1>
+              <span className="font-bold">Name </span>
+              {user.user.name}
+            </h1>
+
+            <h1>
+              <span className="font-bold">Email </span>
+              {user.user.email}
+            </h1>
+
+            <h1>
+              <span className="font-bold">Joined On </span>
+              {formattedDate}
+            </h1>
+            <Link to="/updatePassword">
+              <button className="button-input">change password</button>
+            </Link>
+            <Link to="/updateProfile">
+              <button className="button-input">update profile</button>
+            </Link>
+          </div>
+        </div>
       </div>
     )
   );

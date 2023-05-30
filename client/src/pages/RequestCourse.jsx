@@ -72,15 +72,6 @@ const RequestCourse = () => {
           <button className="button-input">Request Course</button>
         </form>
       </div>
-      <div className=" h-[80%]">
-        <Player
-          style={{ height: 400 }}
-          src={rocketMan}
-          loop
-          autoplay
-          resizeMode="cover"
-        />
-      </div>
     </div>
   );
 };
