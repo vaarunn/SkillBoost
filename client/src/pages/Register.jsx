@@ -74,56 +74,67 @@ const Register = () => {
   }
 
   return (
-    <div className="rounded-div md:grid grid-cols-2 overflow-y-hidden">
-      <form onSubmit={registerHandler} className="px-6 h-[80%] shadow-2xl">
-        <h1 className="text-center font-[700] text-xl">
-          Register To Lauch Your Career To The Moon
-        </h1>
-        <img
-          className="w-20 h-20 rounded-full "
-          src={filePreview || logo}
-          alt="profile"
-        />
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => {
-            setName(e.target.value);
-          }}
-          placeholder="jhonny"
-          className="input"
-        />
+    <div className="px-20 py-6 md:grid grid-cols-2">
+      <div className="shadow-gray-900 shadow-2xl">
+        <form onSubmit={registerHandler} className="p-8  shadow-2xl">
+          <h1 className="text-center font-[700] text-xl">
+            Register To Lauch Your Career To The Moon
+          </h1>
+          <div className="grid place-items-center">
+            <img
+              className="w-20 h-20 rounded-full "
+              src={filePreview || logo}
+              alt="profile"
+            />
+          </div>
 
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-          placeholder="jhonny@gmail.com"
-          className="input"
-        />
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+            placeholder="jhonny"
+            className="input"
+          />
 
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          placeholder="pasword"
-          className="input"
-        />
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            placeholder="jhonny@gmail.com"
+            className="input"
+          />
 
-        <input
-          className="my-2"
-          type="file"
-          onChange={changeImageHandler}
-          accept="images/*"
-        />
-        <button className="button-input mt-4">Register</button>
-      </form>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            placeholder="pasword"
+            className="input"
+          />
+
+          <input
+            className="my-2"
+            type="file"
+            onChange={changeImageHandler}
+            accept="images/*"
+          />
+          <button className="button-input mt-4">Register</button>
+        </form>
+      </div>
       <div className=" h-[80%]">
-        <Player src={rocketMan} loop autoplay />
+        <Player
+          style={{ height: 400 }}
+          src={rocketMan}
+          loop
+          autoplay
+          resizeMode="cover"
+        />
       </div>
     </div>
   );
