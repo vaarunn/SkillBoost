@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 
 const Students = () => {
   return (
-    <div className="rounded-div ">
+    <div className="rounded-div my-20 md:px-20">
       <h1
-        className="font-[700] text-center text-3xl text-secondary 
+        className="font-[700] text-center text-3xl text-secondary md:text-4xl 
       "
       >
         Our <span className="text-accent">Global Students</span> Say It Best

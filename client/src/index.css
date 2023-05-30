@@ -11,6 +11,9 @@
   .rounded-div {
     @apply rounded-2xl  bg-primary px-6 w-full mx-auto;
   }
+  .rounded-div-md {
+    @apply rounded-2xl bg-primary px-12 w-full mx-auto;
+  }
   .button{
     @apply rounded-3xl px-8 py-4 bg-button text-white font-bold;
   }

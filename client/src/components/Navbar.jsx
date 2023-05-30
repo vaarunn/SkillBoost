@@ -14,15 +14,30 @@ const Navbar = () => {
   };
 
   return (
-    <div className=" flex p-4 items-center justify-between ">
+    <div className=" flex p-4 items-center justify-between md:px-20">
       <Link to="/">
         <img className="w-16" src={logo} alt="skill-boost" />
       </Link>
-      <div>
-        <ThemeToggle />
-      </div>
-      <div onClick={toogleSidebar}>
-        <GiHamburgerMenu size={30} className="cursor-pointer" />
+
+      <div className="flex items-center ">
+        <ul className="hidden md:flex gap-8 p-8 ">
+          {links.map((link) => {
+            const { id, title, url } = link;
+            return (
+              <Link key={id} to={url}>
+                <li className="text-primary text-sm uppercase hover:text-accent">
+                  {title}
+                </li>
+              </Link>
+            );
+          })}
+        </ul>
+        <div className="cursor-pointer md:hidden p-8" onClick={toogleSidebar}>
+          <GiHamburgerMenu size={30} />
+        </div>
+        <div>
+          <ThemeToggle />
+        </div>
       </div>
 
       {/* sidebar */}

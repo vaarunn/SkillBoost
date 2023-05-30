@@ -46,11 +46,12 @@ const Home = () => {
 
       <Info />
       <Features />
-      <Students />
-      <StartCourse />
-      <FAQ />
-
       <Carasoul />
+
+      <Students />
+      <FAQ />
+      <StartCourse />
+
       <Roadmap />
       <Footer />
     </div>
