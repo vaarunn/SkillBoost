@@ -38,6 +38,14 @@ const Navbar = () => {
         <div>
           <ThemeToggle />
         </div>
+        <div>
+          <Link to="/register">
+            <button>Register</button>
+          </Link>
+          <Link to="/login">
+            <button>Login</button>
+          </Link>
+        </div>
       </div>
 
       {/* sidebar */}

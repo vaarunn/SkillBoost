@@ -5,12 +5,9 @@ import {
   resetErrorMessage,
   resetSuccessMessage,
 } from "../redux/slices/userSlice";
-import ClipLoader from "react-spinners/ClipLoader";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import Carasoul from "../components/Home/Carasoul";
-import { motion } from "framer-motion";
-import ReactPlayer from "react-player/youtube";
 import Hero from "../components/Home/Hero";
 import Info from "../components/Home/Info";
 import Students from "../components/Home/Students";
@@ -19,6 +16,7 @@ import Footer from "../components/Home/Footer";
 import Roadmap from "../components/Home/Roadmap";
 import Features from "../components/Home/Features";
 import StartCourse from "../components/Home/StartCourse";
+import Loader from "../components/Loader";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -36,7 +34,7 @@ const Home = () => {
   }, []);
 
   if (isLoading) {
-    return <ClipLoader />;
+    return <Loader />;
   }
 
   // return user ? <h1>{user.user.name}</h1> : "";
