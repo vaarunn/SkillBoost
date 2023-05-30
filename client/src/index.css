@@ -22,13 +22,17 @@
   .button-input{
     @apply rounded-xl my-2 py-2 px-4 bg-button text-white font-bold w-full hover:bg-[#2180df] transform  duration-150;
   }
+  .button-nav{
+    @apply rounded-xl m-2 px-4 py-2 bg-button text-white font-bold w-fit hover:bg-[#2180df] transform  duration-150;
+  }
  
   .card{
     @apply bg-secondary my-8 rounded-xl p-4;
   }
   .input{
-    @apply rounded-xl my-4 py-2 px-4 outline-none border-2 bg-secondary w-full;
+    @apply rounded-xl my-2 py-2 px-4 outline-none border-2 bg-secondary w-full;
   }
+
   .dark {
     --color-bg-primary: #0d1117;
     --color-bg-secondary: #283141;

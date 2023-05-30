@@ -74,7 +74,7 @@ const links = [
   {
     id: "4",
     title: "Contact Us",
-    url: "/project",
+    url: "/contactUs",
   },
   {
     id: "5",

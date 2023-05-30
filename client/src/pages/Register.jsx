@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png";
+import { Link, useNavigate } from "react-router-dom";
+import logo from "../assets/profile.png";
 import { Player } from "@lottiefiles/react-lottie-player";
 import rocketMan from "../assets/rocketMan.json";
 
@@ -74,7 +74,7 @@ const Register = () => {
   }
 
   return (
-    <div className="px-20 py-6 md:grid grid-cols-2">
+    <div className="px-20 py-4 md:grid grid-cols-2">
       <div className="shadow-gray-900 shadow-2xl">
         <form onSubmit={registerHandler} className="p-8  shadow-2xl">
           <h1 className="text-center font-[700] text-xl">
@@ -125,6 +125,12 @@ const Register = () => {
             accept="images/*"
           />
           <button className="button-input mt-4">Register</button>
+          <p className="text-sm">
+            ALready A Member?{" "}
+            <span className="bg-accent">
+              <Link to="/login">Login</Link>
+            </span>
+          </p>
         </form>
       </div>
       <div className=" h-[80%]">

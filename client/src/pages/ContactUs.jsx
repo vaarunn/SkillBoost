@@ -6,6 +6,8 @@ import {
   resetErrorMessage,
   resetSuccessMessage,
 } from "../redux/slices/userSlice";
+import { Player } from "@lottiefiles/react-lottie-player";
+import rocketMan from "../assets/rocketMan.json";
 const ContactUs = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -34,34 +36,49 @@ const ContactUs = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => {
-            setName(e.target.value);
-          }}
-          placeholder="name"
+    <div className="px-20 py-4 md:grid grid-cols-2">
+      <div className="shadow-gray-900 shadow-2xl">
+        <form onSubmit={handleSubmit} className="p-8 ">
+          <h1 className="text-center font-[700] text-4xl">Hit Us Up!!!</h1>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+            placeholder="name"
+            className="input"
+          />
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            placeholder="email"
+            className="input"
+          />
+          <textarea
+            type="text"
+            value={message}
+            onChange={(e) => {
+              setMessage(e.target.value);
+            }}
+            placeholder="message"
+            className="input"
+          />
+          <button className="button-input">Send Message</button>
+        </form>
+      </div>
+      <div className=" h-[80%]">
+        <Player
+          style={{ height: 400 }}
+          src={rocketMan}
+          loop
+          autoplay
+          resizeMode="cover"
         />
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-          placeholder="email"
-        />
-        <input
-          type="text"
-          value={message}
-          onChange={(e) => {
-            setMessage(e.target.value);
-          }}
-          placeholder="message"
-        />
-        <button>Request Course</button>
-      </form>
+      </div>
     </div>
   );
 };

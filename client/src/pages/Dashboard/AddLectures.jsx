@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/profile.png";
 import { useDispatch } from "react-redux";
 import { addCourseLecture } from "../../redux/slices/lectureSlice";
 

@@ -25,7 +25,7 @@ const Navbar = () => {
             const { id, title, url } = link;
             return (
               <Link key={id} to={url}>
-                <li className="text-primary text-sm uppercase hover:text-accent">
+                <li className="text-primary  uppercase hover:text-accent">
                   {title}
                 </li>
               </Link>
@@ -38,12 +38,12 @@ const Navbar = () => {
         <div>
           <ThemeToggle />
         </div>
-        <div>
+        <div className="hidden md:block">
           <Link to="/register">
-            <button>Register</button>
+            <button className="button-nav">Register</button>
           </Link>
           <Link to="/login">
-            <button>Login</button>
+            <button className="button-nav">Login</button>
           </Link>
         </div>
       </div>
