@@ -13,6 +13,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 import { toast } from "react-hot-toast";
+import Loader from "../components/Loader";
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -70,7 +71,7 @@ const Register = () => {
   };
 
   if (isLoading) {
-    return <ClipLoader />;
+    return <Loader />;
   }
 
   return (

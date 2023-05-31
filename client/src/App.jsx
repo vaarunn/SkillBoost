@@ -21,6 +21,7 @@ import Subscribe from "./pages/payment/Subscribe";
 import PaymentSuccess from "./pages/payment/PaymentSuccess";
 import PaymentFail from "./pages/payment/PaymentFail";
 import Navbar from "./components/Navbar";
+import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   return (
     <BrowserRouter>
@@ -31,7 +32,15 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/admin/dashboard" element={<Dashboard />} />
 
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+
         <Route path="/courses" element={<Courses />} />
         <Route path="/updatePassword" element={<ChangePassword />} />
         <Route path="/updateProfile" element={<UpdateProfile />} />

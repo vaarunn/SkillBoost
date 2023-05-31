@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Player } from "@lottiefiles/react-lottie-player";
 import rocketMan from "../assets/rocketMan.json";
+import Loader from "../components/Loader";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -26,13 +27,13 @@ const Login = () => {
     dispatch(login({ email, password }));
   };
 
-  useEffect(() => {
-    if (successMessage) {
-      toast.success(successMessage);
-      dispatch(resetSuccessMessage());
-      navigate("/courses");
-    }
-  }, [successMessage]);
+  // useEffect(() => {
+  //   if (successMessage) {
+  //     toast.success(successMessage);
+  //     dispatch(resetSuccessMessage());
+  //     navigate("/courses");
+  //   }
+  // }, [successMessage]);
 
   useEffect(() => {
     if (errorMessage) {
@@ -42,7 +43,7 @@ const Login = () => {
   }, [errorMessage]);
 
   if (isLoading) {
-    return <ClipLoader />;
+    return <Loader />;
   }
 
   return (
