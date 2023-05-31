@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  cancelSubscription,
-  createSubscription,
-} from "../../redux/slices/paymentSlice";
-import course from "../../assets/course.jpg";
+import { createSubscription } from "../../redux/slices/paymentSlice";
+import skillboost from "../../assets/skillboost.png";
 import axios from "axios";
 
 const Subscribe = () => {
   const [key, setKey] = useState(null);
   const dispatch = useDispatch();
   const { payment, isLoading } = useSelector((state) => state.payment);
-  console.log(payment);
 
   const subscribeHandler = async () => {
     const {
@@ -23,18 +19,14 @@ const Subscribe = () => {
 
   const { user } = useSelector((state) => state.user.user);
 
-  const cancelSubscriptionHandler = () => {
-    dispatch(cancelSubscription());
-  };
-
   useEffect(() => {
     if (payment) {
       const openPopup = async () => {
         const options = {
           key,
-          name: "CourseBundler",
+          name: "Skill Boost",
           description: "Get access to all premium content",
-          image: course,
+          image: skillboost,
           subscription_id: payment,
           callback_url: "http://localhost:5000/api/payment/paymentverification",
           prefill: {
@@ -43,7 +35,7 @@ const Subscribe = () => {
             contact: "",
           },
           notes: {
-            address: "6 pack programmer at youtube",
+            address: "Skill Boost",
           },
           theme: {
             color: "#FFC800",
@@ -57,14 +49,29 @@ const Subscribe = () => {
   }, [isLoading, payment, dispatch]);
 
   return (
-    <div>
-      <button className="bg-green-500" onClick={subscribeHandler}>
-        Subscribe
-      </button>
-      <button className="bg-red-500" onClick={cancelSubscriptionHandler}>
-        Cancel Subscription
-      </button>
-      {key ? <h1>{key}</h1> : <h1>No key to display</h1>}
+    <div className=" grid place-items-center  ">
+      <h1 className="font-bold text-2xl my-8">
+        Welcome,Value For Money Content At Your Fingertips
+      </h1>
+
+      <div className=" min-w-[500px] shadow-2xl shadow-gray-900 roundex-xl p-8">
+        <div>
+          <h1 className="font-bold  text-2xl text-center mb-4 bg-[#4690eb] p-4">
+            Piro Pack
+          </h1>
+        </div>
+        <div>
+          <p className="font-bold text-xl my-4">
+            Join pro pack and get access to all content.
+          </p>
+          <p className="text-center font-bold text-xl my-8">₹9343 only</p>
+        </div>
+        <button className="button-input" onClick={subscribeHandler}>
+          Subscribe
+        </button>
+
+        <p className="text-center"> {key ? <h1>{key}</h1> : ""}</p>
+      </div>
     </div>
   );
 };

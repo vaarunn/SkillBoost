@@ -74,13 +74,16 @@ export const getRazorPayKey = tryCatchError(async (req, res, next) => {
 
 export const cancelSubscription = tryCatchError(async (req, res, next) => {
   const user = await Users.findById(req.user._id);
+
   const subscriptionId = user.subscription.id;
   let refund = false;
 
-  await instance.subscriptions.cancel(subscriptionId);
   const payment = await Payments.findOne({
     razorpay_subscription_id: subscriptionId,
   });
+
+  await instance.subscriptions.cancel(subscriptionId);
+
   const gap = Date.now() - payment.createdAt;
 
   const refundTime = process.env.REFUND_DAYS * 24 * 60 * 60 * 1000;

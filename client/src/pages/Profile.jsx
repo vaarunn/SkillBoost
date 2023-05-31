@@ -11,6 +11,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { Link, useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 import WatchList from "../components/WatchList";
+import { cancelSubscription } from "../redux/slices/paymentSlice";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -40,6 +41,10 @@ const Profile = () => {
     const options = { year: "numeric", month: "long", day: "numeric" };
     formattedDate = date.toLocaleDateString("en-US", options);
   }
+
+  const cancelSubscriptionHandler = () => {
+    dispatch(cancelSubscription());
+  };
 
   return (
     user && (
@@ -75,6 +80,20 @@ const Profile = () => {
               <Link to="/updateProfile">
                 <button className="button-input">update profile</button>
               </Link>
+
+              {user.user.subscription ? (
+                <button
+                  onClick={cancelSubscriptionHandler}
+                  className="button-input"
+                >
+                  Unsubscribe
+                </button>
+              ) : (
+                <Link to="/payment">
+                  <button className="button-input">Subscribe</button>
+                </Link>
+              )}
+
               <Link to="/">
                 <button onClick={logoutHandler} className="button-danger">
                   Logout
