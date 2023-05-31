@@ -23,7 +23,7 @@ const Navbar = () => {
       </Link>
 
       {user?.user?.role === "admin" && (
-        <Link to="admin">
+        <Link to="/admin/users">
           <button className="button">Admin Panel</button>
         </Link>
       )}

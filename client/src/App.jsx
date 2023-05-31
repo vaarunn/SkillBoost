@@ -22,15 +22,21 @@ import PaymentSuccess from "./pages/payment/PaymentSuccess";
 import PaymentFail from "./pages/payment/PaymentFail";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AdminProtectedRoute from "./components/AdminProtectedRoute";
+import NotAdmin from "./pages/NotAdmin";
+import AdminRoutes from "./pages/AdminRoutes/AdminRoutes";
+import { useSelector } from "react-redux";
+import AdminSidebar from "./components/AdminSidebar";
+
 function App() {
   return (
     <BrowserRouter>
       <Navbar />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/admin/dashboard" element={<Dashboard />} />
 
         <Route
           path="/profile"
@@ -40,12 +46,19 @@ function App() {
             </ProtectedRoute>
           }
         />
-
+        <Route path="/requestCourse" element={<RequestCourse />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/updatePassword" element={<ChangePassword />} />
         <Route path="/updateProfile" element={<UpdateProfile />} />
-        <Route path="/requestCourse" element={<RequestCourse />} />
         <Route path="/contactUs" element={<ContactUs />} />
+
+        <Route path="/dick" element={<AdminProtectedRoute />} />
+        <Route path="/notAdmin" element={<NotAdmin />} />
+
+        <Route path="/admin/*" element={<AdminRoutes />} />
+
+        {/* <Route path="/admin/dashboard" element={<Dashboard />} /> */}
+        {/* 
         <Route path="/admin/users" element={<Users />} />
         <Route path="/admin/createCourse" element={<CreateCourse />} />
         <Route path="/admin/allCourses" element={<AllCourses />} />
@@ -57,7 +70,8 @@ function App() {
         <Route
           path="/admin/course/lecture/:courseId"
           element={<WatchLectures />}
-        />
+        /> */}
+
         <Route path="/payment" element={<Subscribe />}></Route>
         <Route path="/payment/success" element={<PaymentSuccess />}></Route>
         <Route path="/payment/fail" element={<PaymentFail />}></Route>
