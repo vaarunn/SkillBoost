@@ -260,6 +260,8 @@ export const addToPlaylist = tryCatchError(async (req, res, next) => {
 export const removeFromPlaylist = tryCatchError(async (req, res, next) => {
   const userId = req.user._id;
   const user = await Users.findById(userId);
+  console.log(user);
+  console.log(req.query.id);
   const course = await Courses.findById(req.query.id);
 
   if (!course) {

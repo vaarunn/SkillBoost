@@ -119,6 +119,7 @@ export const addCourseLectures = tryCatchError(async (req, res, next) => {
 
 export const deleteCourse = tryCatchError(async (req, res, next) => {
   const courseId = req.params.id;
+  console.log(courseId);
 
   const course = await Courses.findById(courseId);
 

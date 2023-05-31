@@ -26,6 +26,10 @@ const Profile = () => {
     dispatch(logout());
   };
 
+  useEffect(() => {
+    getUser();
+  }, []);
+
   if (isLoading) {
     return <Loader />;
   }

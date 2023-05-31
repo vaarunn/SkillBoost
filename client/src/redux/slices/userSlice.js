@@ -80,6 +80,18 @@ export const updateProfile = createAsyncThunk(
     }
   }
 );
+
+export const removeCourseFromWatchList = createAsyncThunk(
+  "users/removeFromPlaylist",
+  async (courseId, thunkAPI) => {
+    try {
+      return await authServices.removeCourseFromWatchListService(courseId);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -177,6 +189,20 @@ const userSlice = createSlice({
         state.successMessage = action.payload.message;
       })
       .addCase(logout.rejected, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = action.payload.response.data.message;
+      })
+      .addCase(removeCourseFromWatchList.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(removeCourseFromWatchList.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload;
+        state.isError = false;
+        state.isSuccess = true;
+        state.successMessage = action.payload.message;
+      })
+      .addCase(removeCourseFromWatchList.rejected, (state, action) => {
         state.isLoading = false;
         state.errorMessage = action.payload.response.data.message;
       });

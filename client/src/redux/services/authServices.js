@@ -69,6 +69,19 @@ export const logoutService = async (myFile) => {
   return response.data;
 };
 
+export const removeCourseFromWatchListService = async (courseId) => {
+  console.log(courseId);
+  const response = await axios.post(
+    `http://localhost:5000/api/users/removeFromPlaylist?id=${courseId}`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
+  console.log(response.data);
+  return response.data;
+};
+
 const authServices = {
   registerService,
   checkUserService,
@@ -76,6 +89,7 @@ const authServices = {
   updatePasswordService,
   updateProfileService,
   logoutService,
+  removeCourseFromWatchListService,
 };
 
 export default authServices;
