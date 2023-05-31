@@ -97,7 +97,7 @@ const AdminLinks = [
   {
     id: "3",
     title: "Create Course",
-    url: "/requestCourse",
+    url: "/admin/createCourse",
   },
   {
     id: "4",

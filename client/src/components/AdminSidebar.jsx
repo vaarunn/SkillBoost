@@ -1,71 +1,133 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { IoIosCreate, IoIosStats } from "react-icons/io";
-import { GiSuitcase } from "react-icons/gi";
-import { CgProfile } from "react-icons/cg";
-import { ImCross } from "react-icons/im";
-const sidebarInfo = [
-  { name: "Stats", icon: <IoIosStats />, path: "/admin/users" },
-  { name: "Jobs", icon: <GiSuitcase />, path: "/dashboard/jobs" },
-  {
-    name: "Create/Edit Jobs",
-    icon: <IoIosCreate />,
-    path: "/dashboard/addJob",
-  },
-  { name: "Profile", icon: <CgProfile />, path: "/dashboard/profile" },
-];
-const Sidebar = () => {
-  const [open, isOpen] = useState(true);
-  const [active, setActive] = useState(0);
-  const handleActive = (index) => {
-    setActive(index);
+import { MdClose } from "react-icons/md";
+import logo from "../assets/skillboost.png";
+import { Link } from "react-router-dom";
+import { AdminLinks, links, socialIcons } from "../util/Data";
+import ThemeToggle from "./ThemeToggle";
+import { useSelector } from "react-redux";
+
+const AdminSidebar = () => {
+  const [nav, setNav] = useState(false);
+
+  const toogleSidebar = () => {
+    setNav(!nav);
   };
+
+  const { user } = useSelector((state) => state.user);
+
   return (
-    <div
-      className={`flex flex-col bg-[#f6f8fc]  p-3 h-screen 
-      ${open ? "w-[74px]" : "w-[255px]"} duration-150`}
-    >
-      {/* for hamburger  */}
-      {!open ? (
-        <ImCross
-          size={30}
-          onClick={() => {
-            isOpen(!open);
-          }}
-          className="cursor-pointer mb-5 mt-5 mx-auto"
-        />
-      ) : (
-        <GiHamburgerMenu
-          size={30}
-          onClick={() => {
-            isOpen(!open);
-          }}
-          className="cursor-pointer mb-5 mt-5 mx-auto"
-        />
+    <div className=" flex px-4 items-center justify-between md:px-20">
+      <Link to="/">
+        <img className="w-16" src={logo} alt="skill-boost" />
+      </Link>
+
+      {user?.user?.role === "admin" && (
+        <Link to="/admin/users">
+          <button className="button">Admin Panel</button>
+        </Link>
       )}
 
-      {/* for all the different pages */}
-      <div>
-        {sidebarInfo.map((item, index) => {
-          const { name, path, icon } = item;
-          return (
-            <Link key={index} to={path}>
-              <div
-                onClick={() => handleActive(index)}
-                className={`flex items-center gap-4 overflow-hidden mb-5 hover:bg-[#eaf1fb] w-full rounded-xl p-2 ${
-                  active === index ? "bg-[#eaf1fb]" : ""
-                }`}
-              >
-                <div className="text-4xl">{icon}</div>
-                <h1 className="text-xl">{name}</h1>
-              </div>
+      <div className="flex items-center ">
+        <ul className="hidden md:flex gap-8 p-8 ">
+          {AdminLinks.map((link) => {
+            const { id, title, url } = link;
+            return (
+              <Link key={id} to={url}>
+                <li className="text-primary  uppercase hover:text-accent">
+                  {title}
+                </li>
+              </Link>
+            );
+          })}
+        </ul>
+        <div className="cursor-pointer md:hidden p-8" onClick={toogleSidebar}>
+          <GiHamburgerMenu size={30} />
+        </div>
+        <div>
+          <ThemeToggle />
+        </div>
+
+        {user?.user?.name ? (
+          <Link to="/profile">
+            <button className="button-input">Profile</button>
+          </Link>
+        ) : (
+          <div className="hidden md:block">
+            <Link to="/register">
+              <button className="button-nav">Register</button>
             </Link>
-          );
-        })}
+            <Link to="/login">
+              <button className="button-nav">Login</button>
+            </Link>
+          </div>
+        )}
+      </div>
+
+      {/* sidebar */}
+      <div
+        className={
+          nav
+            ? " fixed right-0 top-0 w-[100%] sm:w-[60%] md:w-[45%] h-full bg-primary  p-10  ease-in duration-700 z-10 "
+            : " bg-primary top-0 fixed right-[-250%]  p-10 ease-in duration-700  z-10"
+        }
+      >
+        <div>
+          <div className="flex justify-between items-center">
+            <Link to="/">
+              <img src={logo} alt="/" width="87" height="87"></img>
+            </Link>
+            <div>
+              <ThemeToggle />
+            </div>
+
+            <div
+              className="cursor-pointer text-primary"
+              onClick={toogleSidebar}
+            >
+              <MdClose size={30} />
+            </div>
+          </div>
+
+          <div>
+            <p className="uppercase my-2 font-bold  text-xl">Skill Boost</p>
+            <p className="text-accent">Skills Matter Bro</p>
+          </div>
+          <div>
+            <ul className="uppercase ">
+              {AdminLinks.map((link) => {
+                const { id, title, url } = link;
+                return (
+                  <Link key={id} to={url} onClick={toogleSidebar}>
+                    <li className=" py-4 border-b  border-gray-300 text-primary  hover:text-[#0ea5e9] font-poppy">
+                      {title}
+                    </li>
+                  </Link>
+                );
+              })}
+            </ul>
+            <div className="pt-10 ">
+              <p>Let's connect</p>
+              <div className="flex items-center justify-between my-4 w-full sm-:w-[88%]">
+                {socialIcons.map((icons) => {
+                  const { id, icon, url } = icons;
+
+                  return (
+                    <div
+                      key={id}
+                      className="rounded-full text-black bg-button shadow-lg shadow-gray-200 p-3 cursor-pointer hover:scale-125 ease-in duration-300"
+                    >
+                      <a href={url}>{icon}</a>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Sidebar;
+export default AdminSidebar;

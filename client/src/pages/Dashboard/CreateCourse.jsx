@@ -38,14 +38,26 @@ const CreateCourse = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={createCourseHandler}>
+    <div className=" px-20">
+      <form
+        onSubmit={createCourseHandler}
+        className="p-6 shadow-gray-900   shadow-2xl "
+      >
+        <div className="grid place-items-center">
+          <h1 className="font-bold text-2xl mb-2">Create Course</h1>
+          <img
+            className="w-32 h-28 md:w-48 md:h-32 "
+            src={filePreview || dummyCourse}
+            alt=""
+          />
+        </div>
         <input
           type="text"
           onChange={(e) => {
             setTitle(e.target.value);
           }}
           placeholder="title"
+          className="input"
         />
         <input
           type="text"
@@ -53,6 +65,7 @@ const CreateCourse = () => {
             setCategory(e.target.value);
           }}
           placeholder="category"
+          className="input"
         />
         <input
           type="text"
@@ -60,6 +73,7 @@ const CreateCourse = () => {
             setCreatedBy(e.target.value);
           }}
           placeholder="created by"
+          className="input"
         />
         <input
           type="text"
@@ -67,14 +81,11 @@ const CreateCourse = () => {
             setDescription(e.target.value);
           }}
           placeholder="description"
+          className="input"
         />
         <input type="file" onChange={changeImageHandler} />
-        <img
-          className="w-[250px] h-[250px]"
-          src={filePreview || dummyCourse}
-          alt=""
-        />
-        <button>Create Course</button>
+
+        <button className="button-input">Create Course</button>
       </form>
     </div>
   );
