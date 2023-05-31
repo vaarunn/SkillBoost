@@ -30,12 +30,10 @@ const Courses = () => {
   const dispatch = useDispatch();
 
   const { isLoading } = useSelector((state) => state.course);
-  console.log(isLoading);
 
   const getCourses = async () => {
     const response = await dispatch(getAllCourse({ search, type }));
     setCourses(response.payload.courses);
-    console.log(response.payload.courses);
   };
 
   useEffect(() => {

@@ -1,7 +1,10 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { addCourseToPlaylist } from "../redux/slices/courseSlice";
 
 const CourseCard = ({ course }) => {
+  const dispatch = useDispatch();
   function trimSentence(sentence) {
     if (sentence.length <= 50) {
       return sentence;
@@ -9,6 +12,10 @@ const CourseCard = ({ course }) => {
       return sentence.substring(0, 100) + "...";
     }
   }
+
+  const handleAddToPlaylist = async (courseId) => {
+    dispatch(addCourseToPlaylist(courseId));
+  };
 
   return (
     <div className="shadow-2xl shadow-gray-900 p-4">
@@ -23,6 +30,12 @@ const CourseCard = ({ course }) => {
       <Link to={`/admin/course/lecture/${course._id}`}>
         <button className="button-input">Watch Course</button>
       </Link>
+      <button
+        onClick={() => handleAddToPlaylist(course._id)}
+        className="button-input"
+      >
+        Add To Playlist
+      </button>
     </div>
   );
 };

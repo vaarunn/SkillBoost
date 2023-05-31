@@ -227,10 +227,10 @@ export const addToPlaylist = tryCatchError(async (req, res, next) => {
 
   const user = await Users.findOne(userId);
 
+  const courseId = req.body.id;
+  console.log(courseId);
   //passing id from postman
-
-  const course = await Courses.findById(req.body.id);
-  console.log(course);
+  const course = await Courses.findById(courseId);
   if (!course) {
     return next(new ErrorHandler("Invalid Course Id"), 404);
   }

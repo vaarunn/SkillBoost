@@ -59,12 +59,23 @@ const deleteCourseService = async (courseId) => {
   return response.data;
 };
 
+const addCourseToPlaylistService = async (id) => {
+  const response = await axios.post(
+    "http://localhost:5000/api/users/addToPlaylist",
+    { id },
+    { withCredentials: true }
+  );
+  console.log(response.data);
+  return response.data;
+};
+
 const courseService = {
   getAllCourseService,
   requestCourseService,
   sendMessageService,
   createCourseService,
   deleteCourseService,
+  addCourseToPlaylistService,
 };
 
 export default courseService;
