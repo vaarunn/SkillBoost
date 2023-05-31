@@ -72,17 +72,17 @@ const Profile = () => {
                 <button className="button-input">update profile</button>
               </Link>
               <Link to="/">
-                <button
-                  onClick={logoutHandler}
-                  className="@apply rounded-xl my-2 py-2 px-4 bg-red-400 text-white font-bold w-full hover:bg-red-500 transform  duration-150"
-                >
+                <button onClick={logoutHandler} className="button-danger">
                   Logout
                 </button>
               </Link>
             </div>
           </div>
         </div>
-        <WatchList />
+        <div className="px-20">
+          <h1 className="text-3xl font-bold mt-4">WatchList</h1>
+          <WatchList />
+        </div>
       </div>
     )
   );
