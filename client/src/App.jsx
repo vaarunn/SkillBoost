@@ -29,9 +29,10 @@ import { useSelector } from "react-redux";
 import AdminSidebar from "./components/AdminSidebar";
 
 function App() {
+  const { user } = useSelector((state) => state.user);
   return (
     <BrowserRouter>
-      <Navbar />
+      {user.user.role === "admin" ? <AdminSidebar /> : <Navbar />}
 
       <Routes>
         <Route path="/" element={<Home />} />

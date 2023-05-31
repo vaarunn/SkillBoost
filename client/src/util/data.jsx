@@ -83,6 +83,34 @@ const links = [
   },
 ];
 
+const AdminLinks = [
+  {
+    id: "1",
+    title: "Home",
+    url: "/",
+  },
+  {
+    id: "2",
+    title: "Dashboard",
+    url: "/admin/",
+  },
+  {
+    id: "3",
+    title: "Create Course",
+    url: "/requestCourse",
+  },
+  {
+    id: "4",
+    title: "Courses",
+    url: "/admin/allCourses",
+  },
+  {
+    id: "5",
+    title: "Users",
+    url: "/admin/users",
+  },
+];
+
 const socialIcons = [
   {
     id: "1",
@@ -298,4 +326,5 @@ export {
   footerCourses,
   features,
   launcCourse,
+  AdminLinks,
 };
