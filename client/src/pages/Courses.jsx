@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCourse } from "../redux/slices/courseSlice";
 import CourseCard from "../components/CourseCard";
+import Loader from "../components/Loader";
 
 const buttons = [
   {
@@ -28,6 +29,9 @@ const Courses = () => {
   const [courses, setCourses] = useState([]);
   const dispatch = useDispatch();
 
+  const { isLoading } = useSelector((state) => state.course);
+  console.log(isLoading);
+
   const getCourses = async () => {
     const response = await dispatch(getAllCourse({ search, type }));
     setCourses(response.payload.courses);
@@ -37,6 +41,10 @@ const Courses = () => {
   useEffect(() => {
     getCourses();
   }, [search, type]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className="px-20">
