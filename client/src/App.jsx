@@ -10,13 +10,7 @@ import ChangePassword from "./pages/UpdatePassword";
 import UpdateProfile from "./pages/UpdateProfile";
 import RequestCourse from "./pages/RequestCourse";
 import ContactUs from "./pages/ContactUs";
-import Users from "./pages/Dashboard/Users";
-import CreateCourse from "./pages/Dashboard/CreateCourse";
-import AllCourses from "./pages/Dashboard/AllCourses";
-import CourseInfo from "./pages/Dashboard/CourseInfo";
-import AddLectures from "./pages/Dashboard/AddLectures";
-import WatchLectures from "./pages/WatchLectures";
-import Dashboard from "./pages/Dashboard/Dashboard";
+
 import Subscribe from "./pages/payment/Subscribe";
 import PaymentSuccess from "./pages/payment/PaymentSuccess";
 import PaymentFail from "./pages/payment/PaymentFail";
@@ -27,13 +21,13 @@ import NotAdmin from "./pages/NotAdmin";
 import AdminRoutes from "./pages/AdminRoutes/AdminRoutes";
 import { useSelector } from "react-redux";
 import AdminSidebar from "./components/AdminSidebar";
+import SharedLayout from "./pages/AdminRoutes/SharedLayout";
 
 function App() {
   const { user } = useSelector((state) => state.user);
   return (
     <BrowserRouter>
-      {user.user.role === "admin" ? <AdminSidebar /> : <Navbar />}
-
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -53,25 +47,11 @@ function App() {
         <Route path="/updateProfile" element={<UpdateProfile />} />
         <Route path="/contactUs" element={<ContactUs />} />
 
-        <Route path="/dick" element={<AdminProtectedRoute />} />
         <Route path="/notAdmin" element={<NotAdmin />} />
 
         <Route path="/admin/*" element={<AdminRoutes />} />
 
         {/* <Route path="/admin/dashboard" element={<Dashboard />} /> */}
-        {/* 
-        <Route path="/admin/users" element={<Users />} />
-        <Route path="/admin/createCourse" element={<CreateCourse />} />
-        <Route path="/admin/allCourses" element={<AllCourses />} />
-        <Route path="/admin/allCourses/:courseId" element={<CourseInfo />} />
-        <Route
-          path="/admin/course/lectures/:courseId"
-          element={<AddLectures />}
-        />
-        <Route
-          path="/admin/course/lecture/:courseId"
-          element={<WatchLectures />}
-        /> */}
 
         <Route path="/payment" element={<Subscribe />}></Route>
         <Route path="/payment/success" element={<PaymentSuccess />}></Route>
