@@ -60,12 +60,22 @@ export const updateProfileService = async (myFile) => {
   return response.data;
 };
 
+export const logoutService = async (myFile) => {
+  const response = await axios.get("http://localhost:5000/api/users/logout", {
+    withCredentials: true,
+  });
+
+  console.log(response.data);
+  return response.data;
+};
+
 const authServices = {
   registerService,
   checkUserService,
   loginService,
   updatePasswordService,
   updateProfileService,
+  logoutService,
 };
 
 export default authServices;

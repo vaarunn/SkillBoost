@@ -67,15 +67,18 @@ export const login = tryCatchError(async (req, res, next) => {
 });
 
 export const logout = tryCatchError(async (req, res, next) => {
-  res
-    .status(200)
-    .cookie("token", null, {
-      expires: new Date(Date.now()),
-    })
-    .json({
-      success: true,
-      message: "logged out successfully",
-    });
+  const options = {
+    expires: new Date(Date.now()),
+
+    httpOnly: true,
+    secure: false,
+    SameSite: "lax",
+  };
+
+  res.status(200).cookie("token", null, options).json({
+    success: true,
+    message: "Logged Out Successfully",
+  });
 });
 
 export const getMyProfile = tryCatchError(async (req, res, next) => {

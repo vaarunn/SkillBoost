@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import authServices from "../services/authServices";
-
+import { persistStore } from "redux-persist";
 const initialState = {
   user: "",
   isLoading: false,
@@ -44,6 +44,20 @@ export const login = createAsyncThunk(
   }
 );
 
+export const logout = createAsyncThunk(
+  "users/logout",
+  async (user, thunkAPI) => {
+    try {
+      // const persistor = persistStore(userSlice);
+
+      // persistor.purge();
+      return await authServices.logoutService();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const updatePassword = createAsyncThunk(
   "/users/updatePassword",
   async (passwordData, thunkAPI) => {
@@ -75,6 +89,9 @@ const userSlice = createSlice({
     },
     resetErrorMessage: (state) => {
       state.errorMessage = "";
+    },
+    resetUser: (state) => {
+      state.user = "";
     },
   },
   extraReducers: (builder) => {
@@ -148,9 +165,24 @@ const userSlice = createSlice({
       .addCase(updateProfile.rejected, (state, action) => {
         state.isLoading = false;
         state.errorMessage = action.payload.response.data.message;
+      })
+      .addCase(logout.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(logout.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload;
+        state.isError = false;
+        state.isSuccess = true;
+        state.successMessage = action.payload.message;
+      })
+      .addCase(logout.rejected, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = action.payload.response.data.message;
       });
   },
 });
 
-export const { resetSuccessMessage, resetErrorMessage } = userSlice.actions;
+export const { resetSuccessMessage, resetErrorMessage, resetUser } =
+  userSlice.actions;
 export default userSlice.reducer;

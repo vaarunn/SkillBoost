@@ -14,8 +14,7 @@ const Navbar = () => {
     setNav(!nav);
   };
 
-  const { user, isLoading } = useSelector((state) => state.user);
-  console.log(user);
+  const { user } = useSelector((state) => state.user);
 
   return (
     <div className=" flex px-4 items-center justify-between md:px-20">
@@ -43,7 +42,11 @@ const Navbar = () => {
           <ThemeToggle />
         </div>
 
-        {user.name ? (
+        {user?.user?.name ? (
+          <Link to="/profile">
+            <button className="button-input">Profile</button>
+          </Link>
+        ) : (
           <div className="hidden md:block">
             <Link to="/register">
               <button className="button-nav">Register</button>
@@ -52,10 +55,6 @@ const Navbar = () => {
               <button className="button-nav">Login</button>
             </Link>
           </div>
-        ) : (
-          <Link to="/profile">
-            <button className="button-input">Profile</button>
-          </Link>
         )}
       </div>
 
