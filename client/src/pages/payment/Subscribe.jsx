@@ -53,6 +53,9 @@ const Subscribe = () => {
       <h1 className="font-bold text-2xl my-8">
         Welcome,Value For Money Content At Your Fingertips
       </h1>
+      <h1 className="font-bold text-xl my-2">
+        You Need To Subscribe To View This Content
+      </h1>
 
       <div className=" min-w-[500px] shadow-2xl shadow-gray-900 roundex-xl p-8">
         <div>

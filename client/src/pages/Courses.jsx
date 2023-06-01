@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllCourse } from "../redux/slices/courseSlice";
 import CourseCard from "../components/CourseCard";
 import Loader from "../components/Loader";
+import { checkUser } from "../redux/slices/userSlice";
 
 const buttons = [
   {
@@ -35,6 +36,10 @@ const Courses = () => {
     const response = await dispatch(getAllCourse({ search, type }));
     setCourses(response.payload.courses);
   };
+
+  useEffect(() => {
+    dispatch(checkUser());
+  }, []);
 
   useEffect(() => {
     getCourses();

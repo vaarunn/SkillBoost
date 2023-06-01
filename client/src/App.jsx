@@ -16,18 +16,16 @@ import PaymentSuccess from "./pages/payment/PaymentSuccess";
 import PaymentFail from "./pages/payment/PaymentFail";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
-import AdminProtectedRoute from "./components/AdminProtectedRoute";
 import NotAdmin from "./pages/NotAdmin";
 import AdminRoutes from "./pages/AdminRoutes/AdminRoutes";
 import { useSelector } from "react-redux";
 import AdminSidebar from "./components/AdminSidebar";
-import SharedLayout from "./pages/AdminRoutes/SharedLayout";
 
 function App() {
   const { user } = useSelector((state) => state.user);
   return (
     <BrowserRouter>
-      {user.user.role === "admin" ? <AdminSidebar /> : <Navbar />}
+      {user?.user?.role === "admin" ? <AdminSidebar /> : <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
