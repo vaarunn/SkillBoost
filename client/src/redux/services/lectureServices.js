@@ -25,6 +25,7 @@ const addCourseLectureService = async (lectureData) => {
 const deleteCourseLectureService = async (dataId) => {
   const lectureId = dataId.lectureId;
   const courseId = dataId.courseId;
+  console.log(lectureId, courseId);
   const response = await axios.delete(
     `http://localhost:5000/api/courses/${courseId}/lecture/${lectureId}`,
     { withCredentials: true }
