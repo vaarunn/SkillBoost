@@ -49,7 +49,7 @@ const Subscribe = () => {
   }, [isLoading, payment, dispatch]);
 
   return (
-    <div className=" grid place-items-center  ">
+    <div className="px-4 md:px-20 grid place-items-center  ">
       <h1 className="font-bold text-2xl my-8">
         Welcome,Value For Money Content At Your Fingertips
       </h1>
@@ -57,7 +57,7 @@ const Subscribe = () => {
         You Need To Subscribe To View This Content
       </h1>
 
-      <div className=" min-w-[500px] shadow-2xl shadow-gray-900 roundex-xl p-8">
+      <div className=" max-w-[500px] shadow-2xl shadow-gray-900 roundex-xl p-8">
         <div>
           <h1 className="font-bold  text-2xl text-center mb-4 bg-[#4690eb] p-4">
             Piro Pack

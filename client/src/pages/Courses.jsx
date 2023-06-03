@@ -50,7 +50,7 @@ const Courses = () => {
   }
 
   return (
-    <div className="px-20">
+    <div className="px-4  md:px-20">
       <input
         type="text"
         placeholder="search"
@@ -75,7 +75,7 @@ const Courses = () => {
           );
         })}
       </div>
-      <div className="md:grid grid-cols-3 gap-8">
+      <div className=" md:grid grid-cols-2 gap-8 lg:grid-cols-3">
         {courses &&
           courses.map((course, index) => {
             return <CourseCard key={index} course={course} />;

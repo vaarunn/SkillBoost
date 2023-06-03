@@ -2,7 +2,7 @@ import React from "react";
 
 const Roadmap = () => {
   return (
-    <div className="rounded-div my-20 md:px-20 lg:px-40">
+    <div className="rounded-div my-20 md:px-20 lg:px-40 grid place-items-center">
       <h1 className="font-[700] text-secondary text-2xl md:text-3xl lg:text-4xl">
         Get the 2022 Front-End Web Developer Roadmap
       </h1>

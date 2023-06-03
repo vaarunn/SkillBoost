@@ -36,10 +36,12 @@ const ChangePassword = () => {
   };
 
   return (
-    <div className="px-20 py-4 md:grid grid-cols-2">
+    <div className="px-4 md:px-20 py-4 md:grid grid-cols-2">
       <div className="shadow-gray-900 shadow-2xl">
         <form className="p-8" onSubmit={handlePasswordChange}>
-          <h1 className="text-center font-bold text-3xl">Update Password</h1>
+          <h1 className="text-2xl md:text-3xl text-center font-bold ">
+            Update Password
+          </h1>
           <input
             type="text"
             value={oldPassword}

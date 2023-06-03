@@ -72,9 +72,9 @@ const UpdateProfile = () => {
 
   return (
     user && (
-      <div className="px-20 py-4 md:grid grid-cols-2">
-        <div className="shadow-gray-900 shadow-2xl">
-          <form onSubmit={updateProfileHandler} className="p-8  shadow-2xl">
+      <div className="px-4 md:px-20 py-4 md:grid grid-cols-2 ">
+        <div className="shadow-gray-900 shadow-2xl overflow-y-hidden">
+          <form onSubmit={updateProfileHandler} className="p-8   shadow-2xl">
             <div className=" grid place-items-center">
               <img
                 className="w-32 rounded-full h-32"
@@ -104,6 +104,13 @@ const UpdateProfile = () => {
               type="file"
               onChange={changeImageHandler}
               accept="images/*"
+              className="text-sm
+            file:mr-5 file:py-3 file:px-2
+            file:rounded-full file:border-0
+            file:text-md file:font-semibold  
+            file:bg-secondary file:text-secondary
+            md:file:px-10
+            hover:file:cursor-pointer hover:file:opacity-80 "
             />
             <button className="button-input mt-4">Update</button>
           </form>

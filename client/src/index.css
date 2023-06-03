@@ -20,13 +20,13 @@
     @apply rounded-3xl px-8 py-4 bg-button text-white font-bold;
   }
   .button-input{
-    @apply rounded-xl my-2 py-2 px-4 bg-button text-white font-bold w-full hover:bg-[#2180df] transform  duration-150;
+    @apply text-sm lg:text-xl rounded-xl my-4 py-2 px-4 bg-button text-white font-bold w-full hover:bg-[#2180df] transform  duration-150;
   }
   .button-nav{
     @apply rounded-xl m-2 px-4 py-2 bg-button text-white font-bold w-fit hover:bg-[#2180df] transform  duration-150;
   }
   .button-danger{
-    @apply rounded-xl my-2 py-2 px-4 bg-red-400 text-white font-bold w-full hover:bg-red-500 transform  duration-150
+    @apply text-sm md:text-xl rounded-xl my-2 py-2 px-4 bg-red-400 text-white font-bold w-full hover:bg-red-500 transform  duration-150
   }
  
   .card{

@@ -30,7 +30,7 @@ const AllCourses = () => {
   }
 
   return (
-    <div className="px-20 md:grid grid-cols-2 gap-8 lg:grid-cols-3">
+    <div className="px-4 md:px-20 md:grid grid-cols-2 gap-8 lg:grid-cols-3">
       {courses &&
         courses.map((course) => {
           const {
@@ -44,7 +44,7 @@ const AllCourses = () => {
             lectures,
           } = course;
           return (
-            <div key={_id} className="shadow-2xl shadow-gray-900 p-4 my-8">
+            <div key={_id} className=" shadow-2xl shadow-gray-900 p-4 my-8">
               <div className="grid place-items-center">
                 <img className="h-40" src={url} alt="" />
               </div>

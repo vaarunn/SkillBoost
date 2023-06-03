@@ -48,64 +48,66 @@ const Profile = () => {
 
   return (
     user && (
-      <div>
-        <div className="grid place-items-center">
-          <h1 className="font-bold text-2xl my-4">User Profile</h1>
-          <div className="md:flex items-center">
-            <div className=" grid place-items-center">
-              <img
-                className="w-32 h-32 rounded-full md:w-40 md:h-40 "
-                src={user?.user?.avatar?.url}
-                alt="profile pic"
-              />
-            </div>
-            <div className="px-20 mt-8 text-xl">
-              <h1>
-                <span className="font-bold">Name </span>
-                {user?.user?.name}
-              </h1>
+      <div className=" grid place-items-center md:px-20">
+        <h1 className="font-bold text-2xl my-4">User Profile</h1>
+        <div className=" md:flex items-center">
+          <div className=" grid place-items-center">
+            <img
+              className="w-32 h-32 rounded-full md:w-40 md:h-40 "
+              src={user?.user?.avatar?.url}
+              alt="profile pic"
+            />
+          </div>
+          <div className="px-20 mt-8 text-xl">
+            <h1>
+              <span className="font-bold ">Name </span>
+              {user?.user?.name}
+            </h1>
 
-              <h1>
-                <span className="font-bold">Email </span>
-                {user?.user?.email}
-              </h1>
+            <h1>
+              <span className="font-bold ">Email </span>
+              {user?.user?.email}
+            </h1>
 
-              <h1>
-                <span className="font-bold">Joined On </span>
-                {formattedDate}
-              </h1>
-              <Link to="/updatePassword">
-                <button className="button-input">change password</button>
+            <h1>
+              <span className="font-bold">Joined On </span>
+              {formattedDate}
+            </h1>
+            <Link to="/updatePassword">
+              <button className="button-input">update password</button>
+            </Link>
+            <Link to="/updateProfile">
+              <button className="button-input">update profile</button>
+            </Link>
+
+            {user.user.subscription ? (
+              <button
+                onClick={cancelSubscriptionHandler}
+                className="button-input"
+              >
+                Unsubscribe
+              </button>
+            ) : (
+              <Link to="/payment">
+                <button className="button-input">Subscribe</button>
               </Link>
-              <Link to="/updateProfile">
-                <button className="button-input">update profile</button>
-              </Link>
+            )}
 
-              {user.user.subscription ? (
-                <button
-                  onClick={cancelSubscriptionHandler}
-                  className="button-input"
-                >
-                  Unsubscribe
-                </button>
-              ) : (
-                <Link to="/payment">
-                  <button className="button-input">Subscribe</button>
-                </Link>
-              )}
-
-              <Link to="/">
-                <button onClick={logoutHandler} className="button-danger">
-                  Logout
-                </button>
-              </Link>
-            </div>
+            <Link to="/">
+              <button onClick={logoutHandler} className="button-danger">
+                Logout
+              </button>
+            </Link>
           </div>
         </div>
-        <div className="px-20">
-          <h1 className="text-3xl font-bold mt-4">WatchList</h1>
-          <WatchList />
-        </div>
+        {user?.user?.role !== "admin" ? (
+          <div className="px-20">
+            <h1 className="text-3xl font-bold mt-4">WatchList</h1>
+            <WatchList />
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     )
   );

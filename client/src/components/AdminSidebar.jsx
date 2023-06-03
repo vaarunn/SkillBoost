@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 
 const AdminSidebar = () => {
   const [nav, setNav] = useState(false);
+  const [active, setActive] = useState(null);
 
   const toogleSidebar = () => {
     setNav(!nav);
@@ -22,46 +23,48 @@ const AdminSidebar = () => {
         <img className="w-16" src={logo} alt="skill-boost" />
       </Link>
 
-      {user?.user?.role === "admin" && (
-        <Link to="/admin/users">
-          <button className="button">Admin Panel</button>
-        </Link>
-      )}
-
       <div className="flex items-center ">
-        <ul className="hidden md:flex gap-8 p-8 ">
-          {AdminLinks.map((link) => {
+        <ul className="hidden lg:flex gap-8 p-8 ">
+          {AdminLinks.map((link, index) => {
             const { id, title, url } = link;
             return (
-              <Link key={id} to={url}>
-                <li className="text-primary  uppercase hover:text-accent">
-                  {title}
-                </li>
-              </Link>
+              <div
+                key={id}
+                onClick={() => setActive(id)}
+                className={active == id ? "bg-secondary rounded-xl p-2" : "p-2"}
+              >
+                <Link to={url}>
+                  <li className=" text-primary  uppercase hover:text-accent">
+                    {title}
+                  </li>
+                </Link>
+              </div>
             );
           })}
         </ul>
-        <div className="cursor-pointer md:hidden p-8" onClick={toogleSidebar}>
+        <div className="cursor-pointer lg:hidden p-8" onClick={toogleSidebar}>
           <GiHamburgerMenu size={30} />
         </div>
         <div>
           <ThemeToggle />
         </div>
 
-        {user?.user?.name ? (
-          <Link to="/profile">
-            <button className="button-input">Profile</button>
-          </Link>
-        ) : (
-          <div className="hidden md:block">
-            <Link to="/register">
-              <button className="button-nav">Register</button>
+        <div className="hidden md:block">
+          {user?.user?.name ? (
+            <Link to="/profile">
+              <button className="button-input">Profile</button>
             </Link>
-            <Link to="/login">
-              <button className="button-nav">Login</button>
-            </Link>
-          </div>
-        )}
+          ) : (
+            <div className="hidden md:block">
+              <Link to="/register">
+                <button className="button-nav">Register</button>
+              </Link>
+              <Link to="/login">
+                <button className="button-nav">Login</button>
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* sidebar */}
@@ -106,6 +109,24 @@ const AdminSidebar = () => {
                 );
               })}
             </ul>
+
+            <div>
+              {user?.user?.name ? (
+                <Link to="/profile">
+                  <button className="button-input">Profile</button>
+                </Link>
+              ) : (
+                <div className="hidden md:block">
+                  <Link to="/register">
+                    <button className="button-nav">Register</button>
+                  </Link>
+                  <Link to="/login">
+                    <button className="button-nav">Login</button>
+                  </Link>
+                </div>
+              )}
+            </div>
+
             <div className="pt-10 ">
               <p>Let's connect</p>
               <div className="flex items-center justify-between my-4 w-full sm-:w-[88%]">

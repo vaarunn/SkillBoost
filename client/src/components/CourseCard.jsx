@@ -18,11 +18,11 @@ const CourseCard = ({ course }) => {
   };
 
   return (
-    <div className="shadow-2xl shadow-gray-900 p-4">
+    <div className="shadow-2xl shadow-gray-900 p-4 my-8">
       <div className="grid place-items-center">
         <img className="h-40" src={course.poster.url} alt="title" />
       </div>
-      <h1 className="font-bold text-xl my-2">{course.title}</h1>
+      <h1 className="text-sm font-bold lg:text-xl my-2">{course.title}</h1>
       <h1 className="text-sm my-2">{trimSentence(course.description)}</h1>
       <h1>
         Created By <span className="font-bold">{course.createdBy}</span>
