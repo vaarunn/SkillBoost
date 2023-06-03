@@ -76,11 +76,6 @@ const links = [
     title: "Contact Us",
     url: "/contactUs",
   },
-  {
-    id: "5",
-    title: "About",
-    url: "/contact",
-  },
 ];
 
 const AdminLinks = [
@@ -92,7 +87,7 @@ const AdminLinks = [
   {
     id: "2",
     title: "Dashboard",
-    url: "/admin/",
+    url: "/admin/dashboard",
   },
   {
     id: "3",

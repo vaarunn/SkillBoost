@@ -1,21 +1,26 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAdminStats } from "../../redux/slices/adminSlice";
+import Loader from "../../components/Loader";
 const Dashboard = () => {
   const dispatch = useDispatch();
 
   const getStats = async () => {
-    const response = await dispatch(getAdminStats());
-    console.log(response);
+    await dispatch(getAdminStats());
   };
 
   useEffect(() => {
     getStats();
   }, []);
 
+  const { admin, isLoading } = useSelector((state) => state.admin);
+  console.log(admin.subscriptionCount);
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <div>
-      <h1>dashboard</h1>
+      <h1>hello</h1>
     </div>
   );
 };

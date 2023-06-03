@@ -23,16 +23,17 @@ const WatchList = () => {
 
   return (
     <div className="md:grid grid-cols-3 gap-4">
-      {user &&
+      {user?.user?.playlist?.length > 0 &&
         user?.user?.playlist?.map((item) => {
           const { _id, course, poster } = item;
+
           return (
             <div className="shadow-2xl shadow-gray-900 p-4">
               <div className="grid place-items-center">
                 <img className="h-40 mb-4" src={poster} alt="title" />
               </div>
 
-              <Link to={`/admin/course/lecture/${_id}`}>
+              <Link to={`/admin/course/lecture/${course}`}>
                 <button className="button-input ">Watch Now</button>
               </Link>
               <button

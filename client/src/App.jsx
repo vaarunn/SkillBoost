@@ -19,10 +19,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import NotAdmin from "./pages/NotAdmin";
 import AdminRoutes from "./pages/AdminRoutes/AdminRoutes";
 import { useSelector } from "react-redux";
-import AdminSidebar from "./components/AdminSidebar";
 
 function App() {
-  const { user } = useSelector((state) => state.user);
   return (
     <BrowserRouter>
       <Navbar />

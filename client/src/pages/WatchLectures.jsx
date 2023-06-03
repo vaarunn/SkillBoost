@@ -15,6 +15,8 @@ const WatchLectures = () => {
   const [lecture, setLecture] = useState(null);
   const [isLectureLoading, setIsLectureLoading] = useState(false);
 
+  const [active, setActive] = useState(null);
+
   const { user } = useSelector((state) => state.user);
   const { isLoading } = useSelector((state) => state.lecture);
   console.log(user.user.role);
@@ -47,7 +49,7 @@ const WatchLectures = () => {
       // Once the action is complete, set isLoading to false
       setIsLectureLoading(false);
       // Additional code...
-    }, 2000); // Adjust the timeout duration as needed
+    }, 1000); // Adjust the timeout duration as needed
   };
 
   // const deleteSingleLecture = async (lectureId, courseId) => {
@@ -81,8 +83,14 @@ const WatchLectures = () => {
                   key={_id}
                   onClick={() => {
                     getSingleLecture(index);
+                    setActive(title);
                   }}
-                  className="cursor-pointer  my-4"
+                  className={
+                    active == title
+                      ? "bg-secondary rounded-xl px-2 border-t-4 border-b-4 border-accent cursor-pointer"
+                      : "px-2 cursor-pointer"
+                  }
+                  // className="cursor-pointer  my-4"
                 >
                   <div className="flex gap-2 py-4">
                     <h1>{index}.</h1>

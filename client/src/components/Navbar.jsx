@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import logo from "../assets/skillboost.png";
 import { Link } from "react-router-dom";
-import { links, socialIcons } from "../util/Data";
+import { AdminLinks, links, socialIcons } from "../util/Data";
 import ThemeToggle from "./ThemeToggle";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { checkUser } from "../redux/slices/userSlice";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
-
+  const dispatch = useDispatch();
+  const [navLinks, setNavLinks] = useState(links);
   const [active, setActive] = useState(null);
 
   const toogleSidebar = () => {
@@ -17,18 +19,22 @@ const Navbar = () => {
   };
 
   const { user } = useSelector((state) => state.user);
-  console.log(user.user);
+
+  useEffect(() => {
+    dispatch(checkUser());
+    user?.user?.role == "admin" ? setNavLinks(AdminLinks) : setNavLinks(links);
+  }, []);
 
   return (
-    <div className=" flex px-4 items-center justify-between md:px-20">
+    <div className=" flex p-4 items-center justify-between md:px-20">
       <Link to="/">
         <img className="w-16" src={logo} alt="skill-boost" />
       </Link>
 
       <div className="flex items-center ">
         <ul className="hidden md:flex gap-8 p-8 ">
-          {user.user &&
-            links.map((link) => {
+          {user?.user &&
+            navLinks.map((link) => {
               const { id, title, url } = link;
               return (
                 <Link key={id} to={url}>
