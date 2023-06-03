@@ -44,7 +44,10 @@ const AllCourses = () => {
             lectures,
           } = course;
           return (
-            <div key={_id} className=" shadow-2xl shadow-gray-900 p-4 my-8">
+            <div
+              key={_id}
+              className=" shadow-2xl shadow-gray-900 p-4 my-8 border border-accent rounded-xl"
+            >
               <div className="grid place-items-center">
                 <img className="h-40" src={url} alt="" />
               </div>

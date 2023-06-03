@@ -8,7 +8,7 @@ import ThemeToggle from "./ThemeToggle";
 import { useSelector } from "react-redux";
 
 const AdminSidebar = () => {
-  const [nav, setNav] = useState(true);
+  const [nav, setNav] = useState(false);
   const [navLinks, setNavLinks] = useState(links);
   const [active, setActive] = useState(null);
 

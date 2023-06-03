@@ -32,7 +32,7 @@ const Navbar = () => {
       </Link>
 
       <div className="flex items-center ">
-        <ul className="hidden md:flex gap-8 p-8 ">
+        <ul className="hidden lg:flex gap-8 p-8 ">
           {user?.user &&
             navLinks.map((link) => {
               const { id, title, url } = link;
@@ -55,7 +55,7 @@ const Navbar = () => {
               );
             })}
         </ul>
-        <div className="cursor-pointer md:hidden p-8" onClick={toogleSidebar}>
+        <div className="cursor-pointer lg:hidden p-8" onClick={toogleSidebar}>
           <GiHamburgerMenu size={30} />
         </div>
         <div>

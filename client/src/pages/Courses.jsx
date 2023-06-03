@@ -45,10 +45,6 @@ const Courses = () => {
     getCourses();
   }, [search, type]);
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
   return (
     <div className="px-4  md:px-20">
       <input
@@ -75,12 +71,16 @@ const Courses = () => {
           );
         })}
       </div>
-      <div className=" md:grid grid-cols-2 gap-8 lg:grid-cols-3">
-        {courses &&
-          courses.map((course, index) => {
-            return <CourseCard key={index} course={course} />;
-          })}
-      </div>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className=" md:grid grid-cols-2 gap-8 lg:grid-cols-3">
+          {courses &&
+            courses.map((course, index) => {
+              return <CourseCard key={index} course={course} />;
+            })}
+        </div>
+      )}
     </div>
   );
 };

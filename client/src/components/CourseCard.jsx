@@ -18,7 +18,7 @@ const CourseCard = ({ course }) => {
   };
 
   return (
-    <div className="shadow-2xl shadow-gray-900 p-4 my-8">
+    <div className="shadow-2xl shadow-gray-900 p-4 my-8 border border-accent rounded-xl">
       <div className="grid place-items-center">
         <img className="h-40" src={course.poster.url} alt="title" />
       </div>
