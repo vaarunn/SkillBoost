@@ -6,6 +6,7 @@ import {
   deleteCourseLecture,
   getCourseLecture,
 } from "../../redux/slices/lectureSlice";
+import Loader from "../../components/Loader";
 
 const CourseInfo = () => {
   const { courseId } = useParams();
@@ -15,39 +16,55 @@ const CourseInfo = () => {
   const getCourseLectures = async () => {
     const response = await dispatch(getCourseLecture(courseId));
     setLectures(response.payload.lectures);
-    console.log(lectures);
   };
 
-  const handleDeleteLecture = () => {
-    dispatch(deleteCourseLecture());
+  const handleDeleteLecture = (courseInfo) => {
+    dispatch(deleteCourseLecture(courseInfo));
   };
 
   useEffect(() => {
     getCourseLectures();
-  }, []);
+  }, [dispatch]);
   return (
     <div>
-      <h1>{courseId}</h1>
-      <Link to={`/admin/course/lectures/${courseId}`}>
-        <button>Add Lectures</button>
-      </Link>
-      <div>
-        {lectures.map((item) => {
-          const { title, description, _id } = item;
-          return (
-            <div className=" bg-green-500 flex justify-between items-center my-8">
-              <div>
-                <h1>{title}</h1>
-                <h1>{description}</h1>
-              </div>
-              <div>
-                <button onClick={() => handleDeleteLecture({ courseId, _id })}>
-                  delete
-                </button>
-              </div>
-            </div>
-          );
-        })}
+      <div className="grid place-items-center">
+        <h1>{courseId}</h1>
+        <Link to={`/admin/course/lectures/${courseId}`}>
+          <button className="button-input">Add Lectures</button>
+        </Link>
+      </div>
+      <div className="px-20 ">
+        {lectures.length > 0 ? (
+          <div className="px-20 rounded-2xl  py-8 bg-secondary mt-4">
+            <h1 className="font-bold text-3xl">Course Lectures</h1>
+            {lectures.map((item) => {
+              const { title, description, _id } = item;
+              return (
+                <div
+                  key={_id}
+                  className=" bg-primary flex justify-between items-center my-8 py-4 px-8 rounded-xl "
+                >
+                  <div>
+                    <h1>{title}</h1>
+                    <h1>{description}</h1>
+                  </div>
+                  <div>
+                    <button
+                      onClick={() => handleDeleteLecture({ courseId, _id })}
+                      className="button-danger"
+                    >
+                      delete
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div>
+            <Loader />
+          </div>
+        )}
       </div>
     </div>
   );

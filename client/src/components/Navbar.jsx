@@ -22,11 +22,12 @@ const Navbar = () => {
         <img className="w-16" src={logo} alt="skill-boost" />
       </Link>
 
+      {/* 
       {user?.user?.role === "admin" && (
         <Link to="/admin/users">
           <button className="button">Admin Panel</button>
         </Link>
-      )}
+      )} */}
 
       <div className="flex items-center ">
         <ul className="hidden md:flex gap-8 p-8 ">

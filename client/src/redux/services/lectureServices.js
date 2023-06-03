@@ -23,7 +23,8 @@ const addCourseLectureService = async (lectureData) => {
 };
 
 const deleteCourseLectureService = async (dataId) => {
-  const lectureId = dataId.lectureId;
+  console.log(dataId);
+  const lectureId = dataId._id;
   const courseId = dataId.courseId;
   console.log(lectureId, courseId);
   const response = await axios.delete(
