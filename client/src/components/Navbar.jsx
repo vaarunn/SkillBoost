@@ -10,11 +10,14 @@ import { useSelector } from "react-redux";
 const Navbar = () => {
   const [nav, setNav] = useState(false);
 
+  const [active, setActive] = useState(null);
+
   const toogleSidebar = () => {
     setNav(!nav);
   };
 
   const { user } = useSelector((state) => state.user);
+  console.log(user.user);
 
   return (
     <div className=" flex px-4 items-center justify-between md:px-20">
@@ -22,27 +25,31 @@ const Navbar = () => {
         <img className="w-16" src={logo} alt="skill-boost" />
       </Link>
 
-      {/* 
-      {user?.user?.role === "admin" && (
-        <Link to="/admin/users">
-          <button className="button">Admin Panel</button>
-        </Link>
-      )} */}
-
-      <div className="hidden lg:flex items-center ">
-        <ul className="hidden lg:flex gap-8 p-8 ">
-          {links.map((link) => {
-            const { id, title, url } = link;
-            return (
-              <Link key={id} to={url}>
-                <li className="text-primary  uppercase hover:text-accent">
-                  {title}
-                </li>
-              </Link>
-            );
-          })}
+      <div className="flex items-center ">
+        <ul className="hidden md:flex gap-8 p-8 ">
+          {user.user &&
+            links.map((link) => {
+              const { id, title, url } = link;
+              return (
+                <Link key={id} to={url}>
+                  <div
+                    key={id}
+                    onClick={() => setActive(id)}
+                    className={
+                      active == id
+                        ? "bg-secondary rounded-xl p-2 border-l-4 border-r-4 border-accent"
+                        : "p-2"
+                    }
+                  >
+                    <li className="text-primary  uppercase hover:text-accent">
+                      {title}
+                    </li>
+                  </div>
+                </Link>
+              );
+            })}
         </ul>
-        <div className="cursor-pointer lg:hidden p-8" onClick={toogleSidebar}>
+        <div className="cursor-pointer md:hidden p-8" onClick={toogleSidebar}>
           <GiHamburgerMenu size={30} />
         </div>
         <div>

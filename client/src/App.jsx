@@ -25,7 +25,7 @@ function App() {
   const { user } = useSelector((state) => state.user);
   return (
     <BrowserRouter>
-      {user?.user?.role === "admin" ? <AdminSidebar /> : <Navbar />}
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

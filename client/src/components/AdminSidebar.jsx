@@ -31,7 +31,11 @@ const AdminSidebar = () => {
               <div
                 key={id}
                 onClick={() => setActive(id)}
-                className={active == id ? "bg-secondary rounded-xl p-2" : "p-2"}
+                className={
+                  active == id
+                    ? "bg-secondary rounded-xl p-2 border-l-4 border-r-4 border-accent"
+                    : "p-2"
+                }
               >
                 <Link to={url}>
                   <li className=" text-primary  uppercase hover:text-accent">

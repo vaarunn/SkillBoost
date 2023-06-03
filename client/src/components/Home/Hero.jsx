@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import lottieHero from "../../assets/lottieCourse.json";
 import { Player } from "@lottiefiles/react-lottie-player";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -20,7 +21,9 @@ const Hero = () => {
           Showcase your skills with practical development experience and land
           the coding career of your dreams
         </h3>
-        <button className="button mt-6 ">Explore Courses</button>
+        <Link to="/courses">
+          <button className="button mt-6 ">Explore Courses</button>
+        </Link>
       </motion.div>
 
       <motion.div
