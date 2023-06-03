@@ -5,6 +5,7 @@ import logo from "../assets/skillboost.png";
 import { Link } from "react-router-dom";
 import { AdminLinks, links, socialIcons } from "../util/Data";
 import ThemeToggle from "./ThemeToggle";
+import { useSelector } from "react-redux";
 
 const AdminSidebar = () => {
   const [nav, setNav] = useState(true);
@@ -14,6 +15,8 @@ const AdminSidebar = () => {
   const toogleSidebar = () => {
     setNav(!nav);
   };
+
+  const { user } = useSelector((state) => state.user);
 
   return (
     <div>
@@ -72,6 +75,24 @@ const AdminSidebar = () => {
                 );
               })}
             </ul>
+
+            <div onClick={toogleSidebar}>
+              {user?.user?.name ? (
+                <Link to="/profile">
+                  <button className="button-input">Profile</button>
+                </Link>
+              ) : (
+                <div className="hidden md:block">
+                  <Link to="/register">
+                    <button className="button-nav">Register</button>
+                  </Link>
+                  <Link to="/login">
+                    <button className="button-nav">Login</button>
+                  </Link>
+                </div>
+              )}
+            </div>
+
             <div className="pt-10 ">
               <p>Let's connect</p>
               <div className="flex items-center justify-between my-4 w-full sm-:w-[88%]">
