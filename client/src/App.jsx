@@ -18,12 +18,17 @@ import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NotAdmin from "./pages/NotAdmin";
 import AdminRoutes from "./pages/AdminRoutes/AdminRoutes";
+
+import Error from "./pages/Error";
+import AdminSidebar from "./components/AdminSidebar";
 import { useSelector } from "react-redux";
 
 function App() {
+  const { user } = useSelector((state) => state.user);
+
   return (
     <BrowserRouter>
-      <Navbar />
+      {user?.user?.role === "admin" ? <AdminSidebar /> : <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -52,6 +57,7 @@ function App() {
         <Route path="/payment" element={<Subscribe />}></Route>
         <Route path="/payment/success" element={<PaymentSuccess />}></Route>
         <Route path="/payment/fail" element={<PaymentFail />}></Route>
+        <Route path="*" element={<Error />}></Route>
       </Routes>
       <Toaster />
     </BrowserRouter>
