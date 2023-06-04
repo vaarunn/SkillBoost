@@ -34,55 +34,41 @@ const UsersCard = ({ user }) => {
   }, [errorMessage]);
 
   return (
-    <div className="bg-primary rounded-lg p-4 shadow-2xl">
-      <table className="w-full">
-        <thead>
-          <tr>
-            <th>Avatar</th>
-            <th>UserId</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <img
-                className="w-32 h-32 rounded-full"
-                src={user.avatar.url}
-                alt=""
-              />
-            </td>
-            <td>{user._id}</td>
-            <td>{user.name}</td>
-            <td>{user.email}</td>
-            <td>{user.role}</td>
-            <td>
-              <button
-                onClick={() => {
-                  console.log(user._id);
-                  updateUserRoleHandler(user._id);
-                }}
-                className="bg-secondary px-4 py-2 rounded-xl "
-              >
-                Update Role
-              </button>
+    <div className="shadow-2xl shadow-gray-900 p-4 my-8 border border-accent rounded-xl">
+      <div className="grid place-items-center">
+        <img className="h-40" src={user.avatar.url} alt="profile pic" />
+      </div>
+      <h1 className="text-sm  lg:text-xl my-2">
+        <span className="font-bold">UserID:</span> {user._id}
+      </h1>
+      <h1 className="text-sm  lg:text-xl my-2">
+        <span className="font-bold">UserName:</span> {user.name}
+      </h1>
+      <h1 className="text-sm lg:text-xl my-2">
+        <span className="font-bold">UserEmail:</span> {user.email}
+      </h1>
+      <h1 className="text-sm lg:text-xl my-2">
+        <span className="font-bold">UserRole:</span> {user.role}
+      </h1>
 
-              <button
-                onClick={() => {
-                  console.log(user._id);
-                  deleteUserHandler(user._id);
-                }}
-                className="bg-red-400 px-4 py-2 rounded-xl text-white ml-4"
-              >
-                Delete User
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <button
+        onClick={() => {
+          console.log(user._id);
+          updateUserRoleHandler(user._id);
+        }}
+        className="button-input"
+      >
+        Update Role
+      </button>
+      <button
+        onClick={() => {
+          console.log(user._id);
+          deleteUserHandler(user._id);
+        }}
+        className="button-danger"
+      >
+        Delete User
+      </button>
     </div>
   );
 };

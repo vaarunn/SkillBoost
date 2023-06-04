@@ -25,17 +25,19 @@ const Users = () => {
   }
 
   return (
-    <div className="px-20 ">
-      <div className=" bg-secondary rounded-2xl px-20 shadow-2xl">
-        <h1 className="py-4 text-2xl font-bold ">Users</h1>
-        {users &&
-          users.map((user, index) => {
-            return (
-              <div className=" py-4">
-                <UsersCard key={index} user={user} />
-              </div>
-            );
-          })}
+    <div className="px-4 md:px-20 ">
+      <div>
+        <h1 className="py-4 text-2xl font-bold lg:text-4xl">Users</h1>
+        <div className="md:grid grid-cols-2 gap-8">
+          {users &&
+            users.map((user, index) => {
+              return (
+                <div className=" py-4">
+                  <UsersCard key={index} user={user} />
+                </div>
+              );
+            })}
+        </div>
       </div>
     </div>
   );

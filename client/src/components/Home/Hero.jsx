@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <div className="z-0 px-4  my-2 md:px-20 lg:flex items-center justify-center lg:my-6  lg:py-16">
+    <div className="z-0 px-4  my-2 md:px-20 lg:flex items-center justify-center lg:my-3  lg:py-8">
       <motion.div
         initial={{ x: -100 }}
         whileInView={{ x: 0 }}

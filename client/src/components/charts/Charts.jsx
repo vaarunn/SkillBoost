@@ -23,9 +23,11 @@ ChartJS.register(
   Legend
 );
 
-export const LineChart = ({ views = [] }) => {
+export const LineChart = ({ views }) => {
   const labels = getLastYearMonths();
-
+  if (views) {
+    views = Object?.entries(views);
+  }
   const options = {
     responsive: true,
     plugins: {

@@ -68,9 +68,18 @@ const AdminSidebar = () => {
                 const { id, title, url } = link;
                 return (
                   <Link key={id} to={url} onClick={toogleSidebar}>
-                    <li className=" py-4 border-b  border-gray-300 text-primary  hover:text-[#0ea5e9] font-poppy">
-                      {title}
-                    </li>
+                    <div
+                      onClick={() => setActive(id)}
+                      className={
+                        active == id
+                          ? "bg-secondary rounded-xl p-2 border-t-4 border-b-4 border-accent"
+                          : "p-2"
+                      }
+                    >
+                      <li className=" py-2 border-b  border-gray-300 text-primary  hover:text-[#0ea5e9] font-poppy">
+                        {title}
+                      </li>
+                    </div>
                   </Link>
                 );
               })}

@@ -12,13 +12,10 @@ const Dashboard = () => {
   const getStats = async () => {
     await dispatch(getAdminStats());
   };
-  console.log(admin.viewsProfit, "i am here");
 
   useEffect(() => {
     getStats();
   }, []);
-
-  console.log(admin.subscriptionCount);
   if (isLoading) {
     return <Loader />;
   }
@@ -50,7 +47,7 @@ const Dashboard = () => {
           Views Graph
         </h2>
 
-        <LineChart views={admin.stats.map((item) => item.views)} />
+        <LineChart views={admin?.stats?.map((item) => item.views)} />
       </div>
 
       <div className="grid place-items-center ">

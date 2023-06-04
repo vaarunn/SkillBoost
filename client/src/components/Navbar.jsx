@@ -39,7 +39,6 @@ const Navbar = () => {
               return (
                 <Link key={id} to={url}>
                   <div
-                    key={id}
                     onClick={() => setActive(id)}
                     className={
                       active == id
