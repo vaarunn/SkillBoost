@@ -4,6 +4,8 @@ import { getAllCourse } from "../redux/slices/courseSlice";
 import CourseCard from "../components/CourseCard";
 import Loader from "../components/Loader";
 import { checkUser } from "../redux/slices/userSlice";
+import { Player } from "@lottiefiles/react-lottie-player";
+import notFound from "../assets/courseNotFound.json";
 
 const buttons = [
   {
@@ -71,14 +73,31 @@ const Courses = () => {
           );
         })}
       </div>
+
       {isLoading ? (
         <Loader />
+      ) : courses.length === 0 ? (
+        <div className="flex justify-center items-center  ">
+          <div className="w-[80%] h-[80%] md:h-[40%] md:w-[40%]">
+            <Player
+              src={notFound}
+              loop
+              autoplay
+              style={
+                {
+                  // width: "100%",
+                  // height: "80%",
+                  // position: "fixed",
+                }
+              }
+            />
+          </div>
+        </div>
       ) : (
-        <div className=" md:grid grid-cols-2 gap-8 lg:grid-cols-3">
-          {courses &&
-            courses.map((course, index) => {
-              return <CourseCard key={index} course={course} />;
-            })}
+        <div className="md:grid grid-cols-2 gap-8 lg:grid-cols-3">
+          {courses.map((course, index) => (
+            <CourseCard key={index} course={course} />
+          ))}
         </div>
       )}
     </div>
