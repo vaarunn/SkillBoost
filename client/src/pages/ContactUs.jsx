@@ -7,7 +7,7 @@ import {
   resetSuccessMessage,
 } from "../redux/slices/userSlice";
 import { Player } from "@lottiefiles/react-lottie-player";
-import rocketMan from "../assets/rocketMan.json";
+import contactUs from "../assets/contactUs.json";
 const ContactUs = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -36,7 +36,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="px-20 py-4 md:grid grid-cols-2">
+    <div className="px-4 md:px-20 py-4 md:grid grid-cols-2">
       <div className="shadow-gray-900 shadow-2xl">
         <form onSubmit={handleSubmit} className="p-8">
           <h1 className="text-center font-[700] text-4xl">Hit Us Up!!!</h1>
@@ -70,10 +70,10 @@ const ContactUs = () => {
           <button className="button-input">Send Message</button>
         </form>
       </div>
-      <div className=" h-[80%]">
+      <div className="hidden md:block h-[80%]">
         <Player
           style={{ height: 400 }}
-          src={rocketMan}
+          src={contactUs}
           loop
           autoplay
           resizeMode="cover"

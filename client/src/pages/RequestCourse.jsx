@@ -7,7 +7,8 @@ import {
   resetSuccessMessage,
 } from "../redux/slices/userSlice";
 import { Player } from "@lottiefiles/react-lottie-player";
-import rocketMan from "../assets/rocketMan.json";
+import rCourse from "../assets/requestCourse.json";
+
 const RequestCourse = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -36,7 +37,7 @@ const RequestCourse = () => {
   };
 
   return (
-    <div className="px-20 py-4 md:grid grid-cols-2">
+    <div className="px-4 md:px-20 py-4 md:grid grid-cols-2">
       <div className="shadow-gray-900 shadow-2xl">
         <form className="p-8 " onSubmit={handleSubmit}>
           <h1 className="text-center font-[700] text-4xl">
@@ -71,6 +72,15 @@ const RequestCourse = () => {
           />
           <button className="button-input">Request Course</button>
         </form>
+      </div>
+      <div className="hidden md:block h-[80%]">
+        <Player
+          style={{ height: 500 }}
+          src={rCourse}
+          loop
+          autoplay
+          resizeMode="cover"
+        />
       </div>
     </div>
   );

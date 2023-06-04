@@ -79,18 +79,7 @@ const Courses = () => {
       ) : courses.length === 0 ? (
         <div className="flex justify-center items-center  ">
           <div className="w-[80%] h-[80%] md:h-[40%] md:w-[40%]">
-            <Player
-              src={notFound}
-              loop
-              autoplay
-              style={
-                {
-                  // width: "100%",
-                  // height: "80%",
-                  // position: "fixed",
-                }
-              }
-            />
+            <Player src={notFound} loop autoplay />
           </div>
         </div>
       ) : (
