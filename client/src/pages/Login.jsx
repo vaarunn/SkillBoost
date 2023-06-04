@@ -7,7 +7,7 @@ import {
   resetErrorMessage,
 } from "../redux/slices/userSlice.js";
 import { Link, useNavigate } from "react-router-dom";
-import ClipLoader from "react-spinners/ClipLoader";
+
 import { Player } from "@lottiefiles/react-lottie-player";
 import knowledge from "../assets/knowledge.json";
 import Loader from "../components/Loader";
@@ -21,23 +21,24 @@ const Login = () => {
   const { successMessage, errorMessage, user, isLoading } = useSelector(
     (state) => state.user
   );
+  console.log(successMessage, "i am here");
 
   const loginHandler = async (e) => {
     e.preventDefault();
     dispatch(login({ email, password }));
   };
 
-  // useEffect(() => {
-  //   if (successMessage) {
-  //     toast.success(successMessage);
-  //     dispatch(resetSuccessMessage());
-  //     navigate("/courses");
-  //   }
-  // }, [successMessage]);
+  useEffect(() => {
+    if (successMessage) {
+      toast.success(successMessage);
+      dispatch(resetSuccessMessage());
+      navigate("/courses");
+    }
+  }, [successMessage]);
 
   useEffect(() => {
     if (errorMessage) {
-      // showToast(errorMessage);
+      toast.error(errorMessage);
       dispatch(resetErrorMessage());
     }
   }, [errorMessage]);

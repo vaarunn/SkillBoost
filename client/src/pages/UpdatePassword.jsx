@@ -7,7 +7,7 @@ import {
 } from "../redux/slices/userSlice";
 import { toast } from "react-hot-toast";
 import { Player } from "@lottiefiles/react-lottie-player";
-import rocketMan from "../assets/rocketMan.json";
+import rocketMan from "../assets/rocket.json";
 
 const ChangePassword = () => {
   const [oldPassword, setOldPassword] = useState("");

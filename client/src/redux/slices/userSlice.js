@@ -6,8 +6,8 @@ const initialState = {
   isLoading: false,
   isError: "",
   isSuccess: "",
-  successMessage: "",
-  errorMessage: "",
+  successMessage: null,
+  errorMessage: null,
 };
 
 export const register = createAsyncThunk(
@@ -97,10 +97,10 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     resetSuccessMessage: (state) => {
-      state.successMessage = "";
+      state.successMessage = null;
     },
     resetErrorMessage: (state) => {
-      state.errorMessage = "";
+      state.errorMessage = null;
     },
     resetUser: (state) => {
       state.user = "";

@@ -6,12 +6,11 @@ import {
   resetSuccessMessage,
   updateProfile,
 } from "../redux/slices/userSlice";
-import ClipLoader from "react-spinners/ClipLoader";
 import { toast } from "react-hot-toast";
 import Loader from "../components/Loader";
 
 import { Player } from "@lottiefiles/react-lottie-player";
-import rocketMan from "../assets/rocketMan.json";
+import rocketMan from "../assets/rocket.json";
 
 const UpdateProfile = () => {
   const [name, setName] = useState("");

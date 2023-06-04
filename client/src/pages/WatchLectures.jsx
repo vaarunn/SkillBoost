@@ -19,12 +19,11 @@ const WatchLectures = () => {
 
   const { user } = useSelector((state) => state.user);
   const { isLoading } = useSelector((state) => state.lecture);
-  console.log(user.user.role);
 
   if (
-    user.user.role !== "admin" &&
-    (user.user.subscription === undefined ||
-      user.user.subscription.status !== "active")
+    user?.user?.role !== "admin" &&
+    (user?.user?.subscription === undefined ||
+      user?.user?.subscription?.status !== "active")
   ) {
     return <Navigate to={"/payment"} />;
   }

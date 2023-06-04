@@ -27,7 +27,7 @@ const CourseCard = ({ course }) => {
       <h1>
         Created By <span className="font-bold">{course.createdBy}</span>
       </h1>
-      <Link to={`/admin/course/lecture/${course._id}`}>
+      <Link to={`/course/lecture/${course._id}`}>
         <button className="button-input">Watch Course</button>
       </Link>
       <button
