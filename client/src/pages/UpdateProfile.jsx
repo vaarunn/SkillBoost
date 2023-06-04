@@ -10,7 +10,7 @@ import { toast } from "react-hot-toast";
 import Loader from "../components/Loader";
 
 import { Player } from "@lottiefiles/react-lottie-player";
-import rocketMan from "../assets/rocket.json";
+import update from "../assets/update.json";
 
 const UpdateProfile = () => {
   const [name, setName] = useState("");
@@ -72,7 +72,7 @@ const UpdateProfile = () => {
   return (
     user && (
       <div className="px-4 md:px-20 py-4 md:grid grid-cols-2 ">
-        <div className="shadow-gray-900 shadow-2xl overflow-y-hidden">
+        <div className="shadow-gray-900 shadow-2xl overflow-y-hidden border border-accent rounded-xl">
           <form onSubmit={updateProfileHandler} className="p-8   shadow-2xl">
             <div className=" grid place-items-center">
               <img
@@ -117,7 +117,7 @@ const UpdateProfile = () => {
         <div className=" h-[80%]">
           <Player
             style={{ height: 400 }}
-            src={rocketMan}
+            src={update}
             loop
             autoplay
             resizeMode="cover"

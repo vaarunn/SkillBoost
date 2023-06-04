@@ -12,8 +12,8 @@ const Features = () => {
       >
         <h1 className="text-secondary font-[700] text-4xl text-center my-8 lg:text-5xl">
           Ditch Theory-Driven Courses and{" "}
-          <span className="text-accent">Enter the World</span> of a{" "}
-          <span className="text-accent">True Developer</span>
+          <span className="gradient-text">Enter the World</span> of a{" "}
+          <span className="gradient-text">True Developer</span>
         </h1>
       </motion.div>
       <div className="md:px-20 lg:grid grid-cols-2 gap-4">

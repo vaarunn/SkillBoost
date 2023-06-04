@@ -7,7 +7,7 @@ import {
 } from "../redux/slices/userSlice";
 import { toast } from "react-hot-toast";
 import { Player } from "@lottiefiles/react-lottie-player";
-import rocketMan from "../assets/rocket.json";
+import update from "../assets/update.json";
 
 const ChangePassword = () => {
   const [oldPassword, setOldPassword] = useState("");
@@ -37,7 +37,7 @@ const ChangePassword = () => {
 
   return (
     <div className="px-4 md:px-20 py-4 md:grid grid-cols-2">
-      <div className="shadow-gray-900 shadow-2xl">
+      <div className="shadow-gray-900 shadow-2xl border border-accent rounded-xl">
         <form className="p-8" onSubmit={handlePasswordChange}>
           <h1 className="text-2xl md:text-3xl text-center font-bold ">
             Update Password
@@ -63,10 +63,10 @@ const ChangePassword = () => {
           <button className="button-input">Submit</button>
         </form>
       </div>
-      <div className=" h-[80%]">
+      <div className="hidden md:block h-[80%]">
         <Player
           style={{ height: 400 }}
-          src={rocketMan}
+          src={update}
           loop
           autoplay
           resizeMode="cover"

@@ -11,8 +11,8 @@ const StartCourse = () => {
         transition={{ type: "spring", duration: 1, bounce: 0.3 }}
       >
         <h1 className="text-secondary font-[700] text-4xl text-center my-8 lg:text-5xl ">
-          <span>Launch Your Career</span> Today With{" "}
-          <span className="text-accent">SkillShare</span>
+          <span className="gradient-text">Launch Your Career</span> Today With{" "}
+          <span className="gradient-text">SkillShare</span>
         </h1>
       </motion.div>
 

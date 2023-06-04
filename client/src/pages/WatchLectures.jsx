@@ -7,6 +7,9 @@ import {
 } from "../redux/slices/lectureSlice";
 import Lecture from "../components/Lecture";
 import Loader from "../components/Loader";
+import { MdClose } from "react-icons/md";
+
+import { AiFillBook } from "react-icons/ai";
 
 const WatchLectures = () => {
   const { courseId } = useParams();
@@ -14,6 +17,12 @@ const WatchLectures = () => {
   const [lectures, setLectures] = useState([]);
   const [lecture, setLecture] = useState(null);
   const [isLectureLoading, setIsLectureLoading] = useState(false);
+
+  const [nav, setNav] = useState(false);
+
+  const toogleSidebar = () => {
+    setNav(!nav);
+  };
 
   const [active, setActive] = useState(null);
 
@@ -51,11 +60,6 @@ const WatchLectures = () => {
     }, 1000); // Adjust the timeout duration as needed
   };
 
-  // const deleteSingleLecture = async (lectureId, courseId) => {
-  //   console.log(lectureId, courseId);
-  //   dispatch(deleteCourseLecture({ courseId, lectureId }));
-  // };
-
   if (isLoading) {
     return <Loader />;
   }
@@ -63,15 +67,66 @@ const WatchLectures = () => {
   return (
     <div className="grid grid-cols-4 px-20">
       <div className="col-span-3">
-        {isLectureLoading ? (
-          <Loader load={"load"} />
+        {active === null ? (
+          <h1>Select a lecture</h1>
+        ) : isLectureLoading ? (
+          <Loader load="load" />
         ) : lecture ? (
           <Lecture lecture={lecture} />
         ) : (
-          <Loader load={"load"} />
+          <Loader load="load" />
         )}
       </div>
-      <div className="col-span-1 ">
+
+      <div className="cursor-pointer lg:hidden p-8" onClick={toogleSidebar}>
+        <AiFillBook size={30} />
+      </div>
+
+      <div
+        className={
+          nav
+            ? " fixed right-0 top-0 w-[100%] sm:w-[60%] md:w-[45%] h-full bg-primary  p-10  ease-in duration-700 z-10 "
+            : " bg-primary top-0 fixed right-[-250%]  p-10 ease-in duration-700  z-10"
+        }
+      >
+        <div className="col-span-1 bg-secondary h-screen w-full">
+          <h1 className="text-center font-bold text-3xl">Course Lectues</h1>
+          <div className="cursor-pointer text-primary" onClick={toogleSidebar}>
+            <MdClose size={30} />
+          </div>
+          {lectures && lectures.length > 0 ? (
+            <div className="px-4">
+              {lectures.map((lecture, index) => {
+                const { title, _id } = lecture;
+                return (
+                  <div
+                    key={_id}
+                    onClick={() => {
+                      getSingleLecture(index);
+                      setActive(title);
+                    }}
+                    className={
+                      active == title
+                        ? "bg-secondary rounded-xl px-2 border-t-4 border-b-4 border-accent cursor-pointer"
+                        : "px-2 cursor-pointer"
+                    }
+                    // className="cursor-pointer  my-4"
+                  >
+                    <div className="flex gap-2 py-4">
+                      <h1>{index}.</h1>
+                      <h1>{title}</h1>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <h1>No Lectures Found</h1>
+          )}
+        </div>
+      </div>
+
+      <div className="hidden lg:block col-span-1 bg-secondary h-screen w-full">
         <h1 className="text-center font-bold text-3xl">Course Lectues</h1>
         {lectures && lectures.length > 0 ? (
           <div className="px-4">

@@ -12,7 +12,7 @@ const Info = () => {
         className="my-8 lg:px-28 lg:py-16 lg:my-0"
       >
         <h1 className="font-poppy font-[700] text-4xl text-center text-secondary lg:text-5xl ">
-          Welcome to <span className="text-accent block">SkillBoost</span>
+          Welcome to <span className="gradient-text block">SkillBoost</span>
         </h1>
         <p className="font-poppy font-[400] text-xl my-4 text-center md:px-20">
           Hands-on projects are the most practical way to learn a programming
@@ -40,9 +40,9 @@ const Info = () => {
         className=" md:px-20 lg:py-20"
       >
         <h1 className="font-[700] text-secondary text-center text-3xl md:text-4xl lg:text-5xl">
-          Comprehensive <span className="text-accent">Project-Based</span>{" "}
+          Comprehensive <span className="gradient-text">Project-Based</span>{" "}
           Courses to Help You Become a{" "}
-          <span className="text-accent">Skilled Professional </span>
+          <span className="gradient-text">Skilled Professional </span>
         </h1>
         <p className="my-8 text-center text-md font-[400]  md:px-16 lg:text-xl">
           Want to master React.js or create a stunning Web 3.0 blockchain app?
