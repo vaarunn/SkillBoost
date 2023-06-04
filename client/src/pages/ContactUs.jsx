@@ -7,7 +7,7 @@ import {
   resetSuccessMessage,
 } from "../redux/slices/userSlice";
 import { Player } from "@lottiefiles/react-lottie-player";
-import contactUs from "../assets/contactUs.json";
+import contactUs from "../assets/lottieFiles/contactUs.json";
 const ContactUs = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

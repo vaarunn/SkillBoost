@@ -10,7 +10,7 @@ import { toast } from "react-hot-toast";
 import Loader from "../components/Loader";
 
 import { Player } from "@lottiefiles/react-lottie-player";
-import update from "../assets/update.json";
+import update from "../assets/lottieFiles/update.json";
 
 const UpdateProfile = () => {
   const [name, setName] = useState("");

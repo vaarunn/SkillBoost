@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/profile.png";
 import { Player } from "@lottiefiles/react-lottie-player";
-import rocketMan from "../assets/rocket.json";
+import rocketMan from "../assets/lottieFiles/rocket.json";
 
 import {
   checkUser,

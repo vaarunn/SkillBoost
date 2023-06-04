@@ -9,7 +9,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 
 import { Player } from "@lottiefiles/react-lottie-player";
-import knowledge from "../assets/knowledge.json";
+import knowledge from "../assets/lottieFiles/knowledge.json";
 import Loader from "../components/Loader";
 
 const Login = () => {

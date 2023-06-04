@@ -7,7 +7,7 @@ import {
 } from "../redux/slices/userSlice";
 import { toast } from "react-hot-toast";
 import { Player } from "@lottiefiles/react-lottie-player";
-import update from "../assets/update.json";
+import update from "../assets/lottieFiles/update.json";
 
 const ChangePassword = () => {
   const [oldPassword, setOldPassword] = useState("");

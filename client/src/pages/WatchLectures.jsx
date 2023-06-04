@@ -7,9 +7,12 @@ import {
 } from "../redux/slices/lectureSlice";
 import Lecture from "../components/Lecture";
 import Loader from "../components/Loader";
-import { MdClose } from "react-icons/md";
+
+import { Player } from "@lottiefiles/react-lottie-player";
+import lectureLottie from "../assets/lottieFiles/lectures.json";
 
 import { AiFillBook } from "react-icons/ai";
+import { MdClose } from "react-icons/md";
 
 const WatchLectures = () => {
   const { courseId } = useParams();
@@ -65,10 +68,19 @@ const WatchLectures = () => {
   }
 
   return (
-    <div className="grid grid-cols-4 px-20">
+    <div className="px-4 lg:grid grid-cols-4 md:px-20">
+      <div
+        className="flex gap-2  items-center cursor-pointer lg:hidden p-8"
+        onClick={toogleSidebar}
+      >
+        <AiFillBook size={20} />
+        <p className="text-sm md:text-xl">Course Lectures</p>
+      </div>
       <div className="col-span-3">
         {active === null ? (
-          <h1>Select a lecture</h1>
+          <div>
+            <Player src={lectureLottie} loop autoplay style={{ height: 500 }} />
+          </div>
         ) : isLectureLoading ? (
           <Loader load="load" />
         ) : lecture ? (
@@ -78,21 +90,24 @@ const WatchLectures = () => {
         )}
       </div>
 
-      <div className="cursor-pointer lg:hidden p-8" onClick={toogleSidebar}>
-        <AiFillBook size={30} />
-      </div>
+      {/* sidebar  */}
 
       <div
         className={
           nav
-            ? " fixed right-0 top-0 w-[100%] sm:w-[60%] md:w-[45%] h-full bg-primary  p-10  ease-in duration-700 z-10 "
-            : " bg-primary top-0 fixed right-[-250%]  p-10 ease-in duration-700  z-10"
+            ? " fixed left-0 top-[15%] w-[100%] sm:w-[60%] md:w-[45%] h-full bg-secondary  p-10  ease-in duration-700 z-10 rounded-xl"
+            : " bg-primary top-[15%] fixed left-[-250%]  p-10 ease-in duration-700  z-10"
         }
       >
-        <div className="col-span-1 bg-secondary h-screen w-full">
-          <h1 className="text-center font-bold text-3xl">Course Lectues</h1>
-          <div className="cursor-pointer text-primary" onClick={toogleSidebar}>
-            <MdClose size={30} />
+        <div className=" col-span-1 bg-secondary h-screen w-full rounded-xl">
+          <div className="flex items-center justify-between p-8">
+            <h1 className=" font-bold ">Course Lectures</h1>
+            <div
+              className="cursor-pointer text-primary"
+              onClick={toogleSidebar}
+            >
+              <MdClose size={30} />
+            </div>
           </div>
           {lectures && lectures.length > 0 ? (
             <div className="px-4">
@@ -112,7 +127,10 @@ const WatchLectures = () => {
                     }
                     // className="cursor-pointer  my-4"
                   >
-                    <div className="flex gap-2 py-4">
+                    <div
+                      className="flex gap-2 py-4 border-b border-gray-400"
+                      onClick={toogleSidebar}
+                    >
                       <h1>{index}.</h1>
                       <h1>{title}</h1>
                     </div>
@@ -126,8 +144,8 @@ const WatchLectures = () => {
         </div>
       </div>
 
-      <div className="hidden lg:block col-span-1 bg-secondary h-screen w-full">
-        <h1 className="text-center font-bold text-3xl">Course Lectues</h1>
+      <div className="hidden lg:block col-span-1 bg-secondary h-screen  rounded-xl">
+        <h1 className="text-center font-bold text-3xl py-8">Course Lectures</h1>
         {lectures && lectures.length > 0 ? (
           <div className="px-4">
             {lectures.map((lecture, index) => {
@@ -141,12 +159,12 @@ const WatchLectures = () => {
                   }}
                   className={
                     active == title
-                      ? "bg-secondary rounded-xl px-2 border-t-4 border-b-4 border-accent cursor-pointer"
+                      ? "bg-secondary rounded-xl px-2 border-t-4 border-b-4 border-accent cursor-pointer "
                       : "px-2 cursor-pointer"
                   }
                   // className="cursor-pointer  my-4"
                 >
-                  <div className="flex gap-2 py-4">
+                  <div className="flex gap-2 py-4 border-b border-gray-400">
                     <h1>{index}.</h1>
                     <h1>{title}</h1>
                   </div>

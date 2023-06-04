@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { TiTick } from "react-icons/ti";
 import { Player } from "@lottiefiles/react-lottie-player";
-import party from "../../assets/party.json";
+import party from "../../assets/lottieFiles/party.json";
 
 const PaymentSuccess = () => {
   const subId = useSearchParams()[0].get("reference");

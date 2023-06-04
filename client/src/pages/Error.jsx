@@ -1,6 +1,6 @@
 import React from "react";
 import { Player } from "@lottiefiles/react-lottie-player";
-import error from "../assets/404.json";
+import error from "../assets/lottieFiles/404.json";
 
 const Error = () => {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import lottieHero from "../../assets/lottieCourse.json";
+import lottieHero from "../../assets/lottieFiles/lottieCourse.json";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { Link } from "react-router-dom";
 

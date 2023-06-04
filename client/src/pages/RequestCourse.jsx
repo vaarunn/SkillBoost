@@ -7,7 +7,7 @@ import {
   resetSuccessMessage,
 } from "../redux/slices/userSlice";
 import { Player } from "@lottiefiles/react-lottie-player";
-import rCourse from "../assets/requestCourse.json";
+import rCourse from "../assets/lottieFiles/requestCourse.json";
 
 const RequestCourse = () => {
   const [name, setName] = useState("");
