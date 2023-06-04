@@ -9,7 +9,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Player } from "@lottiefiles/react-lottie-player";
-import rocketMan from "../assets/rocketMan.json";
+import knowledge from "../assets/knowledge.json";
 import Loader from "../components/Loader";
 
 const Login = () => {
@@ -47,8 +47,8 @@ const Login = () => {
   }
 
   return (
-    <div className="px-20 py-16 md:grid grid-cols-2">
-      <div className="shadow-gray-900 shadow-2xl">
+    <div className="px-4 md:px-20 py-16 md:grid grid-cols-2">
+      <div className="shadow-gray-900 shadow-2xl border-accent rounded-xl border">
         <form onSubmit={loginHandler} className="p-8">
           <h1 className="font-[700] text-3xl text-center">
             Skills Matter Bro...
@@ -81,10 +81,10 @@ const Login = () => {
           </p>
         </form>
       </div>
-      <div>
+      <div className="hidden md:block">
         <Player
           style={{ height: 400 }}
-          src={rocketMan}
+          src={knowledge}
           loop
           autoplay
           resizeMode="cover"

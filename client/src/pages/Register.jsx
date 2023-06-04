@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/profile.png";
 import { Player } from "@lottiefiles/react-lottie-player";
-import rocketMan from "../assets/rocketMan.json";
+import rocketMan from "../assets/rocket.json";
 
 import {
   checkUser,
@@ -75,8 +75,8 @@ const Register = () => {
   }
 
   return (
-    <div className="px-20 py-4 md:grid grid-cols-2">
-      <div className="shadow-gray-900 shadow-2xl">
+    <div className="px-4 md:px-20 py-4 md:grid grid-cols-2 ">
+      <div className="shadow-gray-900 shadow-2xl border border-accent rounded-xl">
         <form onSubmit={registerHandler} className="p-8  shadow-2xl">
           <h1 className="text-center font-[700] text-xl">
             Register To Lauch Your Career To The Moon
