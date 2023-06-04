@@ -16,6 +16,7 @@ import { cancelSubscription } from "../redux/slices/paymentSlice";
 const Profile = () => {
   const dispatch = useDispatch();
   const { user, isLoading } = useSelector((state) => state.user);
+  console.log(user.user.role);
 
   const getUser = async () => {
     dispatch(checkUser());
@@ -80,17 +81,23 @@ const Profile = () => {
               <button className="button-input">update profile</button>
             </Link>
 
-            {user.user.subscription ? (
-              <button
-                onClick={cancelSubscriptionHandler}
-                className="button-input"
-              >
-                Unsubscribe
-              </button>
+            {user?.user?.role !== "admin" ? (
+              user?.user?.subscription ? (
+                <button
+                  onClick={cancelSubscriptionHandler}
+                  className="button-input"
+                >
+                  Unsubscribe
+                </button>
+              ) : (
+                <Link to="/payment">
+                  <button className="button-input">Subscribe</button>
+                </Link>
+              )
             ) : (
-              <Link to="/payment">
-                <button className="button-input">Subscribe</button>
-              </Link>
+              <button className="button-input">
+                Admin does not need to subscribe
+              </button>
             )}
 
             <Link to="/">
