@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addCourseToPlaylist } from "../redux/slices/courseSlice";
 
@@ -12,6 +12,7 @@ const CourseCard = ({ course }) => {
       return sentence.substring(0, 100) + "...";
     }
   }
+  const { user } = useSelector((state) => state.user);
 
   const handleAddToPlaylist = async (courseId) => {
     dispatch(addCourseToPlaylist(courseId));
@@ -27,15 +28,24 @@ const CourseCard = ({ course }) => {
       <h1>
         Created By <span className="font-bold">{course.createdBy}</span>
       </h1>
-      <Link to={`/admin/course/lecture/${course._id}`}>
-        <button className="button-input">Watch Course</button>
-      </Link>
-      <button
-        onClick={() => handleAddToPlaylist(course._id)}
-        className="button-input"
-      >
-        Add To Playlist
-      </button>
+
+      {user?.user?.name ? (
+        <div>
+          <Link to={`/course/lecture/${course._id}`}>
+            <button className="button-input">Watch Course</button>
+          </Link>
+          <button
+            onClick={() => handleAddToPlaylist(course._id)}
+            className="button-input"
+          >
+            Add To Playlist
+          </button>
+        </div>
+      ) : (
+        <Link to="/login">
+          <button className="button-input">Login To Watch Course</button>
+        </Link>
+      )}
     </div>
   );
 };

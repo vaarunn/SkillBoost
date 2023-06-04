@@ -22,6 +22,7 @@ import AdminRoutes from "./pages/AdminRoutes/AdminRoutes";
 import Error from "./pages/Error";
 import AdminSidebar from "./components/AdminSidebar";
 import { useSelector } from "react-redux";
+import WatchLectures from "./pages/WatchLectures";
 
 function App() {
   const { user } = useSelector((state) => state.user);
@@ -42,11 +43,42 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/requestCourse" element={<RequestCourse />} />
+        <Route
+          path="/requestCourse"
+          element={
+            <ProtectedRoute>
+              <RequestCourse />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/course/lecture/:courseId" element={<WatchLectures />} />
+
         <Route path="/courses" element={<Courses />} />
-        <Route path="/updatePassword" element={<ChangePassword />} />
-        <Route path="/updateProfile" element={<UpdateProfile />} />
-        <Route path="/contactUs" element={<ContactUs />} />
+        <Route
+          path="/updatePassword"
+          element={
+            <ProtectedRoute>
+              <ChangePassword />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/updateProfile"
+          element={
+            <ProtectedRoute>
+              <UpdateProfile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/contactUs"
+          element={
+            <ProtectedRoute>
+              <ContactUs />
+            </ProtectedRoute>
+          }
+        />
 
         <Route path="/notAdmin" element={<NotAdmin />} />
 
@@ -54,9 +86,31 @@ function App() {
 
         {/* <Route path="/admin/dashboard" element={<Dashboard />} /> */}
 
-        <Route path="/payment" element={<Subscribe />}></Route>
-        <Route path="/payment/success" element={<PaymentSuccess />}></Route>
-        <Route path="/payment/fail" element={<PaymentFail />}></Route>
+        <Route
+          path="/payment"
+          element={
+            <ProtectedRoute>
+              <Subscribe />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/payment/success"
+          element={
+            <ProtectedRoute>
+              <PaymentSuccess />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/payment/fail"
+          element={
+            <ProtectedRoute>
+              <PaymentFail />
+            </ProtectedRoute>
+          }
+        />
+
         <Route path="*" element={<Error />}></Route>
       </Routes>
       <Toaster />

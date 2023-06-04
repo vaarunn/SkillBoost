@@ -10,7 +10,7 @@ const Lecture = ({ lecture }) => {
 
   return (
     <div>
-      <div className="relative pt-[56%] my-8 lg:my-0 ">
+      <div className=" relative pt-[56%] my-8 lg:my-0 ">
         <ReactPlayer
           url={url}
           width="100%"

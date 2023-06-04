@@ -5,7 +5,7 @@ import CourseCard from "../components/CourseCard";
 import Loader from "../components/Loader";
 import { checkUser } from "../redux/slices/userSlice";
 import { Player } from "@lottiefiles/react-lottie-player";
-import notFound from "../assets/courseNotFound.json";
+import notFound from "../assets/lottieFiles/courseNotFound.json";
 
 const buttons = [
   {

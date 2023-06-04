@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/profile.png";
 import { Player } from "@lottiefiles/react-lottie-player";
-import rocketMan from "../assets/rocket.json";
+import rocketMan from "../assets/lottieFiles/rocket.json";
 
 import {
   checkUser,
@@ -27,7 +27,12 @@ const Register = () => {
     (state) => state.user
   );
 
+  console.log(successMessage);
+  console.log(errorMessage);
+
   useEffect(() => {
+    dispatch(resetErrorMessage());
+    dispatch(resetSuccessMessage());
     dispatch(checkUser());
   }, []);
 
@@ -43,20 +48,20 @@ const Register = () => {
     dispatch(register(myForm));
   };
 
-  // useEffect(() => {
-  //   if (successMessage) {
-  //     toast.success(successMessage);
-  //     dispatch(resetSuccessMessage());
-  //     navigate("/courses");
-  //   }
-  // }, [successMessage]);
+  useEffect(() => {
+    if (successMessage) {
+      toast.success(successMessage);
+      dispatch(resetSuccessMessage());
+      navigate("/profile");
+    }
+  }, [successMessage]);
 
-  // useEffect(() => {
-  //   if (errorMessage) {
-  //     toast.error(errorMessage);
-  //     dispatch(resetErrorMessage());
-  //   }
-  // }, [errorMessage]);
+  useEffect(() => {
+    if (errorMessage) {
+      toast.error(errorMessage);
+      dispatch(resetErrorMessage());
+    }
+  }, [errorMessage]);
 
   const changeImageHandler = (e) => {
     const file = e.target.files[0];

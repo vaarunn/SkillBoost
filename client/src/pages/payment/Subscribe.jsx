@@ -57,9 +57,9 @@ const Subscribe = () => {
         You Need To Subscribe To View This Content
       </h1>
 
-      <div className=" max-w-[500px] shadow-2xl shadow-gray-900 roundex-xl p-8">
+      <div className=" max-w-[500px] shadow-2xl shadow-gray-900 roundex-xl p-8 border border-accent rounded-xl">
         <div>
-          <h1 className="font-bold  text-2xl text-center mb-4 bg-[#4690eb] p-4">
+          <h1 className="font-bold  text-2xl text-center mb-4 bg-[#4690eb] p-4 rounded-xl">
             Piro Pack
           </h1>
         </div>

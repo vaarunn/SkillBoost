@@ -9,7 +9,7 @@ const Students = () => {
         className="font-[700] text-center text-3xl text-secondary md:text-4xl lg:text-5xl
       "
       >
-        Our <span className="text-accent">Global Students</span> Say It Best
+        Our <span className="gradient-text">Global Students</span> Say It Best
       </h1>
       <div className="lg:grid grid-cols-2 gap-4">
         {students.map((item) => {

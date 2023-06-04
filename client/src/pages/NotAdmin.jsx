@@ -1,5 +1,5 @@
 import React from "react";
-import notAdmin from "../assets/401.json";
+import notAdmin from "../assets/lottieFiles/401.json";
 import { Player } from "@lottiefiles/react-lottie-player";
 
 const NotAdmin = () => {
@@ -18,8 +18,8 @@ const NotAdmin = () => {
           position: "fixed",
         }}
       />
-      <h1 className="text-center font-bold text-xl md:text-3xl lg:4xl text-red-600">
-        NOt Authorized To View This Page
+      <h1 className="text-center my-8 font-bold text-xl md:text-3xl lg:4xl text-red-600">
+        Not Authorized To View This Page
       </h1>
     </div>
   );

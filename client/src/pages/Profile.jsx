@@ -107,14 +107,10 @@ const Profile = () => {
             </Link>
           </div>
         </div>
-        {user?.user?.role !== "admin" ? (
-          <div className="px-20">
-            <h1 className="text-3xl font-bold mt-4">WatchList</h1>
-            <WatchList />
-          </div>
-        ) : (
-          ""
-        )}
+        <div className="px-4 md:px-20">
+          <h1 className="text-3xl font-bold my-4">WatchList</h1>
+          <WatchList />
+        </div>
       </div>
     )
   );

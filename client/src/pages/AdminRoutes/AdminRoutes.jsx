@@ -18,7 +18,6 @@ const AdminRoutes = () => {
         <Route path="/allCourses" element={<AllCourses />} />
         <Route path="/allCourses/:courseId" element={<CourseInfo />} />
         <Route path="/course/lectures/:courseId" element={<AddLectures />} />
-        <Route path="/course/lecture/:courseId" element={<WatchLectures />} />
       </Routes>
     </AdminProtectedRoute>
   );
