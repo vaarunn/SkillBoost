@@ -11,9 +11,9 @@ import {
   resetSuccessMessage,
 } from "../redux/slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import ClipLoader from "react-spinners/ClipLoader";
 import { toast } from "react-hot-toast";
 import Loader from "../components/Loader";
+import { showToastError, showToastSuccess } from "../util/showToast";
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -26,15 +26,6 @@ const Register = () => {
   const { successMessage, errorMessage, isLoading } = useSelector(
     (state) => state.user
   );
-
-  console.log(successMessage);
-  console.log(errorMessage);
-
-  useEffect(() => {
-    dispatch(resetErrorMessage());
-    dispatch(resetSuccessMessage());
-    dispatch(checkUser());
-  }, []);
 
   const registerHandler = (e) => {
     e.preventDefault();
@@ -50,7 +41,7 @@ const Register = () => {
 
   useEffect(() => {
     if (successMessage) {
-      toast.success(successMessage);
+      showToastSuccess(successMessage);
       dispatch(resetSuccessMessage());
       navigate("/profile");
     }
@@ -58,7 +49,7 @@ const Register = () => {
 
   useEffect(() => {
     if (errorMessage) {
-      toast.error(errorMessage);
+      showToastError(errorMessage);
       dispatch(resetErrorMessage());
     }
   }, [errorMessage]);

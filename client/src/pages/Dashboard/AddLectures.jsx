@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import logo from "../../assets/profile.png";
 import { useDispatch } from "react-redux";
-import { addCourseLecture } from "../../redux/slices/lectureSlice";
+import {
+  addCourseLecture,
+  resetErrorMessage,
+  resetSuccessMessage,
+} from "../../redux/slices/lectureSlice";
+import { useSelector } from "react-redux";
+import { showToastError, showToastSuccess } from "../../util/showToast";
 
 const AddLectures = () => {
   const { courseId } = useParams();
@@ -11,6 +16,10 @@ const AddLectures = () => {
   const [video, setVideo] = useState("");
   const [videoPrev, setVideoPrev] = useState("");
   const dispatch = useDispatch();
+
+  const { successMessage, errorMessage } = useSelector(
+    (state) => state.lecture
+  );
 
   const addLecturesHandler = async (e) => {
     e.preventDefault();
@@ -26,6 +35,20 @@ const AddLectures = () => {
     };
     dispatch(addCourseLecture(lectureData));
   };
+
+  useEffect(() => {
+    if (successMessage) {
+      showToastSuccess(successMessage);
+      dispatch(resetSuccessMessage());
+    }
+  }, [successMessage]);
+
+  useEffect(() => {
+    if (errorMessage) {
+      showToastError(errorMessage);
+      dispatch(resetErrorMessage());
+    }
+  }, [errorMessage]);
 
   const changeVideoHandler = (e) => {
     const file = e.target.files[0];

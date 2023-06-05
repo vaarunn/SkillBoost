@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createSubscription } from "../../redux/slices/paymentSlice";
+import {
+  createSubscription,
+  resetErrorMessage,
+  resetSuccessMessage,
+} from "../../redux/slices/paymentSlice";
 import skillboost from "../../assets/skillboost.png";
 import axios from "axios";
+import { showToastError, showToastSuccess } from "../../util/showToast";
 
 const Subscribe = () => {
   const [key, setKey] = useState(null);
   const dispatch = useDispatch();
-  const { payment, isLoading } = useSelector((state) => state.payment);
+  const { payment, isLoading, successMessage, errorMessage } = useSelector(
+    (state) => state.payment
+  );
 
   const subscribeHandler = async () => {
     const {
@@ -18,6 +25,20 @@ const Subscribe = () => {
   };
 
   const { user } = useSelector((state) => state.user.user);
+
+  useEffect(() => {
+    if (successMessage) {
+      showToastSuccess(successMessage);
+      dispatch(resetSuccessMessage());
+    }
+  }, [successMessage]);
+
+  useEffect(() => {
+    if (errorMessage) {
+      showToastError(errorMessage);
+      dispatch(resetErrorMessage());
+    }
+  }, [errorMessage]);
 
   useEffect(() => {
     if (payment) {

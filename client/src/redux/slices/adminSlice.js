@@ -56,11 +56,11 @@ const adminSlice = createSlice({
   name: "admin",
   initialState,
   reducers: {
-    resetSuccessMessge: (state) => {
-      state.successMessage = "";
+    resetSuccessMessage: (state) => {
+      state.successMessage = null;
     },
-    resetErrorMessge: (state) => {
-      state.errorMessage = "";
+    resetErrorMessage: (state) => {
+      state.errorMessage = null;
     },
   },
   extraReducers: (builder) => {
@@ -104,5 +104,5 @@ const adminSlice = createSlice({
   },
 });
 
-export const { resetSuccessMessge, resetErrorMessge } = adminSlice.actions;
+export const { resetSuccessMessage, resetErrorMessage } = adminSlice.actions;
 export default adminSlice.reducer;

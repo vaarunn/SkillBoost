@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/slices/userSlice";
-import toast from "react-hot-toast";
 import {
   resetSuccessMessage,
   resetErrorMessage,
@@ -11,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Player } from "@lottiefiles/react-lottie-player";
 import knowledge from "../assets/lottieFiles/knowledge.json";
 import Loader from "../components/Loader";
+import { showToastError, showToastSuccess } from "../util/showToast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -21,7 +21,6 @@ const Login = () => {
   const { successMessage, errorMessage, user, isLoading } = useSelector(
     (state) => state.user
   );
-  console.log(successMessage, "i am here");
 
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -30,15 +29,15 @@ const Login = () => {
 
   useEffect(() => {
     if (successMessage) {
-      toast.success(successMessage);
+      showToastSuccess(successMessage);
       dispatch(resetSuccessMessage());
-      navigate("/courses");
+      navigate("/profile");
     }
   }, [successMessage]);
 
   useEffect(() => {
     if (errorMessage) {
-      toast.error(errorMessage);
+      showToastError(errorMessage);
       dispatch(resetErrorMessage());
     }
   }, [errorMessage]);

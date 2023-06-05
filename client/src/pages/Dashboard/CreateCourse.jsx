@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import dummyCourse from "../../assets/course.jpg";
-import { useDispatch } from "react-redux";
-import { createNewCourse } from "../../redux/slices/courseSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createNewCourse,
+  resetErrorMessage,
+  resetSuccessMessage,
+} from "../../redux/slices/courseSlice";
+
+import { showToastError, showToastSuccess } from "../../util/showToast";
 
 const CreateCourse = () => {
   const [title, setTitle] = useState("");
@@ -11,6 +17,9 @@ const CreateCourse = () => {
   const [file, setFile] = useState("");
   const [filePreview, setFilePreview] = useState("");
   const dispatch = useDispatch();
+
+  const { successMessage, errorMessage } = useSelector((state) => state.course);
+  console.log(successMessage, errorMessage);
 
   const createCourseHandler = (e) => {
     e.preventDefault();
@@ -36,6 +45,20 @@ const CreateCourse = () => {
       setFilePreview(reader.result);
     };
   };
+
+  useEffect(() => {
+    if (successMessage) {
+      showToastSuccess(successMessage);
+      dispatch(resetSuccessMessage());
+    }
+  }, [successMessage]);
+
+  useEffect(() => {
+    if (errorMessage) {
+      showToastError(errorMessage);
+      dispatch(resetErrorMessage());
+    }
+  }, [errorMessage]);
 
   return (
     <div className="md:grid place-items-center mt-8 ">

@@ -7,16 +7,17 @@ import {
   resetSuccessMessage,
   resetUser,
 } from "../redux/slices/userSlice";
-import ClipLoader from "react-spinners/ClipLoader";
 import { Link, useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 import WatchList from "../components/WatchList";
 import { cancelSubscription } from "../redux/slices/paymentSlice";
+import { showToastSuccess } from "../util/showToast";
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const { user, isLoading } = useSelector((state) => state.user);
-  console.log(user.user.role);
+  const { user, isLoading, successMessage, errorMessage } = useSelector(
+    (state) => state.user
+  );
 
   const getUser = async () => {
     dispatch(checkUser());
@@ -27,6 +28,20 @@ const Profile = () => {
   const logoutHandler = async () => {
     dispatch(logout());
   };
+
+  useEffect(() => {
+    if (successMessage) {
+      showToastSuccess(successMessage);
+      dispatch(resetSuccessMessage());
+    }
+  }, [successMessage]);
+
+  useEffect(() => {
+    if (errorMessage) {
+      showToastSuccess(successMessage);
+      dispatch(resetErrorMessage());
+    }
+  }, [errorMessage]);
 
   useEffect(() => {
     getUser();

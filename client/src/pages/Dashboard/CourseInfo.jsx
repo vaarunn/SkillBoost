@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-
+import { showToastError, showToastSuccess } from "../../util/showToast";
+import { useSelector } from "react-redux";
 import {
   deleteCourseLecture,
   getCourseLecture,
+  resetSuccessMessage,
+  resetErrorMessage,
 } from "../../redux/slices/lectureSlice";
+
 import Loader from "../../components/Loader";
 
 const CourseInfo = () => {
   const { courseId } = useParams();
   const [lectures, setLectures] = useState([]);
   const dispatch = useDispatch();
+
+  const { successMessage, errorMessage } = useSelector(
+    (state) => state.lecture
+  );
 
   const getCourseLectures = async () => {
     const response = await dispatch(getCourseLecture(courseId));
@@ -24,7 +32,22 @@ const CourseInfo = () => {
 
   useEffect(() => {
     getCourseLectures();
-  }, [dispatch]);
+  }, [dispatch, lectures]);
+
+  useEffect(() => {
+    if (successMessage) {
+      showToastSuccess(successMessage);
+      dispatch(resetSuccessMessage());
+    }
+  }, [successMessage]);
+
+  useEffect(() => {
+    if (errorMessage) {
+      showToastError(errorMessage);
+      dispatch(resetErrorMessage());
+    }
+  }, [errorMessage]);
+
   return (
     <div>
       <div className="grid place-items-center">

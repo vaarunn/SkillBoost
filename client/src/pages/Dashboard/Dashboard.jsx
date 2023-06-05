@@ -4,21 +4,47 @@ import { getAdminStats } from "../../redux/slices/adminSlice";
 import Loader from "../../components/Loader";
 import Databox from "../../components/charts/DataBox";
 import { DoughnutChart, LineChart } from "../../components/charts/Charts";
+
+import { showToastError, showToastSuccess } from "../../util/showToast";
+
+import {
+  resetSuccessMessage,
+  resetErrorMessage,
+} from "../../redux/slices/adminSlice.js";
+
 const Dashboard = () => {
   const dispatch = useDispatch();
 
-  const { admin, isLoading } = useSelector((state) => state.admin);
+  const { admin, isLoading, successMessage, errorMessage } = useSelector(
+    (state) => state.admin
+  );
 
   const getStats = async () => {
-    await dispatch(getAdminStats());
+    dispatch(getAdminStats());
   };
 
   useEffect(() => {
     getStats();
   }, []);
+
+  useEffect(() => {
+    if (successMessage) {
+      showToastSuccess(successMessage);
+      dispatch(resetSuccessMessage());
+    }
+  }, [successMessage]);
+
+  useEffect(() => {
+    if (errorMessage) {
+      showToastError(errorMessage);
+      dispatch(resetErrorMessage());
+    }
+  }, [errorMessage]);
+
   if (isLoading) {
     return <Loader />;
   }
+
   return (
     <div>
       <div className="px-4 md:flex md:px-20 justify-around">

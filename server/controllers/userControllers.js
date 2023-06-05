@@ -129,6 +129,7 @@ export const updatePassword = tryCatchError(async (req, res, next) => {
 export const updateProfile = tryCatchError(async (req, res, next) => {
   const { name, email } = req.body;
   const file = req.file;
+  console.log(file);
   const user = await Users.findById(req.user._id);
 
   if (file) {
@@ -141,6 +142,13 @@ export const updateProfile = tryCatchError(async (req, res, next) => {
       public_id: myCloud.public_id,
       url: myCloud.secure_url,
     };
+  }
+
+  if (file === undefined && !name && !email) {
+    res.status(400).json({
+      success: false,
+      message: "Noting to Update",
+    });
   }
 
   if (name) {

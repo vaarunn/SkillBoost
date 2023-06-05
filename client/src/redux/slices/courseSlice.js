@@ -79,10 +79,10 @@ const courseSlice = createSlice({
   initialState,
   reducers: {
     resetSuccessMessage: (state) => {
-      state.successMessage = "";
+      state.successMessage = null;
     },
     resetErrorMessage: (state) => {
-      state.errorMessage = "";
+      state.errorMessage = null;
     },
   },
   extraReducers: (builder) => {
@@ -156,5 +156,7 @@ const courseSlice = createSlice({
       });
   },
 });
+
+export const { resetErrorMessage, resetSuccessMessage } = courseSlice.actions;
 
 export default courseSlice.reducer;

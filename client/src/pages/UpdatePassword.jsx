@@ -8,6 +8,7 @@ import {
 import { toast } from "react-hot-toast";
 import { Player } from "@lottiefiles/react-lottie-player";
 import update from "../assets/lottieFiles/update.json";
+import { showToastError, showToastSuccess } from "../util/showToast";
 
 const ChangePassword = () => {
   const [oldPassword, setOldPassword] = useState("");
@@ -18,14 +19,14 @@ const ChangePassword = () => {
 
   useEffect(() => {
     if (successMessage) {
-      toast.success(successMessage);
+      showToastSuccess(successMessage);
       dispatch(resetSuccessMessage());
     }
   }, [successMessage]);
 
   useEffect(() => {
     if (errorMessage) {
-      toast.error(errorMessage);
+      showToastError(errorMessage);
       dispatch(resetErrorMessage());
     }
   }, [errorMessage]);
@@ -43,7 +44,7 @@ const ChangePassword = () => {
             Update Password
           </h1>
           <input
-            type="text"
+            type="password"
             value={oldPassword}
             onChange={(e) => {
               setOldPassword(e.target.value);
@@ -52,7 +53,7 @@ const ChangePassword = () => {
             className="input"
           />
           <input
-            type="text"
+            type="password"
             value={newPassword}
             onChange={(e) => {
               setNewPassword(e.target.value);

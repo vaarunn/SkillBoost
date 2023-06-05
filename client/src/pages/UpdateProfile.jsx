@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  checkUser,
   resetErrorMessage,
   resetSuccessMessage,
   updateProfile,
 } from "../redux/slices/userSlice";
-import { toast } from "react-hot-toast";
 import Loader from "../components/Loader";
 
 import { Player } from "@lottiefiles/react-lottie-player";
 import update from "../assets/lottieFiles/update.json";
+import { showToastError, showToastSuccess } from "../util/showToast";
 
 const UpdateProfile = () => {
   const [name, setName] = useState("");
@@ -23,26 +22,19 @@ const UpdateProfile = () => {
     (state) => state.user
   );
 
-  const getUser = async () => {
-    dispatch(checkUser());
-  };
-
-  useEffect(() => {
-    getUser();
-  }, []);
-
   useEffect(() => {
     if (successMessage) {
-      toast.success(successMessage);
+      showToastSuccess(successMessage);
+      dispatch(resetSuccessMessage());
     }
   }, [successMessage]);
 
   useEffect(() => {
     if (errorMessage) {
-      toast.error(errorMessage);
+      showToastError(errorMessage);
+      dispatch(resetErrorMessage());
     }
-  }, [successMessage]);
-
+  }, [errorMessage]);
   const updateProfileHandler = (e) => {
     e.preventDefault();
     const myForm = new FormData();

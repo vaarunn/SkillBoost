@@ -33,7 +33,17 @@ export const cancelSubscription = createAsyncThunk(
 const paymentSlice = createSlice({
   name: "payment",
   initialState,
-  reducers: {},
+  reducers: {
+    resetSuccessMessage: (state) => {
+      state.successMessage = null;
+    },
+    resetErrorMessage: (state) => {
+      state.errorMessage = null;
+    },
+    resetUser: (state) => {
+      state.user = "";
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(createSubscription.pending, (state) => {
@@ -63,4 +73,6 @@ const paymentSlice = createSlice({
   },
 });
 
+export const { resetSuccessMessage, resetErrorMessage, resetUser } =
+  paymentSlice.actions;
 export default paymentSlice.reducer;

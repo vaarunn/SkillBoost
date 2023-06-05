@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteUser, updateUserRole } from "../redux/slices/adminSlice";
-import toast from "react-hot-toast";
 import {
-  resetSuccessMessge,
-  resetErrorMessge,
+  deleteUser,
+  resetErrorMessage,
+  resetSuccessMessage,
+  updateUserRole,
 } from "../redux/slices/adminSlice";
+import toast from "react-hot-toast";
 
 const UsersCard = ({ user }) => {
   const dispatch = useDispatch();
@@ -22,14 +23,14 @@ const UsersCard = ({ user }) => {
   useEffect(() => {
     if (successMessage) {
       toast.success(successMessage);
-      dispatch(resetSuccessMessge());
+      dispatch(resetSuccessMessage());
     }
   }, [successMessage]);
 
   useEffect(() => {
     if (errorMessage) {
       toast.error(errorMessage);
-      dispatch(resetErrorMessge());
+      dispatch(resetErrorMessage());
     }
   }, [errorMessage]);
 

@@ -107,6 +107,7 @@ export const getDashboardStats = tryCatchError(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
+    message: "Got Admin Stats",
     stats: statsData,
     userCount,
     subscriptionCount,
