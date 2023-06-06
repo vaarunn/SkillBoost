@@ -28,14 +28,12 @@ export const getAllCourses = tryCatchError(async (req, res, next) => {
 
 export const createCourse = tryCatchError(async (req, res, next) => {
   const { title, description, category, createdBy } = req.body;
-  console.log(title, description, category, createdBy);
 
   if (!title || !description || !category || !createdBy) {
     return next(new ErrorHandler("Please add all fields", 400));
   }
 
   const file = req.file;
-  console.log(file);
 
   const fileUri = getDataUri(file);
 
@@ -62,7 +60,6 @@ export const createCourse = tryCatchError(async (req, res, next) => {
 export const getCourseLectures = tryCatchError(async (req, res, next) => {
   const courseId = req.params.id;
   const course = await Courses.findById(courseId);
-  // console.log(courseId);
   if (!course) {
     return next(new ErrorHandler("Course Not found", 404));
   }
@@ -70,8 +67,6 @@ export const getCourseLectures = tryCatchError(async (req, res, next) => {
   course.views += 1;
 
   await course.save();
-
-  console.log(course);
 
   res.status(200).json({
     success: true,
@@ -92,7 +87,6 @@ export const addCourseLectures = tryCatchError(async (req, res, next) => {
 
   const file = req.file;
   const fileUri = getDataUri(file);
-  console.log(title, description, fileUri);
 
   const mycloud = await cloudinary.v2.uploader.upload(fileUri.content, {
     resource_type: "video",
@@ -119,7 +113,6 @@ export const addCourseLectures = tryCatchError(async (req, res, next) => {
 
 export const deleteCourse = tryCatchError(async (req, res, next) => {
   const courseId = req.params.id;
-  console.log(courseId);
 
   const course = await Courses.findById(courseId);
 
@@ -148,7 +141,6 @@ export const deleteCourse = tryCatchError(async (req, res, next) => {
 
 export const deleteLecture = tryCatchError(async (req, res, next) => {
   const { courseId, lectureId } = req.params;
-  console.log(courseId, lectureId);
   const course = await Courses.findById(courseId);
   if (!course) return next(new ErrorHandler("Course not found", 404));
 

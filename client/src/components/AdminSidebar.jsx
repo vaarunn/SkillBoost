@@ -5,18 +5,44 @@ import logo from "../assets/skillboost.png";
 import { Link } from "react-router-dom";
 import { AdminLinks, links, socialIcons } from "../util/Data";
 import ThemeToggle from "./ThemeToggle";
-import { useSelector } from "react-redux";
+import {
+  checkUser,
+  resetErrorMessage,
+  resetSuccessMessage,
+} from "../redux/slices/userSlice";
+import { showToastError, showToastSuccess } from "../util/showToast";
+import { useDispatch, useSelector } from "react-redux";
 
 const AdminSidebar = () => {
   const [nav, setNav] = useState(false);
-  const [navLinks, setNavLinks] = useState(links);
   const [active, setActive] = useState(null);
+  const dispatch = useDispatch();
 
   const toogleSidebar = () => {
     setNav(!nav);
   };
 
-  const { user } = useSelector((state) => state.user);
+  const { user, successMessage, errorMessage } = useSelector(
+    (state) => state.user
+  );
+
+  // useEffect(() => {
+  //   if (successMessage) {
+  //     showToastSuccess(successMessage);
+  //     dispatch(resetSuccessMessage());
+  //   }
+  // }, [successMessage]);
+
+  // useEffect(() => {
+  //   if (errorMessage) {
+  //     showToastError(errorMessage);
+  //     dispatch(resetErrorMessage());
+  //   }
+  // }, [errorMessage]);
+
+  useEffect(() => {
+    dispatch(checkUser());
+  }, []);
 
   return (
     <div>
