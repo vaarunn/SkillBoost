@@ -54,10 +54,6 @@ export const instance = new Razorpay({
   key_secret: process.env.RAZORPAY_API_SECRET,
 });
 
-app.get("/", (req, res) => {
-  res.send("Yo!!Welcome to skillshare backend");
-});
-
 app.use("/api/courses", courseRoutes);
 
 app.use("/api/users", userRoutes);
