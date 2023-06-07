@@ -11,7 +11,6 @@ import {
   resetSuccessMessage,
 } from "../redux/slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useSelector } from "react-redux";
 
 const AdminSidebar = () => {
   const [nav, setNav] = useState(false);

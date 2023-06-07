@@ -1,32 +1,25 @@
-import axios from "axios";
+import { instanceNoFile } from "../../util/customAxios";
 
 const getAllCourseService = async ({ search = "", type = "" }) => {
   const keyword = search || "";
   const category = type || "";
-  const response = await axios(
-    `http://localhost:5000/api/courses/getAllCourses?keyword=${keyword}&category=${category}`,
-    {
-      withCredentials: true,
-    }
+  const response = await instanceNoFile(
+    `/courses/getAllCourses?keyword=${keyword}&category=${category}`
   );
   return response.data;
 };
 
 const requestCourseService = async (userData) => {
-  const response = await axios.post(
-    "http://localhost:5000/api/other/courserequest",
-    { userData },
-    {
-      withCredentials: true,
-    }
-  );
+  const response = await instanceNoFile.post("/other/courserequest", {
+    userData,
+  });
 
   return response.data;
 };
 
 const sendMessageService = async (userData) => {
-  const response = await axios.post(
-    "http://localhost:5000/api/other/contact",
+  const response = await instanceNoFile.post(
+    "/other/contact",
     { userData },
     { withCredentials: true }
   );
@@ -34,7 +27,6 @@ const sendMessageService = async (userData) => {
 };
 
 const createCourseService = async (courseData) => {
-  console.log(courseData);
   const response = await axios.post(
     "http://localhost:5000/api/courses/createCourse",
     courseData,

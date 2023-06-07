@@ -1,37 +1,24 @@
-import axios from "axios";
+import { instanceNoFile } from "../../util/customAxios";
 
 const getAllUsersService = async () => {
-  const response = await axios(
-    "http://localhost:5000/api/users/admin/getAllUsers",
-    { withCredentials: true }
-  );
+  const response = await instanceNoFile("/users/admin/getAllUsers");
   return response.data;
 };
 
 const updateUserRoleService = async (id) => {
-  console.log(id);
-  const response = await axios.put(
-    `http://localhost:5000/api/users/admin/user/${id}`,
-    {},
-    { withCredentials: true }
-  );
-  console.log(response.data);
+  const response = await instanceNoFile.put(`/users/admin/user/${id}`, {});
   return response.data;
 };
 
 const deleteUserService = async (userId) => {
-  const response = await axios.delete(
-    `http://localhost:5000/api/users/admin/user/delete/${userId}`,
-    { withCredentials: true }
+  const response = await instanceNoFile.delete(
+    `/users/admin/user/delete/${userId}`
   );
   return response.data;
 };
 
 const getAdminStatsService = async () => {
-  const response = await axios("http://localhost:5000/api/other/admin/stats", {
-    withCredentials: true,
-  });
-  console.log(response.data);
+  const response = await instanceNoFile("/other/admin/stats");
   return response.data;
 };
 

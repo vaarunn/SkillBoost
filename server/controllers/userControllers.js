@@ -12,7 +12,6 @@ import { Stats } from "../models/Stats.js";
 
 export const register = tryCatchError(async (req, res, next) => {
   const { name, email, password } = req.body;
-  console.log(name, email, password);
   const file = req.file;
 
   if (!name || !email || !password || !file) {

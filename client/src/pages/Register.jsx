@@ -11,7 +11,6 @@ import {
   resetSuccessMessage,
 } from "../redux/slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-hot-toast";
 import Loader from "../components/Loader";
 import { showToastError, showToastSuccess } from "../util/customToast";
 const Register = () => {

@@ -100,6 +100,18 @@ const adminSlice = createSlice({
       .addCase(getAdminStats.rejected, (state, action) => {
         state.isLoading = false;
         state.errorMessage = action.payload.response.data.message;
+      })
+      .addCase(deleteUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.successMessage = action.payload.message;
+        state.admin = action.payload;
+      })
+      .addCase(deleteUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = action.payload.response.data.message;
       });
   },
 });
