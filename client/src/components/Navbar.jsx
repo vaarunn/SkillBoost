@@ -11,6 +11,7 @@ import { checkUser } from "../redux/slices/userSlice";
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const dispatch = useDispatch();
+  const [navLinks, setNavLinks] = useState(links);
   const [active, setActive] = useState(null);
 
   const toogleSidebar = () => {
@@ -18,6 +19,11 @@ const Navbar = () => {
   };
 
   const { user } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(checkUser());
+    user?.user?.role == "admin" ? setNavLinks(AdminLinks) : setNavLinks(links);
+  }, []);
 
   return (
     <div className=" flex p-4 items-center justify-between md:px-20">

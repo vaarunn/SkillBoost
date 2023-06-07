@@ -93,7 +93,7 @@ const AddLectures = () => {
             placeholder="title"
             className="input "
           />
-          <textarea
+          <input
             type="text"
             onChange={(e) => {
               setDescription(e.target.value);

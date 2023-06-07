@@ -11,37 +11,18 @@ import {
   resetSuccessMessage,
 } from "../redux/slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const AdminSidebar = () => {
   const [nav, setNav] = useState(false);
+  const [navLinks, setNavLinks] = useState(links);
   const [active, setActive] = useState(null);
-  const dispatch = useDispatch();
 
   const toogleSidebar = () => {
     setNav(!nav);
   };
 
-  const { user, successMessage, errorMessage } = useSelector(
-    (state) => state.user
-  );
-
-  // useEffect(() => {
-  //   if (successMessage) {
-  //     showToastSuccess(successMessage);
-  //     dispatch(resetSuccessMessage());
-  //   }
-  // }, [successMessage]);
-
-  // useEffect(() => {
-  //   if (errorMessage) {
-  //     showToastError(errorMessage);
-  //     dispatch(resetErrorMessage());
-  //   }
-  // }, [errorMessage]);
-
-  useEffect(() => {
-    dispatch(checkUser());
-  }, []);
+  const { user } = useSelector((state) => state.user);
 
   return (
     <div>
