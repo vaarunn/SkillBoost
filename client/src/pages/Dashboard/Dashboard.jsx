@@ -5,7 +5,7 @@ import Loader from "../../components/Loader";
 import Databox from "../../components/charts/DataBox";
 import { DoughnutChart, LineChart } from "../../components/charts/Charts";
 
-import { showToastError, showToastSuccess } from "../../util/showToast";
+import { showToastError, showToastSuccess } from "../../util/customToast";
 
 import {
   resetSuccessMessage,

@@ -13,7 +13,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
 import Loader from "../components/Loader";
-import { showToastError, showToastSuccess } from "../util/showToast";
+import { showToastError, showToastSuccess } from "../util/customToast";
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

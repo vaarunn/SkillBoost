@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { showToastError, showToastSuccess } from "../../util/showToast";
+import { showToastError, showToastSuccess } from "../../util/customToast";
 import { useSelector } from "react-redux";
 import {
   deleteCourseLecture,

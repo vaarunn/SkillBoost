@@ -5,10 +5,9 @@ import {
   resetSuccessMessage,
   updatePassword,
 } from "../redux/slices/userSlice";
-import { toast } from "react-hot-toast";
 import { Player } from "@lottiefiles/react-lottie-player";
 import update from "../assets/lottieFiles/update.json";
-import { showToastError, showToastSuccess } from "../util/showToast";
+import { showToastError, showToastSuccess } from "../util/customToast";
 
 const ChangePassword = () => {
   const [oldPassword, setOldPassword] = useState("");

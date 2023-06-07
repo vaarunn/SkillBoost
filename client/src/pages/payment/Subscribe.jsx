@@ -7,7 +7,7 @@ import {
 } from "../../redux/slices/paymentSlice";
 import skillboost from "../../assets/skillboost.png";
 import axios from "axios";
-import { showToastError, showToastSuccess } from "../../util/showToast";
+import { showToastError, showToastSuccess } from "../../util/customToast";
 
 const Subscribe = () => {
   const [key, setKey] = useState(null);

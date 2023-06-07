@@ -10,7 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Player } from "@lottiefiles/react-lottie-player";
 import knowledge from "../assets/lottieFiles/knowledge.json";
 import Loader from "../components/Loader";
-import { showToastError, showToastSuccess } from "../util/showToast";
+import { showToastError, showToastSuccess } from "../util/customToast";
 
 const Login = () => {
   const [email, setEmail] = useState("");

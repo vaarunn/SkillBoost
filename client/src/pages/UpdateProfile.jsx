@@ -9,7 +9,7 @@ import Loader from "../components/Loader";
 
 import { Player } from "@lottiefiles/react-lottie-player";
 import update from "../assets/lottieFiles/update.json";
-import { showToastError, showToastSuccess } from "../util/showToast";
+import { showToastError, showToastSuccess } from "../util/customToast";
 
 const UpdateProfile = () => {
   const [name, setName] = useState("");

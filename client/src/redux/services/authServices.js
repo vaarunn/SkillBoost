@@ -1,21 +1,18 @@
 import axios from "axios";
+import { instanceFile, instanceNoFile } from "../../util/customAxios";
+
 export const registerService = async (userData) => {
   const response = await axios.post(
     "http://localhost:5000/api/users/register",
-    userData,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      withCredentials: true,
-    }
+    userData
   );
   return response.data;
 };
 
 export const loginService = async (userData) => {
+  console.log("correct user");
   const response = await axios.post(
-    "http://localhost:5000/api/users/login",
+    "http://localhost:5000/api/users/register",
     userData,
     {
       withCredentials: true,

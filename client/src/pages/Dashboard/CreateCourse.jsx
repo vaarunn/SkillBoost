@@ -7,7 +7,7 @@ import {
   resetSuccessMessage,
 } from "../../redux/slices/courseSlice";
 
-import { showToastError, showToastSuccess } from "../../util/showToast";
+import { showToastError, showToastSuccess } from "../../util/customToast";
 
 const CreateCourse = () => {
   const [title, setTitle] = useState("");

@@ -7,7 +7,7 @@ import {
   resetSuccessMessage,
 } from "../../redux/slices/lectureSlice";
 import { useSelector } from "react-redux";
-import { showToastError, showToastSuccess } from "../../util/showToast";
+import { showToastError, showToastSuccess } from "../../util/customToast";
 
 const AddLectures = () => {
   const { courseId } = useParams();

@@ -11,7 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 import WatchList from "../components/WatchList";
 import { cancelSubscription } from "../redux/slices/paymentSlice";
-import { showToastSuccess } from "../util/showToast";
+import { showToastSuccess } from "../util/customToast";
 
 const Profile = () => {
   const dispatch = useDispatch();
