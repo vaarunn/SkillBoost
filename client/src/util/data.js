@@ -1,6 +1,3 @@
-import { AiOutlineMail } from "react-icons/ai";
-import { FaGithub, FaLinkedinIn } from "react-icons/fa";
-
 import img1 from "../assets/images/one.png";
 import img2 from "../assets/images/two.png";
 import img3 from "../assets/images/three.png";
@@ -105,6 +102,9 @@ const AdminLinks = [
     url: "/admin/users",
   },
 ];
+
+import { AiOutlineMail } from "react-icons/ai";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 
 const socialIcons = [
   {
