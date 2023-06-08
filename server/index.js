@@ -14,7 +14,7 @@ import { Stats } from "./models/Stats.js";
 import cors from "cors";
 
 dotenv.config({
-  path: "./config/config.env",
+  path: "./config/.env",
 });
 
 cloudinary.v2.config({
