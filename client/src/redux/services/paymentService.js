@@ -1,17 +1,13 @@
 import axios from "axios";
+import { instanceNoFile } from "../../util/customAxios";
 const createSubscriptionService = async () => {
-  const response = await axios("http://localhost:5000/api/payment/subscribe", {
-    withCredentials: true,
-  });
+  const response = await instanceNoFile("/payment/subscribe");
   console.log(response.data.subscriptionId);
   return response.data.subscriptionId;
 };
 
 const cancelSubscriptionService = async () => {
-  const response = await axios.delete(
-    "http://localhost:5000/api/payment/cancelSubscription",
-    { withCredentials: true }
-  );
+  const response = await instanceNoFile.delete("/payment/cancelSubscription");
   console.log(response.data);
   return response.data;
 };

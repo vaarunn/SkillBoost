@@ -12,7 +12,7 @@ const router = Router();
 //buy subscription"
 router.get("/subscribe", isAuthenticateUser, createSubscription);
 
-router.get("/getRazorPayKey", getRazorPayKey);
+router.get("/getRazorPayKey", isAuthenticateUser, getRazorPayKey);
 
 router.post("/paymentVerification", isAuthenticateUser, paymentVerification);
 

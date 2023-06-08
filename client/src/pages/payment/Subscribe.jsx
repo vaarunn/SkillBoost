@@ -6,8 +6,8 @@ import {
   resetSuccessMessage,
 } from "../../redux/slices/paymentSlice";
 import skillboost from "../../assets/skillboost.png";
-import axios from "axios";
 import { showToastError, showToastSuccess } from "../../util/customToast";
+import { instanceNoFile } from "../../util/customAxios";
 
 const Subscribe = () => {
   const [key, setKey] = useState(null);
@@ -19,7 +19,7 @@ const Subscribe = () => {
   const subscribeHandler = async () => {
     const {
       data: { key },
-    } = await axios.get("http://localhost:5000/api/payment/getRazorPayKey");
+    } = await instanceNoFile.get("/payment/getRazorPayKey");
     setKey(key);
     dispatch(createSubscription());
   };
@@ -49,7 +49,8 @@ const Subscribe = () => {
           description: "Get access to all premium content",
           image: skillboost,
           subscription_id: payment,
-          callback_url: "http://localhost:5000/api/payment/paymentverification",
+          callback_url:
+            "https://shillshare.onrender.com/api/payment/paymentverification",
           prefill: {
             name: user.name,
             email: user.email,

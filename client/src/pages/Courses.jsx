@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCourse } from "../redux/slices/courseSlice";
+import {
+  getAllCourse,
+  resetErrorMessage,
+  resetSuccessMessage,
+} from "../redux/slices/courseSlice";
 import CourseCard from "../components/CourseCard";
 import Loader from "../components/Loader";
 import { checkUser } from "../redux/slices/userSlice";
 import { Player } from "@lottiefiles/react-lottie-player";
 import notFound from "../assets/lottieFiles/courseNotFound.json";
+import { showToastError, showToastSuccess } from "../util/customToast";
 
 const buttons = [
   {
-    id: 1,
     category: "Web Development",
   },
   {
@@ -32,20 +36,36 @@ const Courses = () => {
   const [courses, setCourses] = useState([]);
   const dispatch = useDispatch();
 
-  const { isLoading } = useSelector((state) => state.course);
+  const { isLoading, successMessage, errorMessage } = useSelector(
+    (state) => state.course
+  );
 
   const getCourses = async () => {
     const response = await dispatch(getAllCourse({ search, type }));
     setCourses(response.payload.courses);
   };
 
-  useEffect(() => {
-    dispatch(checkUser());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(checkUser());
+  // }, []);
 
   useEffect(() => {
     getCourses();
   }, [search, type]);
+
+  useEffect(() => {
+    if (successMessage) {
+      showToastSuccess(successMessage);
+      dispatch(resetSuccessMessage());
+    }
+  }, [successMessage]);
+
+  useEffect(() => {
+    if (errorMessage) {
+      showToastError(errorMessage);
+      dispatch(resetErrorMessage());
+    }
+  }, [errorMessage]);
 
   return (
     <div className="px-4  md:px-20">

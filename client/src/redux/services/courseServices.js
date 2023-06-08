@@ -1,4 +1,4 @@
-import { instanceNoFile } from "../../util/customAxios";
+import { instanceFile, instanceNoFile } from "../../util/customAxios";
 
 const getAllCourseService = async ({ search = "", type = "" }) => {
   const keyword = search || "";
@@ -27,37 +27,18 @@ const sendMessageService = async (userData) => {
 };
 
 const createCourseService = async (courseData) => {
-  const response = await axios.post(
-    "http://localhost:5000/api/courses/createCourse",
-    courseData,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      withCredentials: true,
-    }
-  );
+  const response = await instanceFile.post("/courses/createCourse", courseData);
   console.log(response.data);
   return response.data;
 };
 
 const deleteCourseService = async (courseId) => {
-  const response = await axios.delete(
-    `http://localhost:5000/api/courses/${courseId}`,
-    {
-      withCredentials: true,
-    }
-  );
+  const response = await instanceNoFile.delete(`/courses/${courseId}`);
   return response.data;
 };
 
 const addCourseToPlaylistService = async (id) => {
-  const response = await axios.post(
-    "http://localhost:5000/api/users/addToPlaylist",
-    { id },
-    { withCredentials: true }
-  );
-  console.log(response.data);
+  const response = await instanceNoFile.post("/users/addToPlaylist", { id });
   return response.data;
 };
 

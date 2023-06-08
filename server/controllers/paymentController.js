@@ -73,7 +73,9 @@ export const getRazorPayKey = tryCatchError(async (req, res, next) => {
 });
 
 export const cancelSubscription = tryCatchError(async (req, res, next) => {
+  console.log("am i working");
   const user = await Users.findById(req.user._id);
+  console.log(user);
 
   const subscriptionId = user.subscription.id;
   let refund = false;

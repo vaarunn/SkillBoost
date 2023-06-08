@@ -1,24 +1,14 @@
-import axios from "axios";
+import { instanceFile, instanceNoFile } from "../../util/customAxios";
 
 const getCourseLectureService = async (courseId) => {
-  const url = `http://localhost:5000/api/courses/${courseId}`;
-  const response = await axios(url, { withCredentials: true });
+  const response = await instanceNoFile.get(`/courses/${courseId}`);
   return response.data;
 };
 
 const addCourseLectureService = async (lectureData) => {
   const courseId = lectureData.courseId;
   const lecture = lectureData.myForm;
-  const response = await axios.post(
-    `http://localhost:5000/api/courses/${courseId}`,
-    lecture,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      withCredentials: true,
-    }
-  );
+  const response = await instanceFile.post(`/courses/${courseId}`, lecture);
   return response.data;
 };
 
@@ -26,12 +16,9 @@ const deleteCourseLectureService = async (dataId) => {
   console.log(dataId);
   const lectureId = dataId._id;
   const courseId = dataId.courseId;
-  console.log(lectureId, courseId);
-  const response = await axios.delete(
-    `http://localhost:5000/api/courses/${courseId}/lecture/${lectureId}`,
-    { withCredentials: true }
+  const response = await instanceNoFile.delete(
+    `/courses/${courseId}/lecture/${lectureId}`
   );
-  console.log(response.data);
   return response.data;
 };
 const lectureServices = {

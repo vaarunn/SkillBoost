@@ -10,7 +10,9 @@ import {
   resetErrorMessage,
 } from "../../redux/slices/lectureSlice";
 
-import Loader from "../../components/Loader";
+import { Player } from "@lottiefiles/react-lottie-player";
+
+import notFound from "../../assets/lottieFiles/courseNotFound.json";
 
 const CourseInfo = () => {
   const { courseId } = useParams();
@@ -23,16 +25,17 @@ const CourseInfo = () => {
 
   const getCourseLectures = async () => {
     const response = await dispatch(getCourseLecture(courseId));
-    setLectures(response.payload.lectures);
+    setLectures(response?.payload?.lectures);
   };
 
   const handleDeleteLecture = (courseInfo) => {
     dispatch(deleteCourseLecture(courseInfo));
+    getCourseLectures();
   };
 
   useEffect(() => {
     getCourseLectures();
-  }, [dispatch, lectures]);
+  }, []);
 
   useEffect(() => {
     if (successMessage) {
@@ -57,7 +60,7 @@ const CourseInfo = () => {
         </Link>
       </div>
       <div className="px-20 ">
-        {lectures.length > 0 ? (
+        {lectures?.length > 0 ? (
           <div className="px-20 rounded-2xl  py-8 bg-secondary mt-4">
             <h1 className="font-bold text-3xl">Course Lectures</h1>
             {lectures.map((item) => {
@@ -84,8 +87,10 @@ const CourseInfo = () => {
             })}
           </div>
         ) : (
-          <div>
-            <Loader />
+          <div className="flex justify-center items-center  ">
+            <div className="w-[80%] h-[80%] md:h-[40%] md:w-[40%]">
+              <Player src={notFound} loop autoplay />
+            </div>
           </div>
         )}
       </div>

@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteCourse, getAllCourse } from "../../redux/slices/courseSlice";
+import {
+  deleteCourse,
+  getAllCourse,
+  resetErrorMessage,
+  resetSuccessMessage,
+} from "../../redux/slices/courseSlice";
 import { Link } from "react-router-dom";
 import Loader from "../../components/Loader";
+import { showToastError, showToastSuccess } from "../../util/customToast";
 const AllCourses = () => {
   const [courses, setCourses] = useState([]);
   const dispatch = useDispatch();
 
-  const { isLoading } = useSelector((state) => state.course);
+  const { isLoading, successMessage, errorMessage } = useSelector(
+    (state) => state.course
+  );
 
   const getAllCourses = async () => {
     const response = await dispatch(getAllCourse({}));
@@ -16,10 +24,23 @@ const AllCourses = () => {
   };
 
   const deleteCourses = async (id) => {
-    console.log(id);
     dispatch(deleteCourse(id));
     getAllCourse();
   };
+
+  useEffect(() => {
+    if (successMessage) {
+      showToastSuccess(successMessage);
+      dispatch(resetSuccessMessage());
+    }
+  }, [successMessage]);
+
+  useEffect(() => {
+    if (errorMessage) {
+      showToastError(errorMessage);
+      dispatch(resetErrorMessage());
+    }
+  }, [errorMessage]);
 
   useEffect(() => {
     getAllCourses();
@@ -40,7 +61,6 @@ const AllCourses = () => {
             numberOfVideos,
             category,
             poster: { url },
-            numOfVideos,
             lectures,
           } = course;
           return (
