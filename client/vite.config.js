@@ -7,13 +7,8 @@ export default defineConfig({
   build: {
     rollupOptions: {
       external: [
-        /^react-icons\//, // Matches all imports starting with "react-icons/"
+        "react-icons/**", // Matches all imports starting with "react-icons/"
       ],
-    },
-  },
-  resolve: {
-    alias: {
-      "react-icons": resolve(__dirname, "node_modules/react-icons"), // Adjust the path if necessary
     },
   },
 });
