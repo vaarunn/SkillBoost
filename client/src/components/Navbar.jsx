@@ -3,7 +3,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import logo from "../assets/skillboost.png";
 import { Link } from "react-router-dom";
-import { AdminLinks, links, socialIcons } from "../util/Data";
+import { links, socialIcons } from "../util/Data";
 import ThemeToggle from "./ThemeToggle";
 import { useDispatch, useSelector } from "react-redux";
 import { checkUser } from "../redux/slices/userSlice";
@@ -11,7 +11,7 @@ import { checkUser } from "../redux/slices/userSlice";
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const dispatch = useDispatch();
-  const [navLinks, setNavLinks] = useState(links);
+
   const [active, setActive] = useState(null);
 
   const toogleSidebar = () => {
@@ -22,7 +22,6 @@ const Navbar = () => {
 
   useEffect(() => {
     dispatch(checkUser());
-    user?.user?.role == "admin" ? setNavLinks(AdminLinks) : setNavLinks(links);
   }, []);
 
   return (
@@ -34,7 +33,7 @@ const Navbar = () => {
       <div className="flex items-center ">
         <ul className="hidden lg:flex gap-8 p-8 ">
           {user?.user &&
-            navLinks.map((link) => {
+            links.map((link) => {
               const { id, title, url } = link;
               return (
                 <Link key={id} to={url}>
