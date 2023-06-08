@@ -3,7 +3,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import logo from "../assets/skillboost.png";
 import { Link } from "react-router-dom";
-import { AdminLinks, links, socialIcons } from "../util/Data";
+import { AdminLinks, socialIcons } from "../util/data";
 import ThemeToggle from "./ThemeToggle";
 import {
   checkUser,
@@ -14,7 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 const AdminSidebar = () => {
   const [nav, setNav] = useState(false);
-  const [navLinks, setNavLinks] = useState(links);
   const [active, setActive] = useState(null);
 
   const toogleSidebar = () => {
