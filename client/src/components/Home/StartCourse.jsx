@@ -1,5 +1,5 @@
 import React from "react";
-import { launchCourse } from "../../util/data.js";
+import { launchCourse } from "../../util/data";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 const StartCourse = () => {

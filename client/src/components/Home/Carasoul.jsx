@@ -1,6 +1,6 @@
 import React from "react";
 import Marquee from "react-fast-marquee";
-import { carasoulImages } from "../../util/data.js";
+import { carasoulImages } from "../../util/data";
 
 const Carasoul = () => {
   return (

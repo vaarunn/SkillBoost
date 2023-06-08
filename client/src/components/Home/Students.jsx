@@ -1,5 +1,5 @@
 import React from "react";
-import { students } from "../../util/data.js";
+import { students } from "../../util/data";
 import { motion } from "framer-motion";
 
 const Students = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { features } from "../../util/data.js";
+import { features } from "../../util/data";
 import { motion } from "framer-motion";
 const Features = () => {
   return (
