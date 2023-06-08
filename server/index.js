@@ -33,7 +33,8 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://mernskillsshare.vercel.app/",
+    origin: [process.env.FRONTEND_URL],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
