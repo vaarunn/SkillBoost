@@ -3,7 +3,8 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import logo from "../assets/skillboost.png";
 import { Link } from "react-router-dom";
-import { links, socialIcons } from "../util/Data";
+import { links, socialIcons } from "../util/data";
+
 import ThemeToggle from "./ThemeToggle";
 import { useDispatch, useSelector } from "react-redux";
 import { checkUser } from "../redux/slices/userSlice";
