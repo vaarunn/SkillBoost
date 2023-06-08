@@ -287,7 +287,7 @@ const features = [
   },
 ];
 
-const launcCourse = [
+const launchCourse = [
   {
     id: 1,
     name: "WebDevelopment Course",
@@ -320,6 +320,6 @@ export {
   footerSkillShare,
   footerCourses,
   features,
-  launcCourse,
+  launchCourse,
   AdminLinks,
 };

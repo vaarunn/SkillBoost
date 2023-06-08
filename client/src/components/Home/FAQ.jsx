@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { faq } from "../../util/data";
+import { faq } from "../../util/data.js";
 import { motion } from "framer-motion";
 
 const FAQ = () => {

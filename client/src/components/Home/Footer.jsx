@@ -1,7 +1,7 @@
 import React from "react";
-import { footerCourses, socialIcons } from "../../util/Data";
-import { footerSkillShare } from "../../util/Data";
-import { footerResources } from "../../util/Data";
+import { footerCourses, socialIcons } from "../../util/data.js";
+import { footerSkillShare } from "../../util/data.js";
+import { footerResources } from "../../util/data.js";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 

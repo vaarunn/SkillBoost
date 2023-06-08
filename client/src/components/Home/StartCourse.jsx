@@ -1,5 +1,5 @@
 import React from "react";
-import { launcCourse } from "../../util/Data";
+import { launchCourse } from "../../util/data.js";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 const StartCourse = () => {
@@ -17,7 +17,7 @@ const StartCourse = () => {
       </motion.div>
 
       <div className="md:grid grid-cols-2 gap-2">
-        {launcCourse.map((item) => {
+        {launchCourse.map((item) => {
           const { id, name, url } = item;
           return (
             <div key={id}>
