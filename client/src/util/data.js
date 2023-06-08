@@ -109,17 +109,17 @@ const AdminLinks = [
 const socialIcons = [
   {
     id: "1",
-    // icon: <FaLinkedinIn />,
+    icon: <FaLinkedinIn />,
     url: "https://www.linkedin.com/in/varun-sadananda-b251131b7/",
   },
   {
     id: "2",
-    // icon: <FaGithub />,
+    icon: <FaGithub />,
     url: "https://github.com/vaarunn",
   },
   {
     id: "3",
-    // icon: <AiOutlineMail />,
+    icon: <AiOutlineMail />,
     url: "#/contact",
   },
 ];
@@ -251,28 +251,28 @@ const footerResources = [
   },
 ];
 
-import { SlBadge } from "react-icons/Sl";
-import { AiOutlineMessage } from "react-icons/Ai";
-import { MdMonitor } from "react-icons/Md";
+import { SlBadge } from "react-icons/sl";
+import { AiOutlineMessage } from "react-icons/ai";
+import { MdMonitor } from "react-icons/md";
 
 const features = [
   {
     id: 1,
-    // icon: <AiOutlineMessage size={50} style={{ color: "blue" }} />,
+    icon: <AiOutlineMessage size={50} style={{ color: "blue" }} />,
     title: "Expert Coaching Support",
     subTitle:
       "Gain 24/7 access to a private community of coders looking to advance their knowledge and experience, as well as their careers.",
   },
   {
     id: 2,
-    // icon: <SlBadge size={50} style={{ color: "red" }} />,
+    icon: <SlBadge size={50} style={{ color: "red" }} />,
     title: "Real-world experience",
     subTitle:
       "Theory will only get you so far, but building projects from the ground up will bolster your career in the software development space.",
   },
   {
     id: 3,
-    // icon: <MdMonitor size={50} style={{ color: "blue" }} />,
+    icon: <MdMonitor size={50} style={{ color: "blue" }} />,
     title: "JSM Pro Certificates",
     subTitle:
       "Earn JSM Pro certification for each course you complete and show hiring managers and clients that you're a programming pro.",
