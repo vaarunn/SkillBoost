@@ -13,7 +13,9 @@ import nodeCron from "node-cron";
 import { Stats } from "./models/Stats.js";
 import cors from "cors";
 
-dotenv.config();
+dotenv.config({
+  path: ".env",
+});
 
 cloudinary.v2.config({
   cloud_name: process.env.CLOUDINARY_CLIENT_NAME,
@@ -31,6 +33,7 @@ nodeCron.schedule("0 0 0 1 * *", async () => {
 
 const app = express();
 
+console.log(process.env.FRONTEND_URL);
 app.use(
   cors({
     origin: process.env.FRONTEND_URL,
