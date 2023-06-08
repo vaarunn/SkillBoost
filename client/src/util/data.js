@@ -252,7 +252,7 @@ const footerResources = [
 ];
 
 import { SlBadge } from "react-icons/Sl";
-import { AiOutlineMessage } from "react-icons/ai";
+import { AiOutlineMessage } from "react-icons/Ai";
 import { MdMonitor } from "react-icons/Md";
 
 const features = [
