@@ -124,14 +124,6 @@ const socialIcons = [
   },
 ];
 
-const projects = [
-  {
-    id: "1",
-    img: "",
-    title: "React",
-  },
-];
-
 const students = [
   {
     id: 1,
