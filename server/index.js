@@ -31,7 +31,6 @@ nodeCron.schedule("0 0 0 1 * *", async () => {
 
 const app = express();
 
-console.log(process.env.FRONTEND_URL);
 app.use(
   cors({
     origin: process.env.FRONTEND_URL,
@@ -64,8 +63,6 @@ app.use("/api/other", otherRoutes);
 //this gets called when we call next in some contorller and there is no other function this gets executed
 app.use(errorHandlerMiddleware);
 connectDB();
-
-console.log(process.env.PORT);
 
 app.listen(process.env.PORT, () => {
   console.log(`Running at port ${process.env.PORT}`);
