@@ -31,7 +31,12 @@ nodeCron.schedule("0 0 0 1 * *", async () => {
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://mernskillsshare.vercel.app/",
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 app.use(cookieParser());
