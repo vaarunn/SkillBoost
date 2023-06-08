@@ -109,17 +109,17 @@ const AdminLinks = [
 const socialIcons = [
   {
     id: "1",
-    icon: <FaLinkedinIn />,
+    // icon: <FaLinkedinIn />,
     url: "https://www.linkedin.com/in/varun-sadananda-b251131b7/",
   },
   {
     id: "2",
-    icon: <FaGithub />,
+    // icon: <FaGithub />,
     url: "https://github.com/vaarunn",
   },
   {
     id: "3",
-    icon: <AiOutlineMail />,
+    // icon: <AiOutlineMail />,
     url: "#/contact",
   },
 ];
