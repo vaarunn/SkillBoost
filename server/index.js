@@ -13,9 +13,7 @@ import nodeCron from "node-cron";
 import { Stats } from "./models/Stats.js";
 import cors from "cors";
 
-dotenv.config({
-  path: ".env",
-});
+dotenv.config();
 
 cloudinary.v2.config({
   cloud_name: process.env.CLOUDINARY_CLIENT_NAME,
@@ -66,6 +64,8 @@ app.use("/api/other", otherRoutes);
 //this gets called when we call next in some contorller and there is no other function this gets executed
 app.use(errorHandlerMiddleware);
 connectDB();
+
+console.log(process.env.PORT);
 
 app.listen(process.env.PORT, () => {
   console.log(`Running at port ${process.env.PORT}`);
