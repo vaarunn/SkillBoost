@@ -251,9 +251,9 @@ const footerResources = [
   },
 ];
 
-import { SlBadge } from "react-icons/sl";
+import { SlBadge } from "react-icons/Sl";
 import { AiOutlineMessage } from "react-icons/ai";
-import { MdMonitor } from "react-icons/md";
+import { MdMonitor } from "react-icons/Md";
 
 const features = [
   {
