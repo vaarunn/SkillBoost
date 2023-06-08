@@ -45,7 +45,7 @@ app.use(function (req, res, next) {
   // res.header("Access-Control-Allow-Origin", "*");
   const allowedOrigins = [
     "http://localhost:5173",
-    "skill-share-avnvlc77g-vaarunn.vercel.app",
+    "https://skill-share-8y5ey0zq3-vaarunn.vercel.app/",
   ];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
