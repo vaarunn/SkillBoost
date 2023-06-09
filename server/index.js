@@ -37,7 +37,11 @@ console.log(process.env.FRONTEND_URL);
 
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL],
+    origin: [
+      process.env.FRONTEND_URL,
+      "http://localhost:5173/",
+      "https://skill-share-8y5ey0zq3-vaarunn.vercel.app/",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
@@ -87,6 +91,8 @@ app.use("/api/other", otherRoutes);
 app.use(errorHandlerMiddleware);
 connectDB();
 
-app.listen(process.env.PORT, () => {
-  console.log(`Running at port ${process.env.PORT}`);
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Running at port ${PORT}`);
 });
