@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
@@ -30,7 +30,7 @@ function App() {
   const { user } = useSelector((state) => state.user);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       {user?.user?.role === "admin" ? <AdminSidebar /> : <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
@@ -127,7 +127,7 @@ function App() {
         pauseOnHover
         theme="light"
       />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
