@@ -2,10 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { requestCourse } from "../redux/slices/courseSlice";
 import toast from "react-hot-toast";
-import {
-  resetErrorMessage,
-  resetSuccessMessage,
-} from "../redux/slices/userSlice";
+
 import { Player } from "@lottiefiles/react-lottie-player";
 import rCourse from "../assets/lottieFiles/requestCourse.json";
 
@@ -14,8 +11,6 @@ const RequestCourse = () => {
   const [email, setEmail] = useState("");
   const [course, setCourse] = useState("");
   const dispatch = useDispatch();
-
-  const { successMessage, errorMessage } = useSelector((state) => state.course);
 
   useEffect(() => {
     if (successMessage) {

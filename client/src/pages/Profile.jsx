@@ -1,23 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  checkUser,
-  logout,
-  resetErrorMessage,
-  resetLogout,
-  resetSuccessMessage,
-} from "../redux/slices/userSlice";
+import { checkUser, logout } from "../redux/slices/userSlice";
 import { Link, useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 import WatchList from "../components/WatchList";
 import { cancelSubscription } from "../redux/slices/paymentSlice";
-import { showToastError, showToastSuccess } from "../util/customToast";
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const { user, isLoading, logoutSuccess, logoutError } = useSelector(
-    (state) => state.user
-  );
+  const { user, isLoading } = useSelector((state) => state.user);
 
   const getUser = async () => {
     dispatch(checkUser());

@@ -5,11 +5,7 @@ import logo from "../assets/skillboost.png";
 import { Link } from "react-router-dom";
 import { AdminLinks, socialIcons } from "../util/data";
 import ThemeToggle from "./ThemeToggle";
-import {
-  checkUser,
-  resetErrorMessage,
-  resetSuccessMessage,
-} from "../redux/slices/userSlice";
+
 import { useDispatch, useSelector } from "react-redux";
 
 const AdminSidebar = () => {

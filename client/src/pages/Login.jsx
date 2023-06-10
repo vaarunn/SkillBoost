@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, resetLogin } from "../redux/slices/userSlice";
-import {
-  resetSuccessMessage,
-  resetErrorMessage,
-} from "../redux/slices/userSlice.js";
+
 import { Link, useNavigate } from "react-router-dom";
 
 import { Player } from "@lottiefiles/react-lottie-player";
 import knowledge from "../assets/lottieFiles/knowledge.json";
-import Loader from "../components/Loader";
 import { showToastError, showToastSuccess } from "../util/customToast";
 
 const Login = () => {

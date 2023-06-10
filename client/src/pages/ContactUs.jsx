@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { requestCourse, sendMessage } from "../redux/slices/courseSlice";
+import { sendMessage } from "../redux/slices/courseSlice";
 import toast from "react-hot-toast";
-import {
-  resetErrorMessage,
-  resetSuccessMessage,
-} from "../redux/slices/userSlice";
+
 import { Player } from "@lottiefiles/react-lottie-player";
 import contactUs from "../assets/lottieFiles/contactUs.json";
 const ContactUs = () => {
@@ -14,21 +11,21 @@ const ContactUs = () => {
   const [message, setMessage] = useState("");
   const dispatch = useDispatch();
 
-  const { successMessage, errorMessage } = useSelector((state) => state.course);
+  // const { successMessage, errorMessage } = useSelector((state) => state.course);
 
-  useEffect(() => {
-    if (successMessage) {
-      toast.success(successMessage);
-      dispatch(resetSuccessMessage());
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (successMessage) {
+  //     toast.success(successMessage);
+  //     dispatch(resetSuccessMessage());
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    if (errorMessage) {
-      toast.error(errorMessage);
-      dispatch(resetErrorMessage());
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (errorMessage) {
+  //     toast.error(errorMessage);
+  //     dispatch(resetErrorMessage());
+  //   }
+  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

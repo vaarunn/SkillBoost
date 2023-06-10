@@ -2,12 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   checkUser,
-  resetErrorMessage,
+  resetCheckUser,
   resetLogout,
-  resetSuccessMessage,
 } from "../redux/slices/userSlice";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast";
 import Carasoul from "../components/Home/Carasoul";
 import Hero from "../components/Home/Hero";
 import Info from "../components/Home/Info";
@@ -17,12 +15,12 @@ import Footer from "../components/Home/Footer";
 import Roadmap from "../components/Home/Roadmap";
 import Features from "../components/Home/Features";
 import StartCourse from "../components/Home/StartCourse";
-import Loader from "../components/Loader";
+import { showToastError, showToastSuccess } from "../util/customToast";
 
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, logoutSuccess, isLoading, successMessage, logoutError } =
+  const { logoutSuccess, checkUserSuccess, checkUserError, logoutError } =
     useSelector((state) => state.user);
 
   useEffect(() => {
@@ -39,13 +37,13 @@ const Home = () => {
     }
   }, [logoutError]);
 
-  // const getUser = async () => {
-  //   dispatch(checkUser());
-  // };
+  const getUser = async () => {
+    dispatch(checkUser());
+  };
 
-  // useEffect(() => {
-  //   getUser();
-  // }, []);
+  useEffect(() => {
+    getUser();
+  }, []);
 
   // if (isLoading) {
   //   return <Loader />;

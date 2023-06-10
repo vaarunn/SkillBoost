@@ -7,11 +7,9 @@ import { links, socialIcons } from "../util/data";
 
 import ThemeToggle from "./ThemeToggle";
 import { useDispatch, useSelector } from "react-redux";
-import { checkUser } from "../redux/slices/userSlice";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
-  const dispatch = useDispatch();
 
   const [active, setActive] = useState(null);
 
@@ -20,10 +18,6 @@ const Navbar = () => {
   };
 
   const { user } = useSelector((state) => state.user);
-
-  // useEffect(() => {
-  //   dispatch(checkUser());
-  // }, []);
 
   return (
     <div className=" flex p-4 items-center justify-between md:px-20">

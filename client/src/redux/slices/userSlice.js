@@ -4,10 +4,9 @@ import authServices from "../services/authServices";
 const initialState = {
   user: null,
   isLoading: false,
-  isError: null,
-  isSuccess: null,
-  successMessage: null,
-  errorMessage: null,
+
+  checkUserSuccess: null,
+  checkUserError: null,
 
   loginSuccessMessage: null,
   loginErrorMessage: null,
@@ -60,9 +59,6 @@ export const logout = createAsyncThunk(
   "users/logout",
   async (user, thunkAPI) => {
     try {
-      // const persistor = persistStore(userSlice);
-
-      // persistor.purge();
       return await authServices.logoutService();
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -108,15 +104,6 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    resetSuccessMessage: (state) => {
-      state.successMessage = null;
-    },
-    resetErrorMessage: (state) => {
-      state.errorMessage = null;
-    },
-    resetUser: (state) => {
-      state.user = "";
-    },
     resetLogin: (state) => {
       state.loginSuccessMessage = null;
       state.loginErrorMessage = null;
@@ -132,6 +119,10 @@ const userSlice = createSlice({
     resetLogout: (state) => {
       state.logoutSuccess = null;
       state.logoutError = null;
+    },
+    resetCheckUser: (state) => {
+      state.checkUserSuccess = null;
+      state.checkUserError = null;
     },
   },
   extraReducers: (builder) => {
@@ -155,14 +146,14 @@ const userSlice = createSlice({
         state.user = action.payload;
         state.isError = false;
         state.isSuccess = true;
-        state.successMessage = action.payload.message;
+        state.checkUserSuccess = action.payload.message;
       })
       .addCase(checkUser.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(checkUser.rejected, (state, action) => {
         state.isLoading = false;
-        state.errorMessage = action.payload.response.data.message;
+        state.checkUserError = action.payload.response.data.message;
       })
       .addCase(login.pending, (state) => {
         state.isLoading = true;
@@ -214,11 +205,11 @@ const userSlice = createSlice({
         state.user = action.payload;
         state.isError = false;
         state.isSuccess = true;
-        state.successMessage = action.payload.message;
+        state.logoutSuccess = action.payload.message;
       })
       .addCase(logout.rejected, (state, action) => {
         state.isLoading = false;
-        state.errorMessage = action.payload.response.data.message;
+        state.logoutError = action.payload.response.data.message;
       })
       .addCase(removeCourseFromWatchList.pending, (state) => {
         state.isLoading = true;
@@ -238,12 +229,10 @@ const userSlice = createSlice({
 });
 
 export const {
-  resetSuccessMessage,
-  resetErrorMessage,
-  resetUser,
   resetLogin,
   resetRegister,
   resetProfile,
   resetLogout,
+  resetCheckUser,
 } = userSlice.actions;
 export default userSlice.reducer;
