@@ -21,9 +21,9 @@ const Navbar = () => {
 
   const { user } = useSelector((state) => state.user);
 
-  useEffect(() => {
-    dispatch(checkUser());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(checkUser());
+  // }, []);
 
   return (
     <div className=" flex p-4 items-center justify-between md:px-20">
@@ -54,17 +54,23 @@ const Navbar = () => {
               );
             })}
         </ul>
-        <div className="cursor-pointer lg:hidden p-8" onClick={toogleSidebar}>
-          <GiHamburgerMenu size={30} />
-        </div>
+
         <div>
           <ThemeToggle />
         </div>
+        <div className="cursor-pointer lg:hidden p-8" onClick={toogleSidebar}>
+          <GiHamburgerMenu size={30} />
+        </div>
 
         {user?.user?.name ? (
-          <Link to="/profile">
-            <button className="button-input">Profile</button>
-          </Link>
+          <div>
+            <Link to="/profile">
+              <button className="button-input">Profile</button>
+            </Link>
+            <Link to="/disclaimer">
+              <button className="button-input">Disclaimer</button>
+            </Link>
+          </div>
         ) : (
           <div className="hidden md:block">
             <Link to="/register">
@@ -107,18 +113,45 @@ const Navbar = () => {
             <p className="text-accent">Skills Matter Bro</p>
           </div>
           <div>
-            <ul className="uppercase ">
-              {links.map((link) => {
-                const { id, title, url } = link;
-                return (
-                  <Link key={id} to={url} onClick={toogleSidebar}>
-                    <li className=" py-4 border-b  border-gray-300 text-primary  hover:text-[#0ea5e9] font-poppy">
-                      {title}
-                    </li>
-                  </Link>
-                );
-              })}
-            </ul>
+            {user?.user?.name && (
+              <ul className="uppercase">
+                {links.map((link) => {
+                  const { id, title, url } = link;
+                  return (
+                    <Link key={id} to={url} onClick={toogleSidebar}>
+                      <li className="py-4 border-b border-gray-300 text-primary hover:text-[#0ea5e9] font-poppy">
+                        {title}
+                      </li>
+                    </Link>
+                  );
+                })}
+              </ul>
+            )}
+
+            {user?.user?.name ? (
+              <div>
+                <Link to="/profile">
+                  <button className="button-input">Profile</button>
+                </Link>
+                <Link to="/disclaimer">
+                  <button className="button-input">Disclaimer</button>
+                </Link>
+              </div>
+            ) : (
+              <div>
+                <Link to="/register">
+                  <button className="button-input" onClick={toogleSidebar}>
+                    Register
+                  </button>
+                </Link>
+                <Link to="/login">
+                  <button className="button-input" onClick={toogleSidebar}>
+                    Login
+                  </button>
+                </Link>
+              </div>
+            )}
+
             <div className="pt-10 ">
               <p>Let's connect</p>
               <div className="flex items-center justify-between my-4 w-full sm-:w-[88%]">
