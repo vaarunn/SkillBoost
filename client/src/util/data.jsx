@@ -73,6 +73,11 @@ const links = [
     title: "Contact Us",
     url: "/contactUs",
   },
+  {
+    id: "5",
+    title: "Disclaimer",
+    url: "/disclaimer",
+  },
 ];
 
 const AdminLinks = [
@@ -302,6 +307,41 @@ const launchCourse = [
   },
 ];
 
+const disclaimer = [
+  {
+    id: 1,
+    data: "The SkillShare provides a platform for users to access educational content related to various skills . It is important to understand and acknowledge the following disclaimers before using this app:",
+  },
+  {
+    id: 2,
+    data: "Third-Party Content: The SkillShare includes videos from other channels on YouTube. These videos are intended for educational purposes and are sourced from various content creators. We do not claim ownership or responsibility for the accuracy, reliability, or completeness of the content provided by these third-party channels. Users should exercise their own discretion and judgment while relying on the information presented in these videos.",
+  },
+  {
+    id: 3,
+    data: " Educational Purpose: The SkillShare is designed to provide educational resources and support for individuals interested in learning MERN development. However, it does not guarantee any specific outcomes or results. The effectiveness of the educational materials and courses may vary depending on individual learning capabilities, dedication, and prior knowledge.",
+  },
+  {
+    id: 4,
+    data: "No Endorsement: The inclusion of third-party videos or content on the SkillShare does not imply our endorsement, sponsorship, or affiliation with the respective content creators or channels. We do not assume any responsibility for the opinions, views, or actions of these content creators. Any claims or representations made by the content creators are solely their own.",
+  },
+  {
+    id: 5,
+    data: "  No Warranty: The SkillShare is provided on an as is basis without any warranties, express or implied. We make no representations or warranties regarding the accuracy, completeness, reliability, or availability of the app or its content. We disclaim all liability for any errors, omissions, or inaccuracies in the app or the content provided.",
+  },
+  {
+    id: 6,
+    data: "  User Responsibility: Users of the SkillShare are solely responsible for their actions and decisions based on the information and content provided. We are not liable for any direct, indirect, incidental, consequential, or any other type of damages resulting from the use or reliance on the app or its content.",
+  },
+  {
+    id: 7,
+    data: "   Intellectual Property: All intellectual property rights, including copyrights, trademarks, and patents, related to the SkillShare and its content, belong to their respective owners. Users are not permitted to reproduce, distribute, or modify the app or its content without obtaining the necessary permissions from the relevant rights holders.",
+  },
+  {
+    id: 8,
+    data: "  By accessing and using the SkillShare, you agree to the terms and conditions outlined in this disclaimer. If you do not agree with any part of this disclaimer, you should refrain from using the app.",
+  },
+];
+
 export {
   links,
   socialIcons,
@@ -314,4 +354,5 @@ export {
   features,
   launchCourse,
   AdminLinks,
+  disclaimer,
 };

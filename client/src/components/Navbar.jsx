@@ -67,9 +67,6 @@ const Navbar = () => {
             <Link to="/profile">
               <button className="button-input">Profile</button>
             </Link>
-            <Link to="/disclaimer">
-              <button className="button-input">Disclaimer</button>
-            </Link>
           </div>
         ) : (
           <div className="hidden md:block">
@@ -132,9 +129,6 @@ const Navbar = () => {
               <div>
                 <Link to="/profile">
                   <button className="button-input">Profile</button>
-                </Link>
-                <Link to="/disclaimer">
-                  <button className="button-input">Disclaimer</button>
                 </Link>
               </div>
             ) : (

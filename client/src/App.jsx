@@ -25,6 +25,7 @@ import Error from "./pages/Error";
 import AdminSidebar from "./components/AdminSidebar";
 import { useSelector } from "react-redux";
 import WatchLectures from "./pages/WatchLectures";
+import Disclaimer from "./components/Disclaimer";
 
 function App() {
   const { user } = useSelector((state) => state.user);
@@ -112,6 +113,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route path="/disclaimer" element={<Disclaimer />} />
 
         <Route path="*" element={<Error />}></Route>
       </Routes>
