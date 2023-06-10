@@ -88,7 +88,7 @@ const Navbar = () => {
         className={
           nav
             ? " fixed right-0 top-0 w-[100%] sm:w-[60%] md:w-[45%] h-full bg-primary  p-10  ease-in duration-700 z-10 border-l border-accent"
-            : " bg-primary top-0 fixed right-[-250%]  p-10 ease-in duration-700  z-10 border-l border-accent"
+            : "fixed bg-primary top-0  right-[-250%]  p-10 ease-in duration-700  z-10 border-l border-accent"
         }
       >
         <div>
