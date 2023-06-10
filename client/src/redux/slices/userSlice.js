@@ -14,6 +14,12 @@ const initialState = {
 
   registerSuccessMessage: null,
   registerErrorMessage: null,
+
+  updateProfileSuccess: null,
+  updateProfileError: null,
+
+  logoutSuccess: null,
+  logoutError: null,
 };
 
 export const register = createAsyncThunk(
@@ -119,6 +125,14 @@ const userSlice = createSlice({
       state.registerSuccessMessage = null;
       state.registerErrorMessage = null;
     },
+    resetProfile: (state) => {
+      state.updateProfileSuccess = null;
+      state.updateProfileError = null;
+    },
+    resetLogout: (state) => {
+      state.logoutSuccess = null;
+      state.logoutError = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -172,11 +186,11 @@ const userSlice = createSlice({
         state.user = action.payload;
         state.isError = false;
         state.isSuccess = true;
-        state.successMessage = action.payload.message;
+        state.updateProfileSuccess = action.payload.message;
       })
       .addCase(updatePassword.rejected, (state, action) => {
         state.isLoading = false;
-        state.errorMessage = action.payload.response.data.message;
+        state.updateProfileError = action.payload.response.data.message;
       })
       .addCase(updateProfile.pending, (state) => {
         state.isLoading = true;
@@ -186,11 +200,11 @@ const userSlice = createSlice({
         state.user = action.payload;
         state.isError = false;
         state.isSuccess = true;
-        state.successMessage = action.payload.message;
+        state.updateProfileSuccess = action.payload.message;
       })
       .addCase(updateProfile.rejected, (state, action) => {
         state.isLoading = false;
-        state.errorMessage = action.payload.response.data.message;
+        state.updateProfileError = action.payload.response.data.message;
       })
       .addCase(logout.pending, (state) => {
         state.isLoading = true;
@@ -229,5 +243,7 @@ export const {
   resetUser,
   resetLogin,
   resetRegister,
+  resetProfile,
+  resetLogout,
 } = userSlice.actions;
 export default userSlice.reducer;

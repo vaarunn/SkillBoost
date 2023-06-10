@@ -4,8 +4,8 @@ import {
   checkUser,
   logout,
   resetErrorMessage,
+  resetLogout,
   resetSuccessMessage,
-  resetUser,
 } from "../redux/slices/userSlice";
 import { Link, useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
@@ -15,7 +15,7 @@ import { showToastError, showToastSuccess } from "../util/customToast";
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const { user, isLoading, successMessage, errorMessage } = useSelector(
+  const { user, isLoading, logoutSuccess, logoutError } = useSelector(
     (state) => state.user
   );
 

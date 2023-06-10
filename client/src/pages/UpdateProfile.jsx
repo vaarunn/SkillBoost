@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  resetErrorMessage,
-  resetSuccessMessage,
-  updateProfile,
-} from "../redux/slices/userSlice";
+import { resetProfile, updateProfile } from "../redux/slices/userSlice";
 import Loader from "../components/Loader";
 
 import { Player } from "@lottiefiles/react-lottie-player";
@@ -18,23 +14,23 @@ const UpdateProfile = () => {
   const [filePreview, setFilePreview] = useState("");
   const dispatch = useDispatch();
 
-  const { user, isLoading, successMessage, errorMessage } = useSelector(
-    (state) => state.user
-  );
+  const { user, isLoading, updateProfileSuccess, updateProfileError } =
+    useSelector((state) => state.user);
 
   useEffect(() => {
-    if (successMessage) {
-      showToastSuccess(successMessage);
-      dispatch(resetSuccessMessage());
+    if (updateProfileSuccess) {
+      showToastSuccess(updateProfileSuccess);
+      dispatch(resetProfile());
     }
-  }, [successMessage]);
+  }, [updateProfileSuccess]);
 
   useEffect(() => {
-    if (errorMessage) {
-      showToastError(errorMessage);
-      dispatch(resetErrorMessage());
+    if (updateProfileError) {
+      showToastError(updateProfileError);
+      dispatch(resetProfile());
     }
-  }, [errorMessage]);
+  }, [updateProfileError]);
+
   const updateProfileHandler = (e) => {
     e.preventDefault();
     const myForm = new FormData();

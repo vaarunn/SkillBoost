@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  resetErrorMessage,
-  resetSuccessMessage,
-  updatePassword,
-} from "../redux/slices/userSlice";
+import { resetProfile, updatePassword } from "../redux/slices/userSlice";
 import { Player } from "@lottiefiles/react-lottie-player";
 import update from "../assets/lottieFiles/update.json";
 import { showToastError, showToastSuccess } from "../util/customToast";
@@ -14,21 +10,23 @@ const ChangePassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const dispatch = useDispatch();
 
-  const { successMessage, errorMessage } = useSelector((state) => state.user);
+  const { updateProfileSuccess, updateProfileError } = useSelector(
+    (state) => state.user
+  );
 
   useEffect(() => {
-    if (successMessage) {
-      showToastSuccess(successMessage);
-      dispatch(resetSuccessMessage());
+    if (updateProfileSuccess) {
+      showToastSuccess(updateProfileSuccess);
+      dispatch(resetProfile());
     }
-  }, [successMessage]);
+  }, [updateProfileSuccess]);
 
   useEffect(() => {
-    if (errorMessage) {
-      showToastError(errorMessage);
-      dispatch(resetErrorMessage());
+    if (updateProfileError) {
+      showToastError(updateProfileError);
+      dispatch(resetProfile());
     }
-  }, [errorMessage]);
+  }, [updateProfileError]);
 
   const handlePasswordChange = (e) => {
     e.preventDefault();

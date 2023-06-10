@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   checkUser,
   resetErrorMessage,
+  resetLogout,
   resetSuccessMessage,
 } from "../redux/slices/userSlice";
 import { useNavigate } from "react-router-dom";
@@ -21,9 +22,22 @@ import Loader from "../components/Loader";
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, isLoading, successMessage } = useSelector(
-    (state) => state.user
-  );
+  const { user, logoutSuccess, isLoading, successMessage, logoutError } =
+    useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (logoutSuccess) {
+      showToastSuccess(logoutSuccess);
+      dispatch(resetLogout());
+    }
+  }, [logoutSuccess]);
+
+  useEffect(() => {
+    if (logoutError) {
+      showToastError(logoutError);
+      dispatch(resetLogout());
+    }
+  }, [logoutError]);
 
   // const getUser = async () => {
   //   dispatch(checkUser());
