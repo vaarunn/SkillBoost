@@ -11,6 +11,9 @@ const initialState = {
 
   loginSuccessMessage: null,
   loginErrorMessage: null,
+
+  registerSuccessMessage: null,
+  registerErrorMessage: null,
 };
 
 export const register = createAsyncThunk(
@@ -112,6 +115,10 @@ const userSlice = createSlice({
       state.loginSuccessMessage = null;
       state.loginErrorMessage = null;
     },
+    resetRegister: (state) => {
+      state.registerSuccessMessage = null;
+      state.registerErrorMessage = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -120,14 +127,14 @@ const userSlice = createSlice({
         state.user = action.payload;
         state.isError = false;
         state.isSuccess = true;
-        state.successMessage = action.payload.message;
+        state.registerSuccessMessage = action.payload.message;
       })
       .addCase(register.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
-        state.errorMessage = action.payload.response.data.message;
+        state.registerErrorMessage = action.payload.response.data.message;
       })
       .addCase(checkUser.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -216,6 +223,11 @@ const userSlice = createSlice({
   },
 });
 
-export const { resetSuccessMessage, resetErrorMessage, resetUser, resetLogin } =
-  userSlice.actions;
+export const {
+  resetSuccessMessage,
+  resetErrorMessage,
+  resetUser,
+  resetLogin,
+  resetRegister,
+} = userSlice.actions;
 export default userSlice.reducer;

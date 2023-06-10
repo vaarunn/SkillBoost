@@ -30,20 +30,6 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    if (successMessage) {
-      showToastSuccess(successMessage);
-      dispatch(resetSuccessMessage());
-    }
-  }, [successMessage]);
-
-  useEffect(() => {
-    if (errorMessage) {
-      showToastError(errorMessage);
-      dispatch(resetErrorMessage());
-    }
-  }, [errorMessage]);
-
-  useEffect(() => {
     getUser();
   }, []);
 

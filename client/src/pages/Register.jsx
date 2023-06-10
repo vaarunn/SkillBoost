@@ -4,12 +4,7 @@ import logo from "../assets/profile.png";
 import { Player } from "@lottiefiles/react-lottie-player";
 import rocketMan from "../assets/lottieFiles/rocket.json";
 
-import {
-  checkUser,
-  register,
-  resetErrorMessage,
-  resetSuccessMessage,
-} from "../redux/slices/userSlice";
+import { register, resetRegister } from "../redux/slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import { showToastError, showToastSuccess } from "../util/customToast";
@@ -22,9 +17,8 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { successMessage, errorMessage, isLoading } = useSelector(
-    (state) => state.user
-  );
+  const { registerSuccessMessage, registerErrorMessage, isLoading } =
+    useSelector((state) => state.user);
 
   const registerHandler = (e) => {
     e.preventDefault();
@@ -39,19 +33,19 @@ const Register = () => {
   };
 
   useEffect(() => {
-    if (successMessage) {
-      showToastSuccess(successMessage);
-      dispatch(resetSuccessMessage());
+    if (registerSuccessMessage) {
+      showToastSuccess(registerSuccessMessage);
+      dispatch(resetRegister());
       navigate("/profile");
     }
-  }, [successMessage]);
+  }, [registerSuccessMessage]);
 
   useEffect(() => {
-    if (errorMessage) {
-      showToastError(errorMessage);
-      dispatch(resetErrorMessage());
+    if (registerErrorMessage) {
+      showToastError(registerErrorMessage);
+      dispatch(resetRegister());
     }
-  }, [errorMessage]);
+  }, [registerErrorMessage]);
 
   const changeImageHandler = (e) => {
     const file = e.target.files[0];
@@ -64,10 +58,6 @@ const Register = () => {
       setFilePreview(reader.result);
     };
   };
-
-  if (isLoading) {
-    return <Loader />;
-  }
 
   return (
     <div className="px-4 md:px-20 py-4 md:grid grid-cols-2 ">

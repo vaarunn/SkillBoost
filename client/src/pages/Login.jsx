@@ -32,6 +32,7 @@ const Login = () => {
     if (loginSuccessMessage) {
       showToastSuccess(loginSuccessMessage);
       dispatch(resetLogin());
+      navigate("/profile");
     }
   }, [loginSuccessMessage]);
 
