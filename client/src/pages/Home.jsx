@@ -33,9 +33,9 @@ const Home = () => {
   //   getUser();
   // }, []);
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  // if (isLoading) {
+  //   return <Loader />;
+  // }
 
   // return user ? <h1>{user.user.name}</h1> : "";
   return (

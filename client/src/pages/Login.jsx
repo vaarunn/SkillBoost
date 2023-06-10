@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../redux/slices/userSlice";
+import { login, resetLogin } from "../redux/slices/userSlice";
 import {
   resetSuccessMessage,
   resetErrorMessage,
@@ -18,9 +18,10 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { successMessage, errorMessage, user, isLoading } = useSelector(
-    (state) => state.user
-  );
+  const { loginSuccessMessage, loginErrorMessage, user, isLoading } =
+    useSelector((state) => state.user);
+
+  console.log(loginErrorMessage, loginSuccessMessage);
 
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -28,23 +29,22 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (successMessage) {
-      showToastSuccess(successMessage);
-      dispatch(resetSuccessMessage());
-      navigate("/profile");
+    if (loginSuccessMessage) {
+      showToastSuccess(loginSuccessMessage);
+      dispatch(resetLogin());
     }
-  }, [successMessage]);
+  }, [loginSuccessMessage]);
 
   useEffect(() => {
-    if (errorMessage) {
-      showToastError(errorMessage);
-      dispatch(resetErrorMessage());
+    if (loginErrorMessage) {
+      showToastError(loginErrorMessage);
+      dispatch(resetLogin());
     }
-  }, [errorMessage]);
+  }, [loginErrorMessage]);
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  // if (isLoading) {
+  //   return <Loader />;
+  // }
 
   return (
     <div className="px-4 md:px-20 py-16 md:grid grid-cols-2">

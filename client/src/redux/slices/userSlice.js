@@ -1,13 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import authServices from "../services/authServices";
-import { persistStore } from "redux-persist";
+
 const initialState = {
-  user: "",
+  user: null,
   isLoading: false,
-  isError: "",
-  isSuccess: "",
+  isError: null,
+  isSuccess: null,
   successMessage: null,
   errorMessage: null,
+
+  loginSuccessMessage: null,
+  loginErrorMessage: null,
 };
 
 export const register = createAsyncThunk(
@@ -105,6 +108,10 @@ const userSlice = createSlice({
     resetUser: (state) => {
       state.user = "";
     },
+    resetLogin: (state) => {
+      state.loginSuccessMessage = null;
+      state.loginErrorMessage = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -144,11 +151,11 @@ const userSlice = createSlice({
         state.user = action.payload;
         state.isError = false;
         state.isSuccess = true;
-        state.successMessage = action.payload.message;
+        state.loginSuccessMessage = action.payload.message;
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
-        state.errorMessage = action.payload.response.data.message;
+        state.loginErrorMessage = action.payload.response.data.message;
       })
       .addCase(updatePassword.pending, (state) => {
         state.isLoading = true;
@@ -209,6 +216,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { resetSuccessMessage, resetErrorMessage, resetUser } =
+export const { resetSuccessMessage, resetErrorMessage, resetUser, resetLogin } =
   userSlice.actions;
 export default userSlice.reducer;

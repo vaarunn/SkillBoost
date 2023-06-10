@@ -2,9 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer components{
- 
-} */
+
+
+* {
+  scrollbar-width: thin;
+}
 
 :root {
     @apply bg-primary text-primary font-poppy;
