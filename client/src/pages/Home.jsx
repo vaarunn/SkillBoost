@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   checkUser,
@@ -20,7 +20,12 @@ import { showToastError, showToastSuccess } from "../util/customToast";
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { logoutSuccess, logoutError } = useSelector((state) => state.user);
+  const { logoutSuccess, logoutError, checkUserSuccess, checkUserError, user } =
+    useSelector((state) => state.user);
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   useEffect(() => {
     if (logoutSuccess) {
@@ -36,13 +41,21 @@ const Home = () => {
     }
   }, [logoutError]);
 
-  // const getUser = async () => {
-  //   dispatch(checkUser());
-  // };
+  useEffect(() => {
+    if (checkUserSuccess) {
+      showToastSuccess(checkUserSuccess);
+    }
+  }, [checkUserSuccess]);
 
-  // useEffect(() => {
-  //   getUser();
-  // }, []);
+  useEffect(() => {
+    if (checkUserError) {
+      showToastError(checkUserError);
+    }
+  }, [checkUserError]);
+
+  const getUser = async () => {
+    dispatch(checkUser());
+  };
 
   // if (isLoading) {
   //   return <Loader />;

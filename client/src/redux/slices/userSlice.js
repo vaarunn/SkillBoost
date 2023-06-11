@@ -7,6 +7,7 @@ const initialState = {
 
   checkUserSuccess: null,
   checkUserError: null,
+  isFirstTime: true,
 
   loginSuccessMessage: null,
   loginErrorMessage: null,

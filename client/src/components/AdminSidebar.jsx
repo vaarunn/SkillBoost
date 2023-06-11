@@ -2,18 +2,26 @@ import React, { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import logo from "../assets/skillboost.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AdminLinks, socialIcons } from "../util/data";
 import ThemeToggle from "./ThemeToggle";
 
 import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/slices/userSlice";
 
 const AdminSidebar = () => {
   const [nav, setNav] = useState(false);
   const [active, setActive] = useState(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const toogleSidebar = () => {
     setNav(!nav);
+  };
+
+  const logoutHandler = async () => {
+    dispatch(logout());
+    navigate("/");
   };
 
   const { user } = useSelector((state) => state.user);
@@ -38,7 +46,7 @@ const AdminSidebar = () => {
         className={
           nav
             ? " fixed right-0 top-0 w-[100%] sm:w-[60%] md:w-[45%] h-full bg-primary  p-10  ease-in duration-700 z-10 border-l border-accent"
-            : " bg-primary top-0 fixed right-[-250%]  p-10 ease-in duration-700  z-10 border border-accent"
+            : " bg-primary top-0 fixed h-full right-[-250%]  p-10 ease-in duration-700  z-10 border border-accent"
         }
       >
         <div>
@@ -87,9 +95,22 @@ const AdminSidebar = () => {
 
             <div onClick={toogleSidebar}>
               {user?.user?.name ? (
-                <Link to="/profile">
-                  <button className="button-input">Profile</button>
-                </Link>
+                <div>
+                  <Link to="/profile">
+                    <button className="button-input">Profile</button>
+                  </Link>
+                  <Link to="/">
+                    <button
+                      onClick={() => {
+                        logoutHandler();
+                        toogleSidebar();
+                      }}
+                      className="button-danger"
+                    >
+                      Logout
+                    </button>
+                  </Link>
+                </div>
               ) : (
                 <div className="hidden md:block">
                   <Link to="/register">
@@ -104,7 +125,7 @@ const AdminSidebar = () => {
 
             <div className="pt-10 ">
               <p>Let's connect</p>
-              <div className="flex items-center justify-between my-4 w-full sm-:w-[88%]">
+              <div className="flex items-center gap-8 my-4 w-full sm-:w-[88%]">
                 {socialIcons.map((icons) => {
                   const { id, icon, url } = icons;
 

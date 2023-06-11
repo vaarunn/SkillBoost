@@ -122,11 +122,6 @@ const socialIcons = [
     icon: <FaGithub />,
     url: "https://github.com/vaarunn",
   },
-  {
-    id: "3",
-    icon: <AiOutlineMail />,
-    url: "#/contact",
-  },
 ];
 
 const students = [

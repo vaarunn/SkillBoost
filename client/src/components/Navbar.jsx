@@ -1,17 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import logo from "../assets/skillboost.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { links, socialIcons } from "../util/data";
 
 import ThemeToggle from "./ThemeToggle";
 import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/slices/userSlice";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
 
   const [active, setActive] = useState(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logoutHandler = async () => {
+    dispatch(logout());
+    navigate("/");
+  };
 
   const toogleSidebar = () => {
     setNav(!nav);
@@ -79,7 +87,7 @@ const Navbar = () => {
         className={
           nav
             ? " fixed right-0 top-0 w-[100%] sm:w-[60%] md:w-[45%] h-full bg-primary  p-10  ease-in duration-700 z-10 border-l border-accent"
-            : "fixed bg-primary top-0  right-[-250%]  p-10 ease-in duration-700  z-10 border-l border-accent"
+            : "fixed bg-primary top-0 h-full right-[-250%]  p-10 ease-in duration-700  z-10 border-l border-accent"
         }
       >
         <div>
@@ -124,6 +132,17 @@ const Navbar = () => {
                 <Link to="/profile">
                   <button className="button-input">Profile</button>
                 </Link>
+                <Link to="/">
+                  <button
+                    onClick={() => {
+                      toogleSidebar();
+                      logoutHandler();
+                    }}
+                    className="button-danger"
+                  >
+                    Logout
+                  </button>
+                </Link>
               </div>
             ) : (
               <div>
@@ -142,7 +161,7 @@ const Navbar = () => {
 
             <div className="pt-10 ">
               <p>Let's connect</p>
-              <div className="flex items-center justify-between my-4 w-full sm-:w-[88%]">
+              <div className="flex items-center gap-8 my-4 w-full sm-:w-[88%]">
                 {socialIcons.map((icons) => {
                   const { id, icon, url } = icons;
 

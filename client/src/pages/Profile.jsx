@@ -41,9 +41,9 @@ const Profile = () => {
 
   return (
     user && (
-      <div className=" grid place-items-center md:px-20">
+      <div className=" grid place-items-center md:px-20 ">
         <h1 className="font-bold text-2xl my-4">User Profile</h1>
-        <div className=" md:flex items-center">
+        <div className=" md:flex items-center  px-4 py-8">
           <div className=" grid place-items-center">
             <img
               className="w-32 h-32 rounded-full md:w-40 md:h-40 "
