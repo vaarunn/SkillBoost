@@ -68,7 +68,7 @@ const Dashboard = () => {
         />
       </div>
 
-      <div className="m-0 md:m-16 rounded-lg p-0 md:p-16 mt-4 md:mt-16 shadow-md">
+      <div className="m-0 border border-accent md:m-16 rounded-lg p-0 md:p-16 mt-4 md:mt-16 shadow-md">
         <h2 className="text-2xl font-bold text-center md:text-left pt-8 md:ml-16">
           Views Graph
         </h2>
@@ -77,7 +77,7 @@ const Dashboard = () => {
       </div>
 
       <div className="grid place-items-center ">
-        <div className="    md:m-16 rounded-lg p-0 md:p-16 mt-4 md:mt-16 shadow-md ">
+        <div className="    md:m-16 rounded-lg p-0 md:p-16 mt-4 md:mt-16 shadow-md border border-accent">
           <h2 className="text-center mb-4 text-lg font-bold">Users</h2>
 
           <DoughnutChart

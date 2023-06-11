@@ -34,7 +34,6 @@ export const updateProfileService = async (myFile) => {
 export const logoutService = async () => {
   const response = await instanceNoFile.get("/users/logout");
 
-  console.log(response.data);
   return response.data;
 };
 

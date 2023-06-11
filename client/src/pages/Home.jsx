@@ -20,8 +20,7 @@ import { showToastError, showToastSuccess } from "../util/customToast";
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { logoutSuccess, checkUserSuccess, checkUserError, logoutError } =
-    useSelector((state) => state.user);
+  const { logoutSuccess, logoutError } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (logoutSuccess) {

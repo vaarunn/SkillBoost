@@ -105,10 +105,16 @@ const Register = () => {
           />
 
           <input
-            className="my-2"
             type="file"
             onChange={changeImageHandler}
             accept="images/*"
+            className="text-sm
+            file:mr-5 file:py-3 file:px-2
+            file:rounded-full file:border-0
+            file:text-md file:font-semibold  
+            file:bg-secondary file:text-secondary
+            md:file:px-10
+            hover:file:cursor-pointer hover:file:opacity-80 my-2"
           />
           <button className="button-input mt-4">Register</button>
           <p className="text-sm">

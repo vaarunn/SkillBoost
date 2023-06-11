@@ -9,15 +9,15 @@ import { cancelSubscription } from "../redux/slices/paymentSlice";
 const Profile = () => {
   const dispatch = useDispatch();
   const { user, isLoading } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const getUser = async () => {
     dispatch(checkUser());
-    dispatch(resetSuccessMessage());
-    dispatch(resetErrorMessage());
   };
 
   const logoutHandler = async () => {
     dispatch(logout());
+    navigate("/");
   };
 
   useEffect(() => {
@@ -92,11 +92,9 @@ const Profile = () => {
               </button>
             )}
 
-            <Link to="/">
-              <button onClick={logoutHandler} className="button-danger">
-                Logout
-              </button>
-            </Link>
+            <button onClick={logoutHandler} className="button-danger">
+              Logout
+            </button>
           </div>
         </div>
         <div className="px-4 md:px-20">

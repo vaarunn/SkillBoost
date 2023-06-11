@@ -2,7 +2,7 @@ import React from "react";
 import { RiArrowUpLine, RiArrowDownLine } from "react-icons/ri";
 
 const Databox = ({ title, qty, qtyPercentage, profit }) => (
-  <div className="w-full my-4 md:w-1/5 shadow-md p-8 rounded-lg overflow-x-hidden">
+  <div className="w-full border border-accent my-4 md:w-1/5 shadow-md p-8 rounded-lg overflow-x-hidden">
     <p className="font-medium">{title}</p>
 
     <div className="flex items-center space-x-6">

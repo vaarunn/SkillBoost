@@ -41,9 +41,9 @@ const Users = () => {
     }
   }, [errorMessage]);
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  // if (isLoading) {
+  //   return <Loader />;
+  // }
 
   return (
     <div className="px-4 md:px-20 ">

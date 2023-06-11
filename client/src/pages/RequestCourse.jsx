@@ -13,18 +13,18 @@ const RequestCourse = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (successMessage) {
-      toast.success(successMessage);
+    if (requestSuccess) {
+      toast.success(requestSuccess);
       dispatch(resetSuccessMessage());
     }
-  }, [successMessage]);
+  }, [requestSuccess]);
 
   useEffect(() => {
-    if (errorMessage) {
-      toast.error(errorMessage);
+    if (requestError) {
+      toast.error(requestError);
       dispatch(resetErrorMessage());
     }
-  }, [errorMessage]);
+  }, [requestError]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

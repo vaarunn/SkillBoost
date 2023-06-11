@@ -65,7 +65,7 @@ const CreateCourse = () => {
       <div className=" px-20 lg:max-w-[70%]">
         <form
           onSubmit={createCourseHandler}
-          className="p-6 shadow-gray-900   shadow-2xl "
+          className="p-6 shadow-gray-900   shadow-2xl border border-accent rounded-xl"
         >
           <div className="grid place-items-center">
             <h1 className="font-bold text-2xl mb-2">Create Course</h1>

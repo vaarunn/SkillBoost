@@ -19,6 +19,9 @@ const initialState = {
 
   logoutSuccess: null,
   logoutError: null,
+
+  requestSuccess: null,
+  requestError: null,
 };
 
 export const register = createAsyncThunk(
@@ -124,6 +127,10 @@ const userSlice = createSlice({
       state.checkUserSuccess = null;
       state.checkUserError = null;
     },
+    resetRequest: (state) => {
+      state.requestSuccess = null;
+      state.requestError = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -202,7 +209,6 @@ const userSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload;
         state.isError = false;
         state.isSuccess = true;
         state.logoutSuccess = action.payload.message;
