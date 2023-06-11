@@ -36,13 +36,13 @@ const Home = () => {
     }
   }, [logoutError]);
 
-  const getUser = async () => {
-    dispatch(checkUser());
-  };
+  // const getUser = async () => {
+  //   dispatch(checkUser());
+  // };
 
-  useEffect(() => {
-    getUser();
-  }, []);
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
 
   // if (isLoading) {
   //   return <Loader />;
